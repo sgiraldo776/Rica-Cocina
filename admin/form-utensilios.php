@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><!--Importacion css bootstrap-->
-    <title>Formulario Ingresar Utencilios</title>
+    <title>Formulario Ingresar Utensilios</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -16,10 +16,10 @@
     <main>
         <div class="container text-center mt-4">
             <div>
-                <h2>Ingresar Utencilios</h2>
+                <h2>Ingresar Utensilios</h2>
             </div><!-- Div Nav-->
             <div>
-                <form action="insertar-utencilio.php" method="post">
+                <form action="insertar-utensilio.php" method="post">
                     <label>Nombre:</label><br>
                     <input type="text" name="nombre"><br><br>
                     <input type="submit" name="Enviar" class="btn btn-primary">
@@ -30,6 +30,8 @@
                     <thead class="thead-dark">
                         <th>id</th>
                         <th>nombre</th>
+                        <th></th>
+                        <th></th>
                     </thead>
                     <?php 
                     $sel = $conn ->query("SELECT * FROM tblutensilios ");
@@ -38,6 +40,8 @@
                     <tr>
                         <td><?php echo $fila['utensilioid'] ?></td>
                         <td><?php echo $fila['nombre'] ?></td>
+                        <td><a href="frm-actu-utensilio.php?utensilioid=<?php echo $fila['utensilioid'] ?>">EDITAR</a></td>
+                        <td><a href="borrar.php?utensilioid=<?php echo $fila['utensilioid'] ?>">ELIMINAR</a></td>
                     </tr>
                     <?php } ?>
                 </table>
