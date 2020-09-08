@@ -41,7 +41,7 @@
                         <td><?php echo $fila['utensilioid'] ?></td>
                         <td><?php echo $fila['nombre'] ?></td>
                         <td><a href="frm-actu-utensilio.php?utensilioid=<?php echo $fila['utensilioid'] ?>">EDITAR</a></td>
-                        <td><a href="borrar.php?utensilioid=<?php echo $fila['utensilioid'] ?>">ELIMINAR</a></td>
+                        <td><a href="eliminar.php?utensilioid=<?php echo $fila['utensilioid'] ?>">ELIMINAR</a></td>
                     </tr>
                     <?php } ?>
                 </table>

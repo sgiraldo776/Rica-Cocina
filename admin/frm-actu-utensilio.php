@@ -14,7 +14,7 @@ if ($fila = $sel -> fetch_assoc()) {
 </head>
 <body>
 <form action="actualizar.php" method="post">
-    <input type="hidden" name="id" value="<?php echo $id ?>">
+    <input type="hidden" name="utensilioid" value="<?php echo $id ?>">
     <input type="text" name="nombre" placeholder="Nombre Utencilio" value="<?php echo $fila['nombre'] ?>"><br>
     <input type="submit" value="Actualizar">
 </form>

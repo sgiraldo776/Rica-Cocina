@@ -11,4 +11,4 @@ else{
 	echo "<script> 	location.href='frm-actu-utensilio.php?id=".$id."'; 	</script>";
 }
 
- ?>
+?>

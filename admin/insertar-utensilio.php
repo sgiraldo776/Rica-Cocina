@@ -11,7 +11,7 @@ $sql="INSERT INTO tblutensilios (nombre)
 VALUES ('$nombre')";
 
 if ($conn->query($sql) === TRUE) {
-    echo "Datos insertados con exito";
+    echo "<script> 	location.href='form-utensilios.php'; </script>";
 } else {
     echo "Error: " . $sql . "<br>" . $conn->error;
 }
