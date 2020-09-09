@@ -36,10 +36,10 @@
                     <h2>Ingresar Utensilios</h2>
                 </div><!-- Div Nav-->
                 <div>
-                    <form action="insertar-utensilio.php" method="post">
+                    <form action="insertar-utensilio.php" name="add_form" method="post">
                         <label>Nombre:</label><br>
-                        <input type="text" name="nombre"><br><br>
-                        <input type="submit" name="Enviar" class="btn btn-primary">
+                        <input type="text" name="nombre" id="txt_utensilio"><br><br>
+                        <button type="button" onclick="validarformulario3();" class="btn btn-primary">Guardar</button>
                     </form>
                 </div><!-- Div Form -->
                 <div class="mt-4">

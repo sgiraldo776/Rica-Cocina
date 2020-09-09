@@ -1,0 +1,68 @@
+//formulario del padecimiento
+
+function validarformulario(){
+	//alert("todo bien");
+	 var formulario = document.add_form;
+
+	 if (formulario.txt_padecimiento.value == ""){
+	 	alert("nos se puede ingresar campos vacios");
+	 	return false;
+	 }else{
+	 	formulario.submit();
+	 }
+	 
+
+
+}
+
+//formulario del tipo de comida
+
+function validarformulario1(){
+	//alert("todo bien");
+	 var formulario = document.add_form;
+
+	 if (formulario.txt_tipocomida.value == ""){
+	 	alert("no se puede ingresar campos vacios");
+	 	return false;
+	 }else{
+	 	formulario.submit();
+	 }
+	 
+
+
+}
+
+
+//formulario del tipo dieta
+function validarformulario2(){
+	//alert("todo bien");
+	 var formulario = document.add_form;
+
+	 if (formulario.txt_tipodieta.value == ""){
+	 	alert("no se puede ingresar campos vacios");
+	 	return false;
+	 }else{
+	 	formulario.submit();
+	 }
+	 
+
+
+}
+//formulario utensilio
+
+function validarformulario3(){
+	//alert("todo bien");
+	 var formulario = document.add_form;
+
+	 if (formulario.txt_utensilio.value == ""){
+	 	alert("no se puede ingresar campos vacios");
+	 	return false;
+	 }else{
+	 	formulario.submit();
+	 }
+	 
+
+
+}
+
+
