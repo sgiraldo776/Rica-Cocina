@@ -1,5 +1,5 @@
 <?php
- include "../conexion.php"
+    include '../conexion.php';
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><!--Importacion css bootstrap-->
-    <title>Formulario Ingresar Tipo Comida</title>
+    <title>Formulario Tipo Dieta</title>
 </head>
 <body>
     <header class="navbar navbar-expand-md navbar-dark bg-dark">
@@ -21,10 +21,10 @@
                     <a class="nav-link text-light" href="../Utensilios/form-utensilios.php">Utensilios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="../tipodieta/form_tipodieta.php">Tipo Dieta</a>
+                    <a class="nav-link text-light" href="form_tipodieta.php">Tipo Dieta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="form_TipoComida.php">Tipo Comida</a>
+                    <a class="nav-link text-light" href="../TipoComida/form_TipoComida.php">Tipo Comida</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-light" href="../Padecimiento/form_padecimiento.php">Padecimientos</a>
@@ -34,12 +34,12 @@
         <main class="col-10">
             <div class="container text-center mt-4">
                 <div>
-                    <h2>Ingresar Tipo Comida</h2>
+                    <h2>Ingresar Tipo Dieta</h2>
                 </div><!-- Div Nav-->
                 <div>
-                    <form action="insertar_tipocomida.php" method="post">
+                    <form action="insertar_tipodieta.php" method="post">
                         <label>Nombre:</label><br>
-                        <input type="text" name="nombre" placeholder="Ingresar Tipo Comida"><br><br>
+                        <input type="text" name="nombre" placeholder="Dieta"><br><br>
                         <input type="submit" name="Enviar" class="btn btn-primary">
                     </form>
                 </div><!-- Div Form -->
@@ -52,15 +52,16 @@
                             <th></th>
                         </thead>
                         <?php 
-                        $sel = $conn ->query("SELECT * FROM tbltipocomida");
+                        $sel = $conn ->query("SELECT * FROM tbltipodieta ");
                         while ($fila = $sel -> fetch_assoc()) {
                         ?>
                         <tr>
-                            <td><?php echo $fila['tipocomidaid'] ?></td>
+                            <td><?php echo $fila['tipodietaid'] ?></td>
                             <td><?php echo $fila['nombre'] ?></td>
-                            <td><a href="frm_actu_tipocomida.php?tipocomidaid=<?php echo $fila['tipocomidaid'] ?>">EDITAR</a></td>
-                            <td><a href="eliminar_tipocomida.php?tipocomidaid=<?php echo $fila['tipocomidaid'] ?>">ELIMINAR</a></td>
+                            <td><a href="frm_actu_tipodieta.php?tipodietaid=<?php echo $fila['tipodietaid'] ?>">EDITAR</a></td>
+                            <td><a href="eliminar_tipodieta.php?tipodietaid=<?php echo $fila['tipodietaid'] ?>">ELIMINAR</a></td>
                         </tr>
+                        
                         <?php } ?>
                     </table>
                 </div><!-- Div Lista -->

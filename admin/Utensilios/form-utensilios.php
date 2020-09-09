@@ -17,13 +17,16 @@
         <nav class="bg-dark col-2">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Link</a>
+                    <a class="nav-link text-light" href="form-utensilios.php">Utensilios</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Link</a>
+                    <a class="nav-link text-light" href="../tipodieta/form_tipodieta.php">Tipo Dieta</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-light" href="#">Link</a>
+                    <a class="nav-link text-light" href="../TipoComida/form_TipoComida.php">Tipo Comida</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="../Padecimiento/form_padecimiento.php">Padecimientos</a>
                 </li>
             </ul><!-- UL -->
         </nav><!-- Nav -->
