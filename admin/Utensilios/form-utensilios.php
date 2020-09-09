@@ -10,44 +10,59 @@
     <title>Formulario Ingresar Utensilios</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <h1 style="color:white;">Rica Cocina</h1>
-    </nav>
-    <main>
-        <div class="container text-center mt-4">
-            <div>
-                <h2>Ingresar Utensilios</h2>
-            </div><!-- Div Nav-->
-            <div>
-                <form action="insertar-utensilio.php" method="post">
-                    <label>Nombre:</label><br>
-                    <input type="text" name="nombre"><br><br>
-                    <input type="submit" name="Enviar" class="btn btn-primary">
-                </form>
-            </div><!-- Div Form -->
-            <div class="mt-4">
-                <table class="table table-hover">
-                    <thead class="thead-dark">
-                        <th>id</th>
-                        <th>nombre</th>
-                        <th></th>
-                        <th></th>
-                    </thead>
-                    <?php 
-                    $sel = $conn ->query("SELECT * FROM tblutensilios ");
-                    while ($fila = $sel -> fetch_assoc()) {
-                    ?>
-                    <tr>
-                        <td><?php echo $fila['utensilioid'] ?></td>
-                        <td><?php echo $fila['nombre'] ?></td>
-                        <td><a href="frm-actu-utensilio.php?utensilioid=<?php echo $fila['utensilioid'] ?>">EDITAR</a></td>
-                        <td><a href="eliminar.php?utensilioid=<?php echo $fila['utensilioid'] ?>">ELIMINAR</a></td>
-                    </tr>
-                    <?php } ?>
-                </table>
-            </div><!-- Div Lista -->
-        </div><!-- Div Conetenedor -->
-    </main>
+    <header class="navbar navbar-expand-md navbar-dark bg-dark">
+        <h1 class="text-light">Rica Cocina</h1>
+    </header>
+    <div class="row">
+        <nav class="bg-dark col-2">
+            <ul class="nav flex-column">
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="#">Link</a>
+                </li>
+            </ul><!-- UL -->
+        </nav><!-- Nav -->
+        <main class="col-10">
+            <div class="container text-center mt-4">
+                <div>
+                    <h2>Ingresar Utensilios</h2>
+                </div><!-- Div Nav-->
+                <div>
+                    <form action="insertar-utensilio.php" method="post">
+                        <label>Nombre:</label><br>
+                        <input type="text" name="nombre"><br><br>
+                        <input type="submit" name="Enviar" class="btn btn-primary">
+                    </form>
+                </div><!-- Div Form -->
+                <div class="mt-4">
+                    <table class="table table-hover">
+                        <thead class="thead-dark">
+                            <th>id</th>
+                            <th>nombre</th>
+                            <th></th>
+                            <th></th>
+                        </thead>
+                        <?php 
+                        $sel = $conn ->query("SELECT * FROM tblutensilios ");
+                        while ($fila = $sel -> fetch_assoc()) {
+                        ?>
+                        <tr>
+                            <td><?php echo $fila['utensilioid'] ?></td>
+                            <td><?php echo $fila['nombre'] ?></td>
+                            <td><a href="frm-actu-utensilio.php?utensilioid=<?php echo $fila['utensilioid'] ?>">EDITAR</a></td>
+                            <td><a href="eliminar.php?utensilioid=<?php echo $fila['utensilioid'] ?>">ELIMINAR</a></td>
+                        </tr>
+                        <?php } ?>
+                    </table>
+                </div><!-- Div Lista -->
+            </div><!-- Div Conetenedor -->
+        </main><!-- Main -->
+    </div><!-- Cierra Row -->
     <!--JS de bootstrap-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
