@@ -1,4 +1,4 @@
-<?php include 'conexion.php';
+<?php include '../conexion.php';
 $id = $_REQUEST['utensilioid'];
 
 // $_REQUEST Un array asociativo que por defecto contiene el contenido de $_GET, $_POST y $_COOKIE
