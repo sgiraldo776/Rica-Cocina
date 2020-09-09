@@ -6,6 +6,7 @@ $id = $_REQUEST['padecimientoid'];
 $sel = $conn -> query("SELECT * FROM tblpadecimiento WHERE padecimientoid='$id' ");
 if ($fila = $sel -> fetch_assoc()) {
 }
+
  ?>
  <!DOCTYPE html>
 <html>

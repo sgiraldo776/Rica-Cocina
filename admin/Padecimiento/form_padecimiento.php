@@ -44,6 +44,7 @@
                         <td><a href="frm_actu_padecimiento.php?padecimientoid=<?php echo $fila['padecimientoid'] ?>">EDITAR</a></td>
                         <td><a href="eliminar_padecimiento.php?padecimientoid=<?php echo $fila['padecimientoid'] ?>">ELIMINAR</a></td>
                     </tr>
+                    
                     <?php } ?>
                 </table>
             </div><!-- Div Lista -->

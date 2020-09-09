@@ -3,6 +3,7 @@
 $id = $_POST['padecimientoid'];
 $nombre = $_POST['nombre'];
 
+
 $up = $conn -> query("UPDATE tblpadecimiento SET nombre='$nombre' WHERE padecimientoid='$id' ");
 if ($up) {
 	echo "<script> 	location.href='form_padecimiento.php'; </script>";

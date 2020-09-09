@@ -5,6 +5,7 @@ if ($conn->connect_error) {
     die("Conección exitosa: " . $conn->connect_error);
 }
 
+
 $nombre=$_POST['nombre'];
 
 $sql="INSERT INTO tblpadecimiento (nombre)

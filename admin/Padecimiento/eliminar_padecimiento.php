@@ -6,6 +6,7 @@ $id =$_REQUEST['padecimientoid'];
 $del = $conn -> query("DELETE FROM tblpadecimiento WHERE padecimientoid = '$id' ");
 if ($del) 
 
+
 {
 	echo "<script> 	location.href='form_padecimiento.php'; </script>";
 }
