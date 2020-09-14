@@ -21,10 +21,6 @@ h1,h2,h3{
 .site-header{
     background-color: #333333;
 }
-.sli-img{
-    background-position: center;
-    height: 40rem;
-}
 .contenido-header{
     height: 100%;
     display: flex;
@@ -52,4 +48,8 @@ h1,h2,h3{
 }
 .navegacion a:last-of-type{
     margin: 0;
+}
+
+#nav{
+    background-color: #813531;
 }
