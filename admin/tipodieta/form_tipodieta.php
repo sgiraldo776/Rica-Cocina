@@ -9,14 +9,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet"> 
     <title>Formulario Tipo Dieta</title>
 </head>
 <body>
-    <header class="navbar navbar-expand-md navbar-dark bg-dark">
-        <h1 class="text-light">Rica Cocina</h1>
+    <header class="navbar navbar-expand-md navbar-dark" id="nav">
+    <img src="../../img/LOGO-03.png" alt="">
     </header>
     <div class="row">
-        <nav class="bg-dark col-2">
+        <nav class="col-2" id="nav">
             <ul class="nav flex-column">
                 <li class="nav-item">
                     <a class="nav-link text-light" href="../Utensilios/form-utensilios.php">Utensilios</a>
@@ -35,18 +36,18 @@
         <main class="col-10">
             <div class="container text-center mt-4">
                 <div>
-                    <h2>Ingresar Tipo Dieta</h2>
+                    <h1>Ingresar Tipo Dieta</h1>
                 </div><!-- Div Nav-->
                 <div>
                     <form action="insertar_tipodieta.php" name="add_form" method="post">
                         <label>Nombre:</label><br>
-                        <input type="text" name="nombre" id="txt_tipodieta" placeholder="Dieta"><br><br>
-                        <button type="button" onclick="validarformulario2();" class="btn btn-primary">Guardar</button>
+                        <input type="text" name="nombre" id="txt_tipodieta" placeholder="Ingrese Tipo de Dieta"><br><br>
+                        <button type="button" onclick="validarformulario2();" class="boton boton-amarillo">Guardar</button>
                     </form>
                 </div><!-- Div Form -->
                 <div class="mt-4">
                     <table class="table table-hover">
-                        <thead class="thead-dark">
+                        <thead class="thead">
                             <th>id</th>
                             <th>nombre</th>
                             <th></th>
