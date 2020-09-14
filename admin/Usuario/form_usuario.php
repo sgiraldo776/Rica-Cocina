@@ -9,11 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet"> 
     <title>Registrarse</title>
 </head>
 <body>
     <header class="navbar navbar-expand-md navbar-dark" id="nav">
-        <h1 class="text-light">Rica Cocina</h1>
+      <img src="../../img/LOGO-03.png" alt="">
     </header>
     <div class="row">
        <!-- <nav class="bg-dark col-2">
@@ -35,13 +36,13 @@
         <main class="col-12">
             <div class="container text-center mt-4">
                 <div>
-                    <h2 class="text">Registrarse</h2>
+                    <h1>Registrarse</h1>
                 </div><!-- Div Nav-->
                 <div>
                     <form action="insertar_usuario.php" name="add_form" method="post">
                     <div class="card-body">
-                     <fieldset>
-                         <legend> Información Básica 
+                     <fieldset class="fieldset">
+                         <legend class="legend"> Información Personal</legend>
                     <div class="row">
                      <div class="col">
                      	<label>Nombre</label>
@@ -55,21 +56,24 @@
                     </div>
                   </div>
                   <div class="form-group">
+                  <div class="row">
+                      <div class="col">
+                      	<label>Fecha de Nacimiento</label>
+                          <input type="date" class="form-control" name="Fechanacimiento" placeholder="Ingrese Fecha de Nacimiento" id="fechanacimiento">
+                      </div>
+                    </div>
                     <div class="row">
                       <div class="col">
                       	<label>Correo</label>
                       	<input type="email" class="form-control" name="correo" placeholder="Ingrese el correo" id="correo">
                       </div>
                       </div>
-                      <div class="row">
-                      <div class="col">
-                      	<label>Fecha de Nacimiento</label>
-                          <input type="date" class="form-control" name="Fchanacimiento" placeholder="Ingrese Fecha de Nacimiento" id="fechanacimiento">
-                      </div>
-                    </div>
+                     
                   </div>
-                         </legend>
+                         
                      </fieldset>
+                     <fieldset class="fieldset">
+                     <legend class="legend1"> Usuario</legend>
                   <div class="form-group">
                   <div class="row">
                     <div class="col-lg-12">
@@ -90,6 +94,7 @@
                    </div>
                  </div>
                </div>
+               <h4>La contraseña debe tener como mínimo un caracter especial, una mayúscula y un número. Tambien debe ser mayor a seis digitos.</h4>
                <div class="row">
                    <div class="col">
                     <label>Contraseña</label>
@@ -101,14 +106,41 @@
                   </div>
                   <span id="error2"></span>
                 </div>
-                  <br><br>
-                        <button type="submit" onclick="validarformulario()" class="boton boton-amarillo">Registrarse</button> 
+                        </fieldset>
+                        <button type="button" onclick="validarformulario()" class="boton boton-amarillo">Registrarse</button> 
                     </form>
                 </div><!-- Div Form -->
             
             </div><!-- Div Conetenedor -->
         </main>
     </div>
+
+    
+    <footer class="bgcolor">
+        <div class="contenedor contenedor-footer">
+            <div class="col-md-3">
+                <ul>
+                    <li>Todos los Derechos Reservador 2020 &copy; </li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+
+                <ul>
+                    <li><a href=""><img src="../../img/twitter.svg" alt=""></a></li>
+                    <li><a href=""><img src="../../img/facebook.svg" alt=""></a></li>
+                    <li><a href=""><img src="../../img/instagram.svg" alt=""></a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+
+                <ul>
+                    <li> <h2>Contáctenos</h2></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
     <!--JS de bootstrap-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
