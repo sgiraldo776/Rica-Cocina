@@ -1,3 +1,40 @@
 *{
     max-width:100%;
 }
+
+html {
+    box-sizing: border-box;
+    font-size: 62.5%; / Reset para REMS - 62.5% = 10px de 16px /
+}
+
+#nav{
+    background-color: #813531;
+}
+.text{
+    color: #813531;
+}
+fieldset{
+    border: 3rem;
+}
+.boton {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 1.8rem;
+    padding: 1rem 3rem;
+    margin-top: 3rem;
+    display: inline-block;
+    text-align: center;
+    border: none;
+    border-radius: .4rem;
+}
+
+.boton:hover {
+    cursor: pointer;
+    background-color: #813531;
+}
+
+.boton-amarillo {
+    background-color: #ffb80e;
+}
+
