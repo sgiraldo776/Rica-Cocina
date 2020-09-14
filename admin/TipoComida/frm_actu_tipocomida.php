@@ -15,21 +15,22 @@ if ($fila = $sel -> fetch_assoc()) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"><!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet"> 
     <title></title>
 </head>
 <body>
-    <header class="navbar navbar-expand-md navbar-dark bg-dark">
-        <h1 class="text-light">Rica Cocina</h1>
+    <header class="navbar navbar-expand-md navbar-dark" id="nav">
+    <img src="../../img/LOGO-03.png" alt="">
     </header>
     <main class="col-12">
         <div class="container text-center mt-4">
             <div>
-                <h2>Actualizar Utensilio</h2>
+                <h1>Actualizar Tipo Comida</h1>
             </div><!-- Div Nav-->
             <form action="actualizar_tipocomida.php" name="add_form" method="post">
                 <input type="hidden" name="tipocomidaid" value="<?php echo $id ?>">
                 <input type="text" name="nombre" id="txt_tipocomida" placeholder="Tipo comida" value="<?php echo $fila['nombre'] ?>"><br>
-                <input type="button" onclick="validarformulario1()" value="Actualizar" class="btn btn-primary mt-4">
+                <input type="button" onclick="validarformulario1()" value="Actualizar" class="boton boton-amarillo">
             </form>
         </div>
     </main>

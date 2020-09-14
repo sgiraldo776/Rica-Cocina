@@ -118,13 +118,13 @@
     
     <footer class="bgcolor">
         <div class="contenedor contenedor-footer">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <ul>
                     <li>Todos los Derechos Reservador 2020 &copy; </li>
                 </ul>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4">
 
                 <ul>
                     <li><a href=""><img src="../../img/twitter.svg" alt=""></a></li>
@@ -132,7 +132,7 @@
                     <li><a href=""><img src="../../img/instagram.svg" alt=""></a></li>
                 </ul>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
 
                 <ul>
                     <li> <h2>Contáctenos</h2></li>

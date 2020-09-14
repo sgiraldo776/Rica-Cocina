@@ -41,7 +41,25 @@ h4{
     text-align: left;
     font-family:'Quicksand', sans-serif; 
     color:#4d4d4d ;
-    font-size: 0.7rem;
+    font-size: 0.9rem;
+}
+
+.nav-item{
+    margin-left: 0;
+    font-family:'Quicksand', sans-serif; 
+    color:#FFFFFF ;
+    font-size: 2rem;
+}
+
+.thead{
+    background-color: #813531;
+}
+
+th{
+    margin-left: 0;
+    font-family:'Quicksand', sans-serif; 
+    color:#FFFFFF ;
+
 }
 
 html {
@@ -53,6 +71,7 @@ html {
     background-color: #813531;
 }
 
+
 .bgcolor{
     background-color: #813531;
     margin:0;
@@ -61,6 +80,11 @@ html {
 
 footer li{
     list-style: none;
+}
+
+footer img{
+    width: 5rem;
+    margin: 0;
 }
 
 .fieldset {
