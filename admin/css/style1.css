@@ -31,17 +31,10 @@ h1,h2,h3{
     flex-direction: column;
     justify-content: space-between;
 }
-.contenido-header h1{
-    color: white;
-    padding-bottom: 2rem;
-    max-width: 60rem;
-    line-height: 2;
-}
 .barra{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-top: 3rem;
 }
 .logo{
     width: 30rem;
