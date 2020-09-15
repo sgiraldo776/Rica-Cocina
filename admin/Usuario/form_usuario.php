@@ -17,22 +17,7 @@
       <img src="../../img/LOGO-03.png" alt="">
     </header>
     <div class="row">
-       <!-- <nav class="bg-dark col-2">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="../Utensilios/form-utensilios.php">Utensilios</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="../tipodieta/form_tipodieta.php">Tipo Dieta</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="form_TipoComida.php">Tipo Comida</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-light" href="../Padecimiento/form_padecimiento.php">Padecimientos</a>
-                </li>
-            </ul> UL 
-        </nav> Nav -->
+
         <main class="col-12">
             <div class="container text-center mt-4">
                 <div>
@@ -107,7 +92,7 @@
                   <span id="error2"></span>
                 </div>
                         </fieldset>
-                        <button type="button" onclick="validarformulario()" class="boton boton-amarillo">Registrarse</button> 
+                        <button type="button"  class="boton boton-amarillo">Registrarse</button> 
                     </form>
                 </div><!-- Div Form -->
             
@@ -147,89 +132,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <!--validacion de capos vacios-->
-    <script type="text/javascript" src="../js/camposvacios.js"></script>
+    <script type="text/javascript" src="../js/ValidarUsuario.js"></script>
      <!--validacion de capos vacios-->
 
-
-
-
-
-   <!--  <script>
-  $(document).ready(function(){
-    $(":input").inputmask();
-    or
-    Inputmask().mask(document.querySelectorAll("input"));
-  });
-</script>
-
-
-     <script>
-$(document).ready(function(){
-  $("#con2").keyup(function () {
-    validar("con2","con1");
-  })
-  $("#con1").keyup(function () {
-    validar("con2","con1");
-  })
-$("#frmcliente").on('submit', function(evt) {
-  evt.preventDefault();
-  if($('#nombre').val()!=""){
-    if($('#apellido').val()!=""){
-        if($('#correo').val()!=""){
-          if($('#fechanacimiento').val()!=0){
-            if($('#municipio').val()!=0){
-              if($('#con1').val()!=""){
-                if($('#con2').val()!=""){
-                  validar("con2","con1");
-                  
-                    this.submit();
-                }else{
-                alerta("error","No ha confirmado la contraseña");
-                $('#con2').focus().addClass("is-invalid");
-              }
-              }else{
-                alerta("error","No ha ingresado la contraseña");
-                $('#con1').focus().addClass("is-invalid");
-              }
-            
-            }else{
-              alerta("error","No ha seleccionado ningun municipio");
-              $('#municipio').focus().addClass("is-invalid");
-            }
-          
-          }else{
-          alerta("error","No ha ingresado la fecha de nacimiento");
-          $('#fechanacimiento').focus().addClass("is-invalid");
-        }
-        }else{
-        alerta("error","No ha ingresado el correo");
-        $('#correo').focus().addClass("is-invalid");
-        }
-
-    }else{
-      alerta("error","No ha ingresado los apellidos");
-      $('#apellido').focus().addClass("is-invalid");
-
-    }
-  
-  }else{
-    alerta("error","No ha ingresado el nombre");
-    $('#nombre').focus().addClass("is-invalid");
-  }
-  
-})
-$('#file-input').attr('disabled','disabled');
-$('#salud').change(function(){
-  if ($('#salud').is(':checked')){
-    $('#file-input').removeAttr('disabled');
-  }else{
-    $('#file-input').attr('disabled','disabled');
-  }
-});
-});
-
-
-</script>-->
 
 </body>
 </html>
