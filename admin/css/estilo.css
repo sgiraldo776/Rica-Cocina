@@ -57,3 +57,10 @@ h1,h2,h3{
 #nav{
     background-color: #813531;
 }
+
+/* Tarjetas */
+.tarjeta-img{
+    border-top-left-radius: 2rem;
+    border-top-right-radius: 2rem;
+    width: 25rem;
+}
