@@ -16,11 +16,15 @@ h1,h2,h3{
     max-width: 120rem; /* = 1200px; */
     margin: 0 auto;
     display: block;
+    justify-content: center;
+}
+.contenedor h1{
+    color: #813531;
+    font-size: 8rem;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
 }
 /* Header */
-.site-header{
-    background-color: #333333;
-}
 .contenido-header{
     height: 100%;
     display: flex;
