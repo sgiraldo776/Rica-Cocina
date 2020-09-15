@@ -33,13 +33,10 @@ h3 {
 /* Buscador */
 
 .buscador img {
-    height: 5rem;
     background-color: #d6d6d6;
     border-top-right-radius: 0.5rem;
     border-bottom-right-radius: 0.5rem;
-    padding: 1rem;
     margin: 0;
-    vertical-align: -1.75rem;
     cursor: default;
     margin-right: 0;
 }
@@ -52,7 +49,6 @@ h3 {
 
 .buscador {
     align-items: center;
-    margin-top: 5rem;
     text-align: center;
     cursor: not-allowed;
     margin-right: 0;
@@ -60,16 +56,48 @@ h3 {
 }
 
 .buscar {
-    height: 5rem;
-    width: 50rem;
-    padding: 1rem;
     border-top-left-radius: 0.9rem;
     border-bottom-left-radius: 0.9rem;
     border-style: none;
     background-color: #d6d6d6;
-    font-size: 2rem;
     box-sizing: inherit;
     align-items: center;
+}
+
+
+/* BUSCADOR RESPONSIVE*/
+/* Diseño para celulares */
+.buscador img {
+    height: 4rem;
+    padding: 1rem;
+    vertical-align: -1.3rem;
+}
+.buscador {
+    margin-top: 5rem;
+}
+.buscar {
+    height: 4rem;
+    width: 20rem;
+    padding: 1rem;
+    font-size: 2rem;
+}
+
+/* Diseño estandar */ 
+@media screen and (min-width: 593px) {
+	.buscador img {
+        height: 5rem;
+        padding: 1rem;
+        vertical-align: -1.75rem;
+    }
+    .buscador {
+        margin-top: 5rem;
+    }
+    .buscar {
+        height: 5rem;
+        width: 50rem;
+        padding: 1rem;
+        font-size: 2rem;
+    }
 }
 
 .contenedor {
@@ -134,9 +162,22 @@ h3 {
 
 
 /* Tarjetas */
+.tarjetas{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 
 .tarjeta-img {
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
     width: 25rem;
+}
+.tarjeta-info{
+    background-color: #813531;
+    color: white;
+    font-size: 1.5rem;
+    width: 25rem;
+    padding: 1rem;
 }
