@@ -50,8 +50,6 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE INDEX `fk_tblusuario_tblmunicipio1` ON `rica_cocina`.`tblusuario` (`municipioid` ASC) ;
 
-CREATE INDEX `fk_tblusuario_tblmunicipio1` ON `rica_cocina`.`tblusuario` (`municipioid` ASC) ;
-
 
 -- -----------------------------------------------------
 -- Table `rica_cocina`.`tblroles`
@@ -92,10 +90,6 @@ DEFAULT CHARACTER SET = utf8;
 CREATE UNIQUE INDEX `correoelectronico_UNIQUE` ON `rica_cocina`.`tblcuenta` (`correoelectronico` ASC) ;
 
 CREATE INDEX `fk_tblcuenta_tblusuario1` ON `rica_cocina`.`tblcuenta` (`usuarioid` ASC);
-
-CREATE INDEX `fk_tblcuenta_tblroles1_idx` ON `rica_cocina`.`tblcuenta` (`tiporolid` ASC) ;
-
-CREATE INDEX `fk_tblcuenta_tblusuario1` ON `rica_cocina`.`tblcuenta` (`usuarioid` ASC) ;
 
 CREATE INDEX `fk_tblcuenta_tblroles1` ON `rica_cocina`.`tblcuenta` (`tiporolid` ASC) ;
 
@@ -211,16 +205,6 @@ CREATE INDEX `fk_tblreceta_tblpadecimiento1` ON `rica_cocina`.`tblreceta` (`pade
 
 CREATE INDEX `fk_tblreceta_tbltipocomida1` ON `rica_cocina`.`tblreceta` (`tipocomidaid` ASC) ;
 
-CREATE INDEX `fk_tblreceta_tblpadecimiento1` ON `rica_cocina`.`tblreceta` (`padecimientoid` ASC) ;
-
-CREATE INDEX `fk_tblreceta_tblpais1` ON `rica_cocina`.`tblreceta` (`paisid` ASC) ;
-
-CREATE INDEX `fk_tblreceta_tbltipocomida1` ON `rica_cocina`.`tblreceta` (`tipocomidaid` ASC) ;
-
-CREATE INDEX `fk_tblreceta_tbltipodieta1` ON `rica_cocina`.`tblreceta` (`tipodietaid` ASC) ;
-
-CREATE INDEX `fk_tblreceta_tblusuario1` ON `rica_cocina`.`tblreceta` (`usuarioid` ASC) ;
-
 
 -- -----------------------------------------------------
 -- Table `rica_cocina`.`tblutensilios`
@@ -257,7 +241,6 @@ DEFAULT CHARACTER SET = utf8;
 
 CREATE INDEX `fk_tblutensilios_has_tblreceta_tblreceta1` ON `rica_cocina`.`tblrecetautensilio` (`recetaid` ASC);
 
-CREATE INDEX `fk_tblutensilios_has_tblreceta_tblreceta1` ON `rica_cocina`.`tblrecetautensilio` (`recetaid` ASC) ;
 
 
 -- -----------------------------------------------------
@@ -287,9 +270,6 @@ CREATE INDEX `fk_tblretroalimentacion_tblreceta` ON `rica_cocina`.`tblretroalime
 
 CREATE INDEX `fk_tblretroalimentacion_tblusuario1` ON `rica_cocina`.`tblretroalimentacion` (`usuarioid` ASC) ;
 
-CREATE INDEX `fk_tblretroalimentacion_tblreceta` ON `rica_cocina`.`tblretroalimentacion` (`recetaid` ASC) ;
-
-CREATE INDEX `fk_tblretroalimentacion_tblusuario1` ON `rica_cocina`.`tblretroalimentacion` (`usuarioid` ASC);
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
