@@ -44,7 +44,7 @@
                   <div class="row">
                       <div class="col">
                       	<label>Fecha de Nacimiento</label>
-                          <input type="date" class="form-control" name="Fechanacimiento" placeholder="Ingrese Fecha de Nacimiento" id="fechanacimiento">
+                          <input type="date" class="form-control" name="Fechanacimiento" placeholder="Ingrese Fecha de Nacimiento" id="fechanacimiento" onblur="myFunction()">
                       </div>
                     </div>
                     <div class="row">
@@ -134,7 +134,6 @@
     <!--validacion de capos vacios-->
     <script type="text/javascript" src="../js/ValidarUsuario.js"></script>
      <!--validacion de capos vacios-->
-
 
 </body>
 </html>
