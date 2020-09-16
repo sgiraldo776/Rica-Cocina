@@ -23,11 +23,11 @@ if ($conn->query($sql1) === TRUE) {
   $lastid = $conn;
 }*/
 
-/*$sql1= $conn ->query("SELECT MAX(usuarioid) AS id FROM tblusuario");
+$sql1= $conn ->query("SELECT MAX(usuarioid) AS id FROM tblusuario");
  if ($row = $sql1->fetch_array()){
-   $id = $row[0];
-   $lastid = mysqli_insert_id($conn);
- }*/
+   $id = $row[0]+1;
+   
+ }
 
  //$sql1="SELECT TOP 1 usuarioid from tblusuario order by usuarioid desc";
 
@@ -37,7 +37,7 @@ if ($conn->query($sql1) === TRUE) {
  $lastid = mysqli_insert_id($conn);*/
  
 $sql2="INSERT INTO tblcuenta (correoelectronico,password,tiporolid,estado,usuarioid)
-VALUES ('$correo','$password',2,1,'$lastid')";
+VALUES ('$correo','$password',2,1,'$id')";
 
 if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
     echo "<script>     location.href='form_usuario.php'; </script>";
