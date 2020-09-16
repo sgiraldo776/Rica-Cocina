@@ -43,9 +43,12 @@ $(function(){
                         if($('#municipio').val()!=0){
                             if($('#con1').val()!=""){
                                 if($('#con2').val()!=""){
-                                    validar("con2","con1");
-                                    
-                                    formulario.submit();
+                                    if($('#con1').val()==$('#con2').val()){
+                                        formulario.submit();
+                                    }else{
+                                        alert("Error, Las Contraseñas Ingresadas no son Iguales")
+                                    }
+
                                   }else{
                                   alert("Error, No ha Confirmado la Contraseña");
                                   $('#con2').focus().addClass("is-invalid");

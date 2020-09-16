@@ -87,7 +87,7 @@
                   </div>
                   <div class="col">
                     <label>Confirmar Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Confirme la contraseña" id="con2">
+                    <input type="password" name="contrasena2" class="form-control" placeholder="Confirme la contraseña" id="con2">
                   </div>
                   <span id="error2"></span>
                 </div>
