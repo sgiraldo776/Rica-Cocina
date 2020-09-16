@@ -8,32 +8,32 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema rica_cocina
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema rica_cocina
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `rica_cocina` DEFAULT CHARACTER SET utf8 ;
+USE `rica_cocina` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblmunicipio`
+-- Table `rica_cocina`.`tblmunicipio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblmunicipio` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblmunicipio` (
   `municipioid` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`municipioid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `nombre_UNIQUE` ON `mydb`.`tblmunicipio` (`nombre` ASC);
+CREATE UNIQUE INDEX `nombre_UNIQUE` ON `rica_cocina`.`tblmunicipio` (`nombre` ASC);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblusuario`
+-- Table `rica_cocina`.`tblusuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblusuario` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblusuario` (
   `usuarioid` INT(11) NOT NULL,
   `Nombres` VARCHAR(50) NOT NULL,
   `apellidos` VARCHAR(50) NOT NULL,
@@ -42,19 +42,19 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tblusuario` (
   PRIMARY KEY (`usuarioid`),
   CONSTRAINT `fk_tblusuario_tblmunicipio1`
     FOREIGN KEY (`municipioid`)
-    REFERENCES `mydb`.`tblmunicipio` (`municipioid`)
+    REFERENCES `rica_cocina`.`tblmunicipio` (`municipioid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE INDEX `fk_tblusuario_tblmunicipio1` ON `mydb`.`tblusuario` (`municipioid` ASC);
+CREATE INDEX `fk_tblusuario_tblmunicipio1` ON `rica_cocina`.`tblusuario` (`municipioid` ASC);
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblroles`
+-- Table `rica_cocina`.`tblroles`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblroles` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblroles` (
   `tiporolid` TINYINT(4) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   `menu` VARCHAR(45) NULL DEFAULT NULL,
@@ -64,9 +64,9 @@ DEFAULT CHARACTER SET = utf8;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblcuenta`
+-- Table `rica_cocina`.`tblcuenta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblcuenta` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblcuenta` (
   `cuentaid` INT(11) NOT NULL,
   `correoelectronico` VARCHAR(50) NOT NULL,
   `password` VARCHAR(150) NOT NULL,
@@ -76,80 +76,80 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tblcuenta` (
   PRIMARY KEY (`cuentaid`),
   CONSTRAINT `fk_tblcuenta_tblusuario1`
     FOREIGN KEY (`usuarioid`)
-    REFERENCES `mydb`.`tblusuario` (`usuarioid`)
+    REFERENCES `rica_cocina`.`tblusuario` (`usuarioid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblcuenta_tblroles1`
     FOREIGN KEY (`tiporolid`)
-    REFERENCES `mydb`.`tblroles` (`tiporolid`)
+    REFERENCES `rica_cocina`.`tblroles` (`tiporolid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `correoelectronico_UNIQUE` ON `mydb`.`tblcuenta` (`correoelectronico` ASC) ;
+CREATE UNIQUE INDEX `correoelectronico_UNIQUE` ON `rica_cocina`.`tblcuenta` (`correoelectronico` ASC) ;
 
-CREATE INDEX `fk_tblcuenta_tblusuario1` ON `mydb`.`tblcuenta` (`usuarioid` ASC) ;
+CREATE INDEX `fk_tblcuenta_tblusuario1` ON `rica_cocina`.`tblcuenta` (`usuarioid` ASC) ;
 
-CREATE INDEX `fk_tblcuenta_tblroles1_idx` ON `mydb`.`tblcuenta` (`tiporolid` ASC) ;
+CREATE INDEX `fk_tblcuenta_tblroles1_idx` ON `rica_cocina`.`tblcuenta` (`tiporolid` ASC) ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblpadecimiento`
+-- Table `rica_cocina`.`tblpadecimiento`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblpadecimiento` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblpadecimiento` (
   `padecimientoid` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`padecimientoid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `nombre_UNIQUE` ON `mydb`.`tblpadecimiento` (`nombre` ASC) ;
+CREATE UNIQUE INDEX `nombre_UNIQUE` ON `rica_cocina`.`tblpadecimiento` (`nombre` ASC) ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblpais`
+-- Table `rica_cocina`.`tblpais`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblpais` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblpais` (
   `paisid` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`paisid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `nombre_UNIQUE` ON `mydb`.`tblpais` (`nombre` ASC) ;
+CREATE UNIQUE INDEX `nombre_UNIQUE` ON `rica_cocina`.`tblpais` (`nombre` ASC) ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tbltipocomida`
+-- Table `rica_cocina`.`tbltipocomida`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tbltipocomida` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tbltipocomida` (
   `tipocomidaid` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`tipocomidaid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `nombre_UNIQUE` ON `mydb`.`tbltipocomida` (`nombre` ASC) ;
+CREATE UNIQUE INDEX `nombre_UNIQUE` ON `rica_cocina`.`tbltipocomida` (`nombre` ASC) ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tbltipodieta`
+-- Table `rica_cocina`.`tbltipodieta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tbltipodieta` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tbltipodieta` (
   `tipodietaid` INT(11) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`tipodietaid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `nombre_UNIQUE` ON `mydb`.`tbltipodieta` (`nombre` ASC) ;
+CREATE UNIQUE INDEX `nombre_UNIQUE` ON `rica_cocina`.`tbltipodieta` (`nombre` ASC) ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblreceta`
+-- Table `rica_cocina`.`tblreceta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblreceta` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblreceta` (
   `recetaid` INT(11) NOT NULL,
   `titulo` VARCHAR(45) NOT NULL,
   `imagen` LONGBLOB NULL DEFAULT NULL,
@@ -169,83 +169,83 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tblreceta` (
   PRIMARY KEY (`recetaid`),
   CONSTRAINT `fk_tblreceta_tblpadecimiento1`
     FOREIGN KEY (`padecimientoid`)
-    REFERENCES `mydb`.`tblpadecimiento` (`padecimientoid`)
+    REFERENCES `rica_cocina`.`tblpadecimiento` (`padecimientoid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblreceta_tblpais1`
     FOREIGN KEY (`paisid`)
-    REFERENCES `mydb`.`tblpais` (`paisid`)
+    REFERENCES `rica_cocina`.`tblpais` (`paisid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblreceta_tbltipocomida1`
     FOREIGN KEY (`tipocomidaid`)
-    REFERENCES `mydb`.`tbltipocomida` (`tipocomidaid`)
+    REFERENCES `rica_cocina`.`tbltipocomida` (`tipocomidaid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblreceta_tbltipodieta1`
     FOREIGN KEY (`tipodietaid`)
-    REFERENCES `mydb`.`tbltipodieta` (`tipodietaid`)
+    REFERENCES `rica_cocina`.`tbltipodieta` (`tipodietaid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblreceta_tblusuario1`
     FOREIGN KEY (`usuarioid`)
-    REFERENCES `mydb`.`tblusuario` (`usuarioid`)
+    REFERENCES `rica_cocina`.`tblusuario` (`usuarioid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE INDEX `fk_tblreceta_tblpais1` ON `mydb`.`tblreceta` (`paisid` ASC) ;
+CREATE INDEX `fk_tblreceta_tblpais1` ON `rica_cocina`.`tblreceta` (`paisid` ASC) ;
 
-CREATE INDEX `fk_tblreceta_tblusuario1` ON `mydb`.`tblreceta` (`usuarioid` ASC) ;
+CREATE INDEX `fk_tblreceta_tblusuario1` ON `rica_cocina`.`tblreceta` (`usuarioid` ASC) ;
 
-CREATE INDEX `fk_tblreceta_tbltipodieta1` ON `mydb`.`tblreceta` (`tipodietaid` ASC) ;
+CREATE INDEX `fk_tblreceta_tbltipodieta1` ON `rica_cocina`.`tblreceta` (`tipodietaid` ASC) ;
 
-CREATE INDEX `fk_tblreceta_tblpadecimiento1` ON `mydb`.`tblreceta` (`padecimientoid` ASC) ;
+CREATE INDEX `fk_tblreceta_tblpadecimiento1` ON `rica_cocina`.`tblreceta` (`padecimientoid` ASC) ;
 
-CREATE INDEX `fk_tblreceta_tbltipocomida1` ON `mydb`.`tblreceta` (`tipocomidaid` ASC) ;
+CREATE INDEX `fk_tblreceta_tbltipocomida1` ON `rica_cocina`.`tblreceta` (`tipocomidaid` ASC) ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblutensilios`
+-- Table `rica_cocina`.`tblutensilios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblutensilios` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblutensilios` (
   `utensilioid` INT(11) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`utensilioid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE UNIQUE INDEX `nombre` ON `mydb`.`tblutensilios` (`nombre` ASC) ;
+CREATE UNIQUE INDEX `nombre` ON `rica_cocina`.`tblutensilios` (`nombre` ASC) ;
 
 
 -- -----------------------------------------------------
 -- Table `mydb`.`tblrecetautensilio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblrecetautensilio` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblrecetautensilio` (
   `utensilioid` INT(11) NOT NULL,
   `recetaid` INT(11) NOT NULL,
   PRIMARY KEY (`utensilioid`, `recetaid`),
   CONSTRAINT `fk_tblutensilios_has_tblreceta_tblreceta1`
     FOREIGN KEY (`recetaid`)
-    REFERENCES `mydb`.`tblreceta` (`recetaid`)
+    REFERENCES `rica_cocina`.`tblreceta` (`recetaid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblutensilios_has_tblreceta_tblutensilios1`
     FOREIGN KEY (`utensilioid`)
-    REFERENCES `mydb`.`tblutensilios` (`utensilioid`)
+    REFERENCES `rica_cocina`.`tblutensilios` (`utensilioid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE INDEX `fk_tblutensilios_has_tblreceta_tblreceta1` ON `mydb`.`tblrecetautensilio` (`recetaid` ASC) ;
+CREATE INDEX `fk_tblutensilios_has_tblreceta_tblreceta1` ON `rica_cocina`.`tblrecetautensilio` (`recetaid` ASC) ;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tblretroalimentacion`
+-- Table `rica_cocina`.`tblretroalimentacion`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tblretroalimentacion` (
+CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblretroalimentacion` (
   `retroalimentacionid` INT(11) NOT NULL,
   `texto` VARCHAR(300) NULL DEFAULT NULL,
   `recetaid` INT(11) NOT NULL,
@@ -254,20 +254,20 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tblretroalimentacion` (
   PRIMARY KEY (`retroalimentacionid`),
   CONSTRAINT `fk_tblretroalimentacion_tblreceta`
     FOREIGN KEY (`recetaid`)
-    REFERENCES `mydb`.`tblreceta` (`recetaid`)
+    REFERENCES `rica_cocina`.`tblreceta` (`recetaid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tblretroalimentacion_tblusuario1`
     FOREIGN KEY (`usuarioid`)
-    REFERENCES `mydb`.`tblusuario` (`usuarioid`)
+    REFERENCES `rica_cocina`.`tblusuario` (`usuarioid`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
-CREATE INDEX `fk_tblretroalimentacion_tblreceta` ON `mydb`.`tblretroalimentacion` (`recetaid` ASC) ;
+CREATE INDEX `fk_tblretroalimentacion_tblreceta` ON `rica_cocina`.`tblretroalimentacion` (`recetaid` ASC) ;
 
-CREATE INDEX `fk_tblretroalimentacion_tblusuario1` ON `mydb`.`tblretroalimentacion` (`usuarioid` ASC) ;
+CREATE INDEX `fk_tblretroalimentacion_tblusuario1` ON `rica_cocina`.`tblretroalimentacion` (`usuarioid` ASC) ;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
