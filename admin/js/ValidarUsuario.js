@@ -31,7 +31,7 @@ function kotoba() {
 
 });
 
-/*var myDate = $('#Fechanacimiento');
+var myDate = $('#fechanacimiento');
 var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth() + 1;
@@ -42,7 +42,7 @@ if(dd < 10)
 if(mm < 10)
   mm = '0' + mm;
 
-today = dd + '-' + mm + '-' + yyyy;
+today = yyyy + '-' + mm + '-' + dd;
 myDate.attr("max", today);
 
 function myFunction(){
@@ -53,7 +53,7 @@ function myFunction(){
       myDate.val("");
     }
   }
-}*/
+}
 
 $(function(){
     $(".boton-amarillo").on('click',function(){
@@ -67,7 +67,11 @@ $(function(){
                             if($('#con1').val()!=""){
                                 if($('#con2').val()!=""){
                                     if($('#con1').val()==$('#con2').val()){
-                                        formulario.submit();
+                                        if($('#Terminos').is(':checked')){
+                                            formulario.submit();
+                                        }else{
+                                            alert("Error, No has aceptado los terminos y condiciones")
+                                        }
                                     }else{
                                         alert("Error, Las Contraseñas Ingresadas no son Iguales")
                                     }
