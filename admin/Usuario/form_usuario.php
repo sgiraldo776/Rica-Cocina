@@ -95,7 +95,7 @@
                 </div>
                 <div class="row terminos">
                    <div class="col-md-12">
-                   <input type="checkbox" require id="Terminos" > <span> <a href="Terminos.html">He Leído y Acepto los Términos y Condiciones</a></span>
+                   <input type="checkbox" require id="Terminos" > <span> <a href="Terminos.html" target="blank_">He Leído y Acepto los Términos y Condiciones</a></span>
                    </div>
                 </div>
                         </fieldset>
