@@ -7,14 +7,19 @@ if ($conn->connect_error) {
 
 $nombre=$_POST['nombre'];
 
-$sql="INSERT INTO tblutensilios (nombre)
-VALUES ('$nombre')";
+try {
+    $sql="INSERT INTO tblutensilios (nombre)
+    VALUES ('$nombre')";
 
-if ($conn->query($sql) === TRUE) {
-    echo "<script> 	location.href='form-utensilios.php'; </script>";
-} else {
-    echo "Error: " . $sql . "<br>" . $conn->error;
+    if ($conn->query($sql) === FALSE) {
+        throw new Exception("Ya hay un utensilio con ese nombre", 1);
+    } else {
+        echo "<script> 	location.href='form-utensilios.php'; </script>";
+    }
+} catch (Exception $e) {
+    echo "<br>".$e->getMessage();
 }
+
 
 $conn->close();
 ?>
