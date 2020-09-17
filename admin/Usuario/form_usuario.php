@@ -91,6 +91,11 @@
                   </div>
                   <span id="error2"></span>
                 </div>
+                <div class="row terminos">
+                   <div class="col-md-12">
+                   <input type="checkbox" require id="Terminos" > <span> <a href="Terminos.html">He Leído y Acepto los Términos y Condiciones</a></span>
+                   </div>
+                </div>
                         </fieldset>
                         <button type="button"  class="boton boton-amarillo">Registrarse</button> 
                     </form>

@@ -42,7 +42,7 @@ if(dd < 10)
 if(mm < 10)
   mm = '0' + mm;
 
-today = yyyy + '-' + mm + '-' + dd;
+today = dd + '-' + mm + '-' + yyyy;
 myDate.attr("max", today);
 
 function myFunction(){
@@ -108,3 +108,6 @@ $(function(){
         }
     });
 });
+
+
+
