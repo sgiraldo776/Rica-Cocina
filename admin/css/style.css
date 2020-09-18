@@ -33,7 +33,6 @@ label {
     font-family: 'Quicksand', sans-serif;
     color: #4d4d4d;
     font-size: 1.5rem;
-
 }
 
 .form-control {
@@ -51,16 +50,17 @@ h1 {
     margin-top: 2rem;
 }
 
-blockquote{
+blockquote {
     margin-left: 3rem;
 }
 
-h2{
+h2 {
     font-weight: 700;
     font-size: 1.7rem;
     display: block;
     color: #4d4d4d;
 }
+
 h4 {
     margin-bottom: 1rem;
     margin-top: 2rem;
@@ -96,8 +96,6 @@ html {
 #nav {
     background-color: #813531;
 }
-
-
 
 .fieldset {
     border: 1px groove #ddd;
@@ -187,3 +185,14 @@ footer li {
     justify-content: center;
 }
 
+.contenedor {
+    max-width: 80%;
+}
+
+textarea {
+    height: 10rem;
+}
+
+.file {
+    margin-bottom: 2rem;
+}
