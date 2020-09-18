@@ -1,5 +1,7 @@
 <?php
  include "../conexion.php";
+
+
 ?>
 
 <!DOCTYPE html>
@@ -14,7 +16,7 @@
 </head>
 <body>
     <header class="navbar navbar-expand-md navbar-dark" id="nav">
-      <img src="../../img/LOGO-03.png" alt="">
+      <a href="../../index.html"><img src="../../img/LOGO-03.png" alt=""></a> 
     </header>
     <div class="row">
 
@@ -43,8 +45,8 @@
                   <div class="form-group">
                   <div class="row">
                       <div class="col">
-                      	<label>Fecha de Nacimiento</label>
-                          <input type="date" class="form-control" name="Fechanacimiento" placeholder="Ingrese Fecha de Nacimiento" id="fechanacimiento">
+                          <label>Fecha de Nacimiento</label>
+                          <input type="date"  class="form-control" name="fechanacimiento" placeholder="Ingrese Fecha de Nacimiento" id="fechanacimiento" onblur="myFunction()">
                       </div>
                     </div>
                     <div class="row">
@@ -87,9 +89,14 @@
                   </div>
                   <div class="col">
                     <label>Confirmar Contraseña</label>
-                    <input type="password" class="form-control" placeholder="Confirme la contraseña" id="con2">
+                    <input type="password" name="contrasena2" class="form-control" placeholder="Confirme la contraseña" id="con2">
                   </div>
                   <span id="error2"></span>
+                </div>
+                <div class="row terminos">
+                   <div class="col-md-12">
+                   <input type="checkbox" require id="Terminos" > <span> <a href="Terminos.html" target="blank_">He Leído y Acepto los Términos y Condiciones</a></span>
+                   </div>
                 </div>
                         </fieldset>
                         <button type="button"  class="boton boton-amarillo">Registrarse</button> 
@@ -103,25 +110,28 @@
     
     <footer class="bgcolor">
         <div class="contenedor contenedor-footer">
-            <div class="col-md-4">
-                <ul>
-                    <li>Todos los Derechos Reservador 2020 &copy; </li>
-                </ul>
-            </div>
+            <div class="row footer-centrar py-4 d-flex align-items-center">
+                <div class="col-2">
+                    <h4>Todos los Derechos Reservador 2020 &copy;</h4>
+                </div>
 
-            <div class="col-md-4">
+                <div class="col-8 footer-img align-items-center">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/twitter.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/facebook.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/instagram.svg" alt=""></a>
+                        </li>
+                    </ul>
 
-                <ul>
-                    <li><a href=""><img src="../../img/twitter.svg" alt=""></a></li>
-                    <li><a href=""><img src="../../img/facebook.svg" alt=""></a></li>
-                    <li><a href=""><img src="../../img/instagram.svg" alt=""></a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-
-                <ul>
-                    <li> <h2>Contáctenos</h2></li>
-                </ul>
+                </div>
+                <div class="col-2">
+                    <h2>Contáctenos</h2>
+                </div>
             </div>
         </div>
     </footer>
@@ -131,10 +141,12 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
     <!--validacion de capos vacios-->
     <script type="text/javascript" src="../js/ValidarUsuario.js"></script>
      <!--validacion de capos vacios-->
-
 
 </body>
 </html>

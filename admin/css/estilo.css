@@ -189,10 +189,21 @@ h3 {
     font-size: 1.5rem;
     width: 25rem;
     padding: 1rem;
+<<<<<<< HEAD
     display: flex;
 }
 
 
+=======
+    margin-bottom: 3rem;
+}
+.tarjetas{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+>>>>>>> aa8c449f9f8b0f0e865b56bcb80c4dc68d8a04d7
 /* Footer */
 
 .bgcolor {
@@ -205,7 +216,11 @@ h3 {
 }
 
 footer h2 {
+<<<<<<< HEAD
     font-size: 5rem;
+=======
+    font-size: 4rem;
+>>>>>>> aa8c449f9f8b0f0e865b56bcb80c4dc68d8a04d7
 }
 
 footer img {
@@ -218,6 +233,15 @@ footer li {
     display: flex;
     align-items: center;
     justify-content: center;
+<<<<<<< HEAD
+=======
+}
+
+.footer-centrar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+>>>>>>> aa8c449f9f8b0f0e865b56bcb80c4dc68d8a04d7
 }
 
 .footer-centrar {

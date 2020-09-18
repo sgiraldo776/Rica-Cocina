@@ -31,6 +31,29 @@ function kotoba() {
 
 });
 
+var myDate = $('#fechanacimiento');
+var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth() + 1;
+var yyyy = today.getFullYear();
+if(dd < 10)
+  dd = '0' + dd;
+
+if(mm < 10)
+  mm = '0' + mm;
+
+today = yyyy + '-' + mm + '-' + dd;
+myDate.attr("max", today);
+
+function myFunction(){
+  var date = myDate.val();
+  if(Date.parse(date)){
+    if(date > today){
+      alert('La fecha no puede ser mayor a la actual');
+      myDate.val("");
+    }
+  }
+}
 
 $(function(){
     $(".boton-amarillo").on('click',function(){
@@ -43,9 +66,16 @@ $(function(){
                         if($('#municipio').val()!=0){
                             if($('#con1').val()!=""){
                                 if($('#con2').val()!=""){
-                                    validar("con2","con1");
-                                    
-                                    formulario.submit();
+                                    if($('#con1').val()==$('#con2').val()){
+                                        if($('#Terminos').is(':checked')){
+                                            formulario.submit();
+                                        }else{
+                                            alert("Error, No has aceptado los terminos y condiciones")
+                                        }
+                                    }else{
+                                        alert("Error, Las Contraseñas Ingresadas no son Iguales")
+                                    }
+
                                   }else{
                                   alert("Error, No ha Confirmado la Contraseña");
                                   $('#con2').focus().addClass("is-invalid");
@@ -82,3 +112,6 @@ $(function(){
         }
     });
 });
+
+
+
