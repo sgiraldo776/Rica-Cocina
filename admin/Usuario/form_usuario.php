@@ -16,7 +16,7 @@
 </head>
 <body>
     <header class="navbar navbar-expand-md navbar-dark" id="nav">
-      <img src="../../img/LOGO-03.png" alt="">
+      <a href="../../index.html"><img src="../../img/LOGO-03.png" alt=""></a> 
     </header>
     <div class="row">
 
@@ -110,25 +110,28 @@
     
     <footer class="bgcolor">
         <div class="contenedor contenedor-footer">
-            <div class="col-md-4">
-                <ul>
-                    <li>Todos los Derechos Reservador 2020 &copy; </li>
-                </ul>
-            </div>
+            <div class="row footer-centrar py-4 d-flex align-items-center">
+                <div class="col-2">
+                    <h4>Todos los Derechos Reservador 2020 &copy;</h4>
+                </div>
 
-            <div class="col-md-4">
+                <div class="col-8 footer-img align-items-center">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/twitter.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/facebook.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/instagram.svg" alt=""></a>
+                        </li>
+                    </ul>
 
-                <ul>
-                    <li><a href=""><img src="../../img/twitter.svg" alt=""></a></li>
-                    <li><a href=""><img src="../../img/facebook.svg" alt=""></a></li>
-                    <li><a href=""><img src="../../img/instagram.svg" alt=""></a></li>
-                </ul>
-            </div>
-            <div class="col-md-4">
-
-                <ul>
-                    <li> <h2>Contáctenos</h2></li>
-                </ul>
+                </div>
+                <div class="col-2">
+                    <h2>Contáctenos</h2>
+                </div>
             </div>
         </div>
     </footer>
