@@ -44,36 +44,36 @@
                     <!-- Div Nav-->
 
                     <div class="card-body">
-                        <form action="">
+                        <form action="" name="add_form">
 
                             <fieldset>
                                 <label for="">Nombre de la receta</label>
-                                <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta">
+                                <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta" id="nomreceta">
 
                                 <label for="Ingredientes">Ingredientes</label>
-                                <textarea name="" id="" cols="30" rows="10" class="form-control"> </textarea>
+                                <textarea name="" id="ingrediente" cols="30" rows="10" class="form-control"></textarea>
 
                                 <label for="">Preparación</label>
-                                <textarea name="" id="" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="" id="preparacion" cols="30" rows="10" class="form-control"></textarea>
 
 
 
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tiempo de preparación</label>
-                                        <input type="text" class="form-control">
+                                        <input type="text" class="form-control" id="tiempo">
                                     </div>
                                     <div class="col">
                                         <label for="">Cantidad de personas</label>
-                                        <input class="form-control" type="number" min="1" max="30">
+                                        <input class="form-control" type="number" min="1" max="30" id="cantidadpersona">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Ocación</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value="" select-hidden disabled>-Seleccione-</option>
+                                        <select name="" id="ocacion" class="form-control">
+                                            <option value="0" select-hidden disabled>-Seleccione-</option>
                                             <option value="desayuno">Desayuno</option>
                                             <option value="almuerzo">Almuerzo</option>
                                             <option value="cena">Cena</option>
@@ -81,8 +81,8 @@
                                     </div>
                                     <div class="col">
                                         <label for="">Tipo comida</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value=""></option>
+                                        <select name="" id="tipocomida" class="form-control">
+                                            <option value="0">-Seleccione el Tipo de Comida-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tbltipocomida");
                             
@@ -99,8 +99,8 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tipo dieta</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value=""></option>
+                                        <select name="" id="tipodieta" class="form-control">
+                                            <option value="0">-Seleccione el Tipo de Dieta-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tbltipodieta");
                             
@@ -114,8 +114,8 @@
                                     </div>
                                     <div class="col">
                                         <label for="">País</label>
-                                        <select name="" id="" class="form-control">
-                                            <option value=""></option>
+                                        <select name="" id="pais" class="form-control">
+                                            <option value="0">-Seleccione el Pais-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tblpais");
                             
@@ -132,7 +132,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tipo de receta</label>
-                                        <select name="" id="" class="form-control">
+                                        <select name="" id="tiporeceta" class="form-control">
                                             <option value="Plato">Plato</option>
                                             <option value="Postre">Postre</option>
                                             <option value="Bebida">Bebida</option>
@@ -142,12 +142,12 @@
 
                                     <div id="div_file" class="col">
                                         <p id="texto"> Imagen de receta</p>
-                                        <input type="file" id="btn_enviar">
+                                        <input type="file" name="imagen" id="btn_enviar">
                                     </div>
                                 </div>
 
                             </fieldset>
-                            <input type="submit" value="Enviar" class="boton boton-amarillo">
+                            <input type="button" value="Enviar" class="boton boton-amarillo">
                         </form>
                     </div>
                 </div>
@@ -161,6 +161,9 @@
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+
+    <!-- Validacion Formulario Receta -->
+    <script type="text/javascript" src="../admin/js/Validacionreceta.js"></script>
 </body>
 
 </html>
