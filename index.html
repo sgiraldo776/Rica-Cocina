@@ -10,22 +10,29 @@
     <link rel="stylesheet" type="text/css" href="admin/css/style1.css">
     <title>Rica Cocina</title>
 </head>
-
 <body>
     <header class="site-header" id="nav">
         <div class="contenedor contenido-header">
-            <div class="barra">
-                <a href="index.html">
-                    <img src="img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
-                </a>
-                <nav class="navegacion">
-                    <a href="vistas/recetas.php">Recetas</a>
-                    <a href="admin/Usuario/form_usuario.php">Registrar</a>
-                    <a href="#">Inicia Sesión</a>
-                </nav>
-            </div>
+            <nav class="navbar navbar-expand-lg navbar-light navegacion">
+                <div class="col-sm-9">
+                    <a class="navbar-brand" href="index.html">
+                        <img src="img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
+                    </a>
+                </div>
+                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a href="vistas/recetas.php">Recetas</a>
+                        <a href="admin/Usuario/form_usuario.php">Registrar</a>
+                        <a href="#">Inicia Sesión</a>
+                    </div>
+                </div>
+            </nav>
         </div>
-        <!-- Contenedor -->
+    </header> 
+    <section class="sldier">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -53,9 +60,7 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </header>
-
-    <div class="contenedor">
+    </section>
         <section class="contenedor">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-3 buscador">
@@ -113,12 +118,11 @@
                 </div>
             </div>
         </main>
-    </div>
     <footer class="bgcolor">
         <div class="contenedor contenedor-footer">
             <div class="row footer-centrar py-4 d-flex align-items-center">
                 <div class="col-2">
-                    <h4>Todos los Derechos Reservador 2020 &copy;</h4>
+                    <h4 class="copy">Todos los Derechos Reservador 2020 &copy;</h4>
                 </div>
 
                 <div class="col-8 footer-img align-items-center">
