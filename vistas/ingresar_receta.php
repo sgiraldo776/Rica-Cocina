@@ -44,35 +44,35 @@
                     <!-- Div Nav-->
 
                     <div class="card-body">
-                        <form action="" name="add_form">
+                        <form action="ingreso/insertar_receta.php" name="add_form" method="post" enctype="multipart/form-data">
 
                             <fieldset>
                                 <label for="">Nombre de la receta</label>
-                                <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta" id="nomreceta">
+                                <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta" id="nomreceta" name="nomreceta">
 
                                 <label for="Ingredientes">Ingredientes</label>
-                                <textarea name="" id="ingrediente" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="ingrediente" id="ingrediente" cols="30" rows="10" class="form-control"></textarea>
 
                                 <label for="">Preparación</label>
-                                <textarea name="" id="preparacion" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="preparacion" id="preparacion" cols="30" rows="10" class="form-control"></textarea>
 
 
 
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tiempo de preparación</label>
-                                        <input type="text" class="form-control" id="tiempo">
+                                        <input type="text" name="tiempo" class="form-control" id="tiempo">
                                     </div>
                                     <div class="col">
                                         <label for="">Cantidad de personas</label>
-                                        <input class="form-control" type="number" min="1" max="30" id="cantidadpersona">
+                                        <input class="form-control" type="number" min="1" max="30" id="cantidadpersona" name="cantidadpersona">
                                     </div>
                                 </div>
 
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Ocación</label>
-                                        <select name="" id="ocacion" class="form-control">
+                                        <select name="ocacion" id="ocacion" class="form-control">
                                             <option value="0" select-hidden disabled>-Seleccione-</option>
                                             <option value="desayuno">Desayuno</option>
                                             <option value="almuerzo">Almuerzo</option>
@@ -81,7 +81,7 @@
                                     </div>
                                     <div class="col">
                                         <label for="">Tipo comida</label>
-                                        <select name="" id="tipocomida" class="form-control">
+                                        <select name="tipocomida" id="tipocomida" class="form-control">
                                             <option value="0">-Seleccione el Tipo de Comida-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tbltipocomida");
@@ -99,7 +99,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tipo dieta</label>
-                                        <select name="" id="tipodieta" class="form-control">
+                                        <select name="tipodieta" id="tipodieta" class="form-control">
                                             <option value="0">-Seleccione el Tipo de Dieta-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tbltipodieta");
@@ -114,7 +114,7 @@
                                     </div>
                                     <div class="col">
                                         <label for="">País</label>
-                                        <select name="" id="pais" class="form-control">
+                                        <select name="pais" id="pais" class="form-control">
                                             <option value="0">-Seleccione el Pais-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tblpais");
@@ -132,7 +132,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tipo de receta</label>
-                                        <select name="" id="tiporeceta" class="form-control">
+                                        <select name="tiporeceta" id="tiporeceta" class="form-control">
                                             <option value="Plato">Plato</option>
                                             <option value="Postre">Postre</option>
                                             <option value="Bebida">Bebida</option>
@@ -142,7 +142,7 @@
 
                                     <div id="div_file" class="col">
                                         <p id="texto"> Imagen de receta</p>
-                                        <input type="file" name="imagen" id="btn_enviar">
+                                        <input type="file" name="imagen" id="btn_enviar" multiple>
                                     </div>
                                 </div>
 

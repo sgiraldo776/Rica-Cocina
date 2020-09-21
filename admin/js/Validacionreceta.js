@@ -10,6 +10,7 @@ $(function(){
                                 if($('#tipodieta').val() !=0){
                                     if($('#pais').val() !=0){
                                         if($('#btn_enviar').val() !=""){
+                                            formulario.submit();                                        
 
                                         }else {
                                             alert("Error, No ha Ingresado la Imagen de la Receta");
