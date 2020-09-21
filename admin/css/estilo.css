@@ -210,6 +210,11 @@
         justify-content: center;
     }
     
+    footer h2,
+    h4 {
+        color: #ffffff;
+    }
+    
     .footer-centrar {
         display: flex;
         align-items: center;

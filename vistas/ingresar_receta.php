@@ -16,13 +16,11 @@
     <header class="site-header" id="nav">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="index.html">
+                <a href="../index.html">
                     <img src="../img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                 </a>
                 <nav class="navegacion">
                     <a href="vistas/recetas.php">Recetas</a>
-                    <a href="#">Registrate</a>
-                    <a href="#">Recetas</a>
                     <a href="admin/Usuario/form_usuario.php">Registrar</a>
                     <a href="#">Inicia Sesión</a>
                 </nav>
@@ -106,9 +104,10 @@
                                             <option value=""></option>
                                         </select>
                                     </div>
-                                    <div class="col">
-                                        <label for="">Agregue una imágen</label>
-                                        <input type="file" class="file" style="color: transparent">
+
+                                    <div id="div_file" class="col">
+                                        <p id="texto"> Imagen de receta</p>
+                                        <input type="file" id="btn_enviar">
                                     </div>
                                 </div>
 
