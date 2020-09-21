@@ -1,3 +1,8 @@
+<?php 
+ include "../admin/conexion.php";
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,6 +83,15 @@
                                         <label for="">Tipo comida</label>
                                         <select name="" id="" class="form-control">
                                             <option value=""></option>
+                                            <?php 
+                                             $sel = $conn ->query("SELECT * FROM tbltipocomida");
+                            
+                      		                while ($row=$sel->fetch_array()) {
+                                             ?>
+                                            <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                            <?php	
+                                               }
+                                             ?>
                                         </select>
                                     </div>
                                 </div>
@@ -87,12 +101,30 @@
                                         <label for="">Tipo dieta</label>
                                         <select name="" id="" class="form-control">
                                             <option value=""></option>
+                                            <?php 
+                                             $sel = $conn ->query("SELECT * FROM tbltipodieta");
+                            
+                      		                while ($row=$sel->fetch_array()) {
+                                             ?>
+                                            <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                            <?php	
+                                               }
+                                             ?>
                                         </select>
                                     </div>
                                     <div class="col">
                                         <label for="">País</label>
                                         <select name="" id="" class="form-control">
                                             <option value=""></option>
+                                            <?php 
+                                             $sel = $conn ->query("SELECT * FROM tblpais");
+                            
+                      		                while ($row=$sel->fetch_array()) {
+                                             ?>
+                                            <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                            <?php	
+                                               }
+                                             ?>
                                         </select>
                                     </div>
                                 </div>
@@ -101,7 +133,10 @@
                                     <div class="col">
                                         <label for="">Tipo de receta</label>
                                         <select name="" id="" class="form-control">
-                                            <option value=""></option>
+                                            <option value="Plato">Plato</option>
+                                            <option value="Postre">Postre</option>
+                                            <option value="Bebida">Bebida</option>
+                                            <option value="Snack">Snack</option>
                                         </select>
                                     </div>
 
