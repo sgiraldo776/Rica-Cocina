@@ -110,6 +110,7 @@ $(function() {
         } else {
             alert("Error, No ha Ingresado el Nombre");
             $('#nombre').focus().addClass("is-invalid");
+            elemento.blur();
         }
     });
 });

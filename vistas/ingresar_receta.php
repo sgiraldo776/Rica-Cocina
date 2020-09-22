@@ -142,7 +142,7 @@
 
                                     <div id="div_file" class="col">
                                         <p id="texto"> Imagen de receta</p>
-                                        <input type="file" name="imagen" id="btn_enviar" multiple>
+                                        <input type="file" name="imagen" id="btn_enviar">
                                     </div>
                                 </div>
 
