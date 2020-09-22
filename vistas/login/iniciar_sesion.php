@@ -19,12 +19,14 @@
         <div class="contenedor col-12 text-center">
             <div class="row col-12">
                 <div class="col-12">
-                    <form action="">
-                        <label for=""> Nombre de Usuario</label>
-                        <input type="text" class="form-control" placeholder="Digita tu nombre de usuario aquí">
+                    <form action="config/login.php" method="POST">
+                        <label for=""> Correo Electronico</label>
+                        <input type="text" class="form-control" name ="usuario" placeholder="Digita tu Correo aqui">
                         <label for="">Contraseña</label>
-                        <input type="password" class="form-control" placeholder="Tu contraseña">
+                        <input type="password" class="form-control" name="password" placeholder="Tu contraseña">
                         <a href=""><span>¿Olvidaste tu contraseña?</span></a>
+                        <br>
+                        <button type="submit">INGRESAR </button>
                     </form>
                 </div>
             </div>
