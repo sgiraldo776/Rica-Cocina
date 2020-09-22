@@ -6,7 +6,7 @@ if ($conn->connect_error) {
 }
 $nombre=$_POST['nombre'];
 $apellidos=$_POST['apellidos'];
-$fechanaci=$_POST['Fechanacimiento'];
+$fechanaci=$_POST['fechanacimiento'];
 $correo=$_POST['correo'];
 $municipio=$_POST['municipio'];
 $password=$_POST['contrasena'];
