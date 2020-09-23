@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" href="sweetalert2.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet"> 
+    <link rel="icon" type="image/png" href="../../img/favicon.png">
     <title>Formulario Ingresar Utensilios</title>
 </head>
 <body>
