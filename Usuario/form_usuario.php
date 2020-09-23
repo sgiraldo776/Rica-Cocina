@@ -83,11 +83,36 @@
                    </div>
                  </div>
                </div>
-               <h4>La contraseña debe tener como mínimo un caracter especial, una mayúscula y un número. Tambien debe ser mayor a seis digitos.</h4>
+               <h5>La contraseña debe tener como mínimo un caracter especial, una mayúscula y un número. Tambien debe ser mayor a seis digitos.</h5>
+
+               <?php
+    
+                if(!empty($_GET['error'])){
+                $error =  $_GET['error'];    
+                switch($error){
+                case 1:
+                echo '<strong style="color:red">'.'La longitud del Password debe ser Superior a 5'.'</strong>';
+                break;                     
+                case 2:
+                echo '<strong style="color:red">'.'El Password debe contener minimo una letra en Mayuscula'.'</strong>';
+                break;
+                case 3:
+                echo '<strong style="color:red">'.'El Password debe contener minimo un Numero'.'</strong>';
+                break;    
+                case 4:   
+                echo '<strong style="color:red">'.'El Password debe contener minimo un caracter Especial'.'</strong>';
+                break;                                                                        
+                default:
+                break;                          
+                    }  
+                }
+  
+  ?>
                <div class="row">
                    <div class="col">
+
                     <label>Contraseña</label>
-                    <input type="password" name="contrasena" class="form-control" placeholder="Ingrese una contraseña" id="con1" >
+                    <input type="password" name="contrasena" class="form-control" placeholder="Ingrese una contraseña" id="con1" onkeypress="return validarPassword(event);" required="required"  pattern=".{6,20}">
                   </div>
                   <div class="col">
                     <label>Confirmar Contraseña</label>
@@ -150,5 +175,7 @@
     <script type="text/javascript" src="js/ValidarUsuario.js"></script>
      <!--validacion de capos vacios-->
 
+
+     <script type="text/javascript" src="js/validarPass.js"></script>
 </body>
 </html>
