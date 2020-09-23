@@ -10,6 +10,7 @@ $fechanaci=$_POST['fechanacimiento'];
 $correo=$_POST['correo'];
 $municipio=$_POST['municipio'];
 $password=$_POST['contrasena'];
+$password=hash("sha256", $password);
 
 
 if(isset($_POST['contrasena'])){
@@ -109,26 +110,31 @@ for($i = 0; $i < count($arrPass); $i++) {
   if($validador == 0){
 
     $sql="INSERT INTO tblusuario (Nombres, apellidos, fechanacimiento, municipioid)
-    VALUES ('$nombre', '$apellidos', '$fechanaci', '$municipio' )";
-    
-    $sql1= $conn ->query("SELECT MAX(usuarioid) AS id FROM tblusuario");
-     if ($row = $sql1->fetch_array()){
-       $id = $row[0]+1;
-       
-     }
-    
-     
-    $sql2="INSERT INTO tblcuenta (correoelectronico,password,tiporolid,estado,usuarioid)
-    VALUES ('$correo','$password',2,1,'$id')";
-    
-    if ($conn->query($sql) === TRUE && $conn->query($sql2) === TRUE) {
+VALUES ('$nombre', '$apellidos', '$fechanaci', '$municipio' )";
+
+
+    if ($conn->query($sql)) {
+      // Ingresando la cuenta del último usuarioid registrado en la tabla tblusuario:
+      $sql2="INSERT INTO tblcuenta (correoelectronico,password,tiporolid,estado,usuarioid)
+      VALUES ('$correo', '$password', 2, 1, (SELECT usuarioid FROM tblusuario ORDER BY usuarioid DESC LIMIT 1))";
+  
+      if ($conn->query($sql2)) {
         echo "<script>     location.href='form_usuario.php'; </script>";
-    } else {
-        echo "Error: " . $sql . "<br>" . $sql2 . "<br>". $conn->error;
-    }
-    $conn->close();
-    
+      } else {
+        $sql3="DELETE FROM tblusuario ORDER BY usuarioid DESC LIMIT 1";
+        if ($conn->query($sql3)){
+          echo "Error: " . $sql2 . "<br>". $conn->error;       
+        } else {
+          echo "Error: " . $sql3 . "<br>". $conn->error;
+        } 
+      }
+  } else {
+    echo "Error: " . $sql . "<br>". $conn->error;
   }
+  
+  $conn->close();
+
+   }
   else {
       header("location:form_usuario.php?error=$validador"); // <= Redireccionamos la salida a la página index.php
       $conn->close();
