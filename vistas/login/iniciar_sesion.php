@@ -15,19 +15,23 @@
 </head>
 
 <body>
-    <main>
-
+    <main class="col-12">
+    <div class="container text-center mt-4">
+                <div>
+                    <h1>Iniciar Sesión</h1>
+                </div><!-- Div Nav-->
+                
         <div class="contenedor col-12 text-center">
             <div class="row col-12">
                 <div class="col-12">
                     <form action="config/login.php" method="POST">
-                        <label for=""> Correo Electronico</label>
-                        <input type="text" class="form-control" name ="usuario" placeholder="Digita tu Correo aqui">
+                        <label for=""> Correo Electrónico</label>
+                        <input type="text" class="form-control" name ="usuario" placeholder="Introduce el correo electrónico">
                         <label for="">Contraseña</label>
-                        <input type="password" class="form-control" name="password" placeholder="Tu contraseña">
-                        <a href=""><span>¿Olvidaste tu contraseña?</span></a>
+                        <input type="password" class="form-control" name="password" placeholder="Introduce la contraseña">
+                        <span><a href="#" >¿Olvidaste tu contraseña?</a></span>
                         <br>
-                        <button type="submit">INGRESAR </button>
+                        <button type="submit" class="boton boton-amarillo">INGRESAR </button>
                     </form>
                 </div>
             </div>

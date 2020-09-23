@@ -1,6 +1,6 @@
 <?php
 
-require'../../../admin/conexion.php';
+require '../../../admin/conexion.php';
 
 session_start();
 
@@ -21,7 +21,5 @@ if($array['contar']>0){
     echo "<script> 	alert('datos incorrectos'); </script>";
     echo "<script>  location.href='../iniciar_sesion.php'; </script>";
 }
-
-
 
 ?>
