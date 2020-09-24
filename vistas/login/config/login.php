@@ -6,6 +6,7 @@ session_start();
 
 $usuario = $_POST['usuario'];
 $clave = $_POST['password'];
+$clave=hash("sha256", $clave);
 
 $sql = "SELECT COUNT(*) as contar from tblcuenta where correoelectronico='$usuario' and password='$clave'";
 
