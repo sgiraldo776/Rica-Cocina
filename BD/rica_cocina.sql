@@ -57,7 +57,6 @@ CREATE INDEX `fk_tblusuario_tblmunicipio1` ON `rica_cocina`.`tblusuario` (`munic
 CREATE TABLE IF NOT EXISTS `rica_cocina`.`tblroles` (
   `tiporolid` TINYINT(4) NOT NULL,
   `nombre` VARCHAR(45) NOT NULL,
-  `menu` VARCHAR(45) NULL DEFAULT NULL,
   PRIMARY KEY (`tiporolid`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
