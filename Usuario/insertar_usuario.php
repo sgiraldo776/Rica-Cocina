@@ -94,9 +94,15 @@ for($i = 0; $i < count($arrPass); $i++) {
               case '=':
                   $validador = 0;
               break;      
-              case '.':
+              case '?':
                   $validador = 0; 
-              break;                                                                              
+              break;
+              case '$':
+                $validador = 0; 
+              break;
+              case '#':
+                $validador = 0; 
+              break;                                                                           
               default:
               $validador = 4;
               break;                          
