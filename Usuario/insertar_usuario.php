@@ -8,7 +8,6 @@ $nombre=$_POST['nombre'];
 $apellidos=$_POST['apellidos'];
 $fechanaci=$_POST['fechanacimiento'];
 $correo=$_POST['correo'];
-$municipio=$_POST['municipio'];
 $password=$_POST['contrasena'];
 $password=hash("sha256", $password);
 
@@ -115,8 +114,8 @@ for($i = 0; $i < count($arrPass); $i++) {
 
   if($validador == 0){
 
-    $sql="INSERT INTO tblusuario (Nombres, apellidos, fechanacimiento, municipioid)
-VALUES ('$nombre', '$apellidos', '$fechanaci', '$municipio' )";
+    $sql="INSERT INTO tblusuario (Nombres, apellidos, fechanacimiento)
+VALUES ('$nombre', '$apellidos', '$fechanaci')";
 
 
     if ($conn->query($sql)) {
@@ -129,7 +128,7 @@ VALUES ('$nombre', '$apellidos', '$fechanaci', '$municipio' )";
       } else {
         $sql3="DELETE FROM tblusuario ORDER BY usuarioid DESC LIMIT 1";
         if ($conn->query($sql3)){
-          echo "Error: " . $sql2 . "<br>". $conn->error;       
+          echo "Error: No se pudo ingresar" . $sql2 . "<br>". $conn->error;       
         } else {
           echo "Error: " . $sql3 . "<br>". $conn->error;
         } 
