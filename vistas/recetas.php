@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="../img/favicon.png">
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../admin/css/styles1.css">
+    <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
     <title>Rica Cocina</title>
 </head>
 
@@ -20,82 +21,105 @@
 
 
     <header class="site-header" id="nav">
-        <div class="contenedor contenido-header">
-            <div class="barra">
-                <a href="../index.html">
-                    <img src="../img/logo-rica-cociona3.png" class="logo">
-                </a>
-                <nav class="navegacion">
-                    <a href="#">Recetas</a>
-                    <a href="#">Registrate</a>
-                    <a href="#">Inicia Sesión</a>
-                </nav>
-            </div>
-        </div>
-
-        <div class="container text-center mt-4">
-            <div>
-                <h1>Ingresar Utensilios</h1>
-            </div>
-            <div class="col-md-12">
-                <?php 
-                              $sel = $conn ->query("SELECT re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ");
-                            
-                      		 while ($row=$sel->fetch_array()) {
-                            ?>
-                <div class="card" style="width: 18rem;">
-                    <img src="../img/logo-rica-cociona2.png" class="" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo $row[0] ?></h5>
-                        <p class="card-text"><?php echo $row[1]?></p>
-                        <p class="card-text"> Puntaje: <?php echo $row[2]?></p>
-
-                        <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
+        <div class="container contenido-header">
+            <nav class="navbar navbar-expand-lg navbar-light navegacion">
+                <div class="col-sm-4">
+                    <a class="navbar-brand" href="../index.html">
+                        <img src="../img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
+                    </a>
                 </div>
-                <?php	
-                          }
-                          ?>
-            </div>
-            <div>
-
-                <footer class="bgcolor">
-                    <div class="contenedor contenedor-footer">
-                        <div class="row footer-centrar py-4 d-flex align-items-center">
-                            <div class="col-2">
-                                <h4>Todos los Derechos Reservador 2020 &copy;</h4>
-                            </div>
-
-                            <div class="col-8 footer-img align-items-center">
-                                <ul class="list-inline text-center">
-                                    <li class="list-inline-item">
-                                        <a href="#"><img class="mx-auto" src="img/twitter.svg" alt=""></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#"><img class="mx-auto" src="img/facebook.svg" alt=""></a>
-                                    </li>
-                                    <li class="list-inline-item">
-                                        <a href="#"><img class="mx-auto" src="img/instagram.svg" alt=""></a>
-                                    </li>
-                                </ul>
-
-                            </div>
-                            <div class="col-2">
-                                <h2>Contáctenos</h2>
-                            </div>
+                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-sm-8">
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-auto">
+                            <a href="vistas/recetas.php">Recetas</a>
+                            <a href="Usuario/form_usuario.php">Registrar</a>
+                            <a href="vistas/login/iniciar_sesion.php">Inicia Sesión</a>
                         </div>
                     </div>
-                </footer>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
 
-                <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-                    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-                    crossorigin="anonymous"></script>
-                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-                    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-                    crossorigin="anonymous"></script>
-                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-                    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-                    crossorigin="anonymous"></script>
+        <div class="row text-center mt-4">
+            <nav class="col-md-2" id="nav">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="form-utensilios.php">Utensilios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="../tipodieta/form_tipodieta.php">Tipo Dieta</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="../TipoComida/form_TipoComida.php">Tipo Comida</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" href="../Padecimiento/form_padecimiento.php">Padecimientos</a>
+                    </li>
+                </ul><!-- UL -->
+            </nav><!-- Nav -->
+            <div class="col-md-10">
+                <div>
+                    <h1>Recetas</h1>
+                </div>
+                <?php 
+                    $sel = $conn ->query("SELECT re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ");
+                            
+                    while ($row=$sel->fetch_array()) {
+                ?>
+                <div class="tarjetas">
+                    <a href="#" style="text-decoration: none">
+                        <div class="tarjeta-img">
+                            <img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">
+                        </div>
+                        <div class="tarjeta-info">
+                            <h3 class="card-title"><?php echo $row[0] ?></h3>
+                            <p class="card-text">Por: <?php echo $row[1]?></p>
+                            <p class="card-text"> Puntaje: <?php echo $row[2]?></p>
+                        </div>
+                    </a>
+                </div>
+                <?php	
+                    }
+                ?>
+            </div>
+        </div>
+            
+    <footer class="bgcolor">
+        <div class="contenedor contenedor-footer">
+            <div class="row footer-centrar py-4 d-flex align-items-center">
+                <div class="col-2">
+                    <h4 class="copy">Todos los Derechos Reservador 2020 &copy;</h4>
+                </div>
+
+                <div class="col-8 footer-img align-items-center">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../img/twitter.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../img/facebook.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../img/instagram.svg" alt=""></a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-2">
+                    <a style="text-decoration: none" href="vistas/contacto/contacto.php"><h2>Contáctenos</h2></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
 </body>
 
 </html>
