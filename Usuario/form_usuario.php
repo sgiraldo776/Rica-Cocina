@@ -185,7 +185,7 @@
 
                         </div>
                         <div class="col-2">
-                            <h2>Contáctenos</h2>
+                        <a style="text-decoration: none" href="../vistas/contacto/contacto.php"><h2>Contáctenos</h2></a>
                         </div>
                     </div>
                 </div>

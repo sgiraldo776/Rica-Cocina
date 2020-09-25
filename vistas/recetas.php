@@ -111,7 +111,7 @@
 
                 </div>
                 <div class="col-2">
-                    <a style="text-decoration: none" href="vistas/contacto/contacto.php"><h2>Contáctenos</h2></a>
+                    <a style="text-decoration: none" href="contacto/contacto.php"><h2>Contáctenos</h2></a>
                 </div>
             </div>
         </div>
