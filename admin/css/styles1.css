@@ -193,7 +193,6 @@ h3 {
     background-color: #813531;
     margin: 0;
     padding: 0.6rem;
-    margin-top: 0.6rem;
     color: #ffffff;
     justify-content: center;
 }
@@ -236,7 +235,6 @@ h4 {
 @media screen and (min-width: 593px) {
     .bgcolor {
         padding: 1rem;
-        margin-top: 1rem;
     }
     footer h2 {
     font-size: 1.7rem;
@@ -252,7 +250,6 @@ h4 {
 @media screen and (min-width: 958px) {
     .bgcolor {
         padding: 2rem;
-        margin-top: 5rem;
     }
     footer h2 {
     font-size: 4rem;
@@ -264,6 +261,10 @@ h4 {
         width: 10rem;
         margin: 0;
     }
+}
+
+.copy{
+    color:white;
 }
 
 /* Formulario ingresar

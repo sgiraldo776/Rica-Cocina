@@ -42,6 +42,15 @@ label {
     height: 5rem;
 }
 
+.lbl-form-receta{
+    margin-top: 0;
+    color: white;
+}
+
+.lbl-form-receta:first-of-type{
+    margin-top: 3rem;
+}
+
 h1 {
     font-family: 'Pacifico', cursive;
     color: #813531;
@@ -138,17 +147,22 @@ html {
     border-radius: .4rem;
 }
 
-.boton:hover {
-    cursor: pointer;
-    background-color: #813531;
-}
-
 .boton-amarillo {
     background-color: #ffb80e;
 }
 
+.boton-amarillo:hover {
+    cursor: pointer;
+    background-color: #813531;
+}
+
 .boton-rojo {
     background-color: #813531;
+}
+
+.boton-rojo:hover{
+    cursor: pointer;
+    background-color: #bd5853;
 }
 
 
@@ -158,7 +172,6 @@ html {
     background-color: #813531;
     margin: 0;
     padding: 2rem;
-    margin-top: 5rem;
     color: #ffffff;
     justify-content: center;
 }

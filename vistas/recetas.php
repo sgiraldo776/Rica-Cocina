@@ -43,26 +43,36 @@
             </nav>
         </div>
     </header>
-    
-
-        <div class="row text-center mt-4">
-            <nav class="col-md-2" id="nav-recetas">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="form-utensilios.php">Utensilios</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="../tipodieta/form_tipodieta.php">Tipo Dieta</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="../TipoComida/form_TipoComida.php">Tipo Comida</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-light" href="../Padecimiento/form_padecimiento.php">Padecimientos</a>
-                    </li>
-                </ul><!-- UL -->
+        <div class="row text-center">
+            <nav class="col-md-3" id="nav-recetas">
+                <form action="recetas.php" name="add_form" method="post" enctype="multipart/form-data">
+                    <fieldset>
+                        <label for="" class="lbl-form-receta">País: </label>
+                        <select name="ocacion" id="ocacion" class="form-control">
+                            <option value="0" select-hidden disabled>-Seleccione-</option>
+                            <option value="desayuno">Desayuno</option>
+                            <option value="almuerzo">Almuerzo</option>
+                            <option value="cena">Cena</option>
+                        </select>
+                        <label for="" class="lbl-form-receta">País: </label>
+                        <select name="ocacion" id="ocacion" class="form-control">
+                            <option value="0" select-hidden disabled>-Seleccione-</option>
+                            <option value="desayuno">Desayuno</option>
+                            <option value="almuerzo">Almuerzo</option>
+                            <option value="cena">Cena</option>
+                        </select>
+                        <label for="" class="lbl-form-receta">País: </label>
+                        <select name="ocacion" id="ocacion" class="form-control">
+                            <option value="0" select-hidden disabled>-Seleccione-</option>
+                            <option value="desayuno">Desayuno</option>
+                            <option value="almuerzo">Almuerzo</option>
+                            <option value="cena">Cena</option>
+                        </select>
+                    </fieldset>
+                    <input type="submit" value="Filtrar" class="boton boton-rojo form-control">
+                </form>
             </nav><!-- Nav -->
-            <div class="col-md-10">
+            <div class="col-md-9">
                 <div>
                     <h1>Recetas</h1>
                 </div>
@@ -91,7 +101,6 @@
                 </div>
             </div>
         </div>
-            
     <footer class="bgcolor">
         <div class="contenedor contenedor-footer">
             <div class="row footer-centrar py-4 d-flex align-items-center">
