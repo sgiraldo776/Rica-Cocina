@@ -148,12 +148,22 @@ h3 {
 #nav {
     background-color: #813531;
 }
+#nav-recetas{
+    background-color: #ffb80e;
+}
+#nav-recetas a:hover {
+    color:  #813531;
+}
 /* Tarjetas */
-
+.conenedor-recetas{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 .tarjetas {
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex: 0 0 calc(33.3% - 1rem);
     justify-content: space-between;
 }
 

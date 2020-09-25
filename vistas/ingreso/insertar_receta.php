@@ -17,17 +17,31 @@ $pais=$_POST['pais'];
 $tiporeceta=$_POST['tiporeceta'];
 $imagen=$_FILES['imagen']['tmp_name'];
 $imagen=addslashes(file_get_contents($imagen));
+$utensilios=$_POST['utensilios'];
 
 
-$sql="INSERT INTO tblreceta (titulo, imagen, ingrediente, pasos, cantidadpersonas, tiempopreparacion, ocacion, tiporeceta, tipocomidaid, padecimientoid, tipodietaid, validar, usuarioid, paisid, votacionacomulada) VALUES ('$nombre', '$imagen' , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', 1 , '$tipodieta', '1', 4, '$pais', null)";
-
-/* nota al momento de insertar la id del usuario, se tiene que insertar la sesion iniciada, osea que nos faltan las variables de sesiones :v */
+$sql="INSERT INTO tblreceta (titulo, imagen, ingrediente, pasos, cantidadpersonas, tiempopreparacion, ocacion, tiporeceta, tipocomidaid, padecimientoid, tipodietaid, validar, usuarioid, paisid, votacionacomulada) VALUES ('$nombre', null , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', 1 , '$tipodieta', '1', $usuarioid, '$pais', null)";
 
 if ($conn->query($sql) === TRUE) {
-    echo "<script>     location.href='../ingresar_receta.php'; </script>";
+  for ($i=0;$i<count($utensilios);$i++){     
+    $sql2="INSERT INTO tblrecetautensilio (utensilioid, recetaid) VALUES ('$utensilios[$i]',(SELECT recetaid FROM tblreceta ORDER BY recetaid DESC LIMIT 1))";
+    if ($conn->query($sql2) === TRUE) {
+    } else {
+      $sql3="DELETE FROM tblreceta ORDER BY recetaid DESC LIMIT 1";
+      if ($conn->query($sql3)){
+        echo "Error: " . $sql2 . "<br>". $conn->error;       
+      } else {
+        echo "Error: " . $sql3 . "<br>". $conn->error;
+      }
+      $i = count($utensilios);
+    }
+  }
+  echo "<script> location.href='../ingresar_receta.php'; </script>";
 } else {
-    echo "Error: " . $sql . "<br>". $conn->error;
+  echo "Error: " . $sql . "<br>". $conn->error;
 }
+
+/* nota al momento de insertar la id del usuario, se tiene que insertar la sesion iniciada, osea que nos faltan las variables de sesiones :v */
 
 /* "INSERT INTO `tblreceta` (`titulo`, `imagen`, `ingrediente`, `pasos`, `cantidadpersonas`, `tiempopreparacion`, `ocacion`, `tiporeceta`, `tipocomidaid`, `padecimientoid`, `tipodietaid`, `validar`, `usuarioid`, `paisid`, `votacionacomulada`) VALUES ('$nombre',  '$imagen', '$ingrediente', '$preparacion', '$cantidadpersona', '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', 1, '$tipodieta', '1', 77, '$pais', 5)" */
 

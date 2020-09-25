@@ -140,13 +140,24 @@
                                             <option value="Snack">Snack</option>
                                         </select>
                                     </div>
-
                                     <div id="div_file" class="col">
                                         <p id="texto"> Imagen de receta</p>
                                         <input type="file" name="imagen" id="btn_enviar">
                                     </div>
                                 </div>
-
+                                <div class="col">
+                                    <label for="">Utensilios</label>
+                                    <select multiple="yes" size="10" name="utensilios[]" id="utensilios" class="form-control">
+                                        <?php 
+                                        $sel = $conn ->query("SELECT * FROM tblutensilios order by utensilioid");
+                      		            while ($row=$sel->fetch_array()) {
+                                        ?>
+                                        <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                        <?php	
+                                            }
+                                        ?>
+                                    </select>
+                                </div>
                             </fieldset>
                             <input type="button" value="Enviar" class="boton boton-amarillo">
                         </form>
