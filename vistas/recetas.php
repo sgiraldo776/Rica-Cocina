@@ -46,7 +46,7 @@
     
 
         <div class="row text-center mt-4">
-            <nav class="col-md-2" id="nav">
+            <nav class="col-md-2" id="nav-recetas">
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link text-light" href="form-utensilios.php">Utensilios</a>
@@ -66,26 +66,29 @@
                 <div>
                     <h1>Recetas</h1>
                 </div>
-                <?php 
-                    $sel = $conn ->query("SELECT re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ");
-                            
-                    while ($row=$sel->fetch_array()) {
-                ?>
-                <div class="tarjetas">
-                    <a href="#" style="text-decoration: none">
-                        <div class="tarjeta-img">
-                            <img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">
-                        </div>
-                        <div class="tarjeta-info">
-                            <h3 class="card-title"><?php echo $row[0] ?></h3>
-                            <p class="card-text">Por: <?php echo $row[1]?></p>
-                            <p class="card-text"> Puntaje: <?php echo $row[2]?></p>
-                        </div>
-                    </a>
+                <div class="conenedor-recetas">
+                    <?php 
+                        $sel = $conn ->query("SELECT re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ");
+                                
+                        while ($row=$sel->fetch_array()) {
+                    ?>
+                    <div class="tarjetas">
+                        <a href="#" style="text-decoration: none">
+                            <div class="tarjeta-img">
+                                <img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">
+                            </div>
+                            <div class="tarjeta-info">
+                                <h3 class="card-title"><?php echo $row[0] ?></h3>
+                                <p class="card-text">Por: <?php echo $row[1]?></p>
+                                <p class="card-text"> Puntaje: <?php echo $row[2]?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <?php	
+                        }
+                    ?>
+                    
                 </div>
-                <?php	
-                    }
-                ?>
             </div>
         </div>
             
