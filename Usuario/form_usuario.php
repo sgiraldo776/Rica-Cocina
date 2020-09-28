@@ -92,9 +92,7 @@
                                         </div>
                                     </div>
                                     
-                                    <h5>La contraseña debe tener como mínimo un caracter especial, una mayúscula y
-                                        un número. Tambien debe ser mayor a seis digitos.</h5>
-                                    <h5>Los caracteres especiales permitidos son @ / * = ? $ #
+                                    <h5 class="cond-cont">La contraseña debe tener como mínimo un caracter especial, una mayúscula y un número. Tambien debe ser mayor a cinco digitos. Los caracteres especiales permitidos son @ / * = ? $ #
                                     </h5>
 
                                     <?php
