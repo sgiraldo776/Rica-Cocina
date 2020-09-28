@@ -1,3 +1,6 @@
+<?php
+    include('admin/conexion.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -84,41 +87,31 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-4 tarjetas">
-                <a href="#" style="text-decoration: none">
-                    <div class="tarjeta-img">
-                        <img class="tarjeta-img" src="img/fideos.jpg" alt="Fideos Chinos">
+            <div class="col-12 md-2 top">
+                <div class="conenedor-recetas">
+                    <?php 
+                        $sel = $conn ->query("SELECT re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ORDER BY re.votacionacomulada DESC LIMIT 3");
+                                
+                        while ($row=$sel->fetch_array()) {
+                    ?>
+                    <div class="tarjetas">
+                        <a href="#" style="text-decoration: none">
+                            <div class="tarjeta-img">
+                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                                <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+                                
+                            </div>
+                            <div class="tarjeta-info">
+                                <h3 class="card-title"><?php echo $row[1] ?></h3>
+                                <p class="card-text">Por: <?php echo $row[2]?></p>
+                                <p class="card-text"> Puntaje: <?php echo $row[3]?></p>
+                            </div>
+                        </a>
                     </div>
-                    <div class="tarjeta-info">
-                        <h2>Fideos Chinos</h2>
-                        <p>Por: Persona Natural</p>
-                        <p>Puntuación: 20</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-4 tarjetas">
-                <a href="#" style="text-decoration: none">
-                    <div class="tarjeta-img">
-                        <img class="tarjeta-img" src="img/fideos.jpg" alt="Fideos Chinos">
-                    </div>
-                    <div class="tarjeta-info">
-                        <h2>Fideos Chinos</h2>
-                        <p>Por: Persona Natural</p>
-                        <p>Puntuación: 20</p>
-                    </div>
-                </a>
-            </div>
-            <div class="col-4 tarjetas">
-                <a href="#" style="text-decoration: none">
-                    <div class="tarjeta-img">
-                        <img class="tarjeta-img" src="img/fideos.jpg" alt="Fideos Chinos">
-                    </div>
-                    <div class="tarjeta-info">
-                        <h2>Fideos Chinos</h2>
-                        <p>Por: Persona Natural</p>
-                        <p>Puntuación: 20</p>
-                    </div>
-                </a>
+                    <?php	
+                        }
+                    ?>
+                </div>
             </div>
         </div>
     </main>

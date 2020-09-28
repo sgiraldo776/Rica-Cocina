@@ -18,13 +18,11 @@
     <?php
         include('../admin/conexion.php');
     ?>
-
-
     <header class="site-header" id="nav">
         <div class="container contenido-header">
             <nav class="navbar navbar-expand-lg navbar-light navegacion">
                 <div class="col-sm-4">
-                    <a class="navbar-brand" href="../index.html">
+                    <a class="navbar-brand" href="../index.php">
                         <img src="../img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                     </a>
                 </div>
@@ -78,19 +76,21 @@
                 </div>
                 <div class="conenedor-recetas">
                     <?php 
-                        $sel = $conn ->query("SELECT re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ");
+                        $sel = $conn ->query("SELECT re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ");
                                 
                         while ($row=$sel->fetch_array()) {
                     ?>
                     <div class="tarjetas">
                         <a href="#" style="text-decoration: none">
                             <div class="tarjeta-img">
-                                <img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">
+                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                                <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+                                
                             </div>
                             <div class="tarjeta-info">
-                                <h3 class="card-title"><?php echo $row[0] ?></h3>
-                                <p class="card-text">Por: <?php echo $row[1]?></p>
-                                <p class="card-text"> Puntaje: <?php echo $row[2]?></p>
+                                <h3 class="card-title"><?php echo $row[1] ?></h3>
+                                <p class="card-text">Por: <?php echo $row[2]?></p>
+                                <p class="card-text"> Puntaje: <?php echo $row[3]?></p>
                             </div>
                         </a>
                     </div>

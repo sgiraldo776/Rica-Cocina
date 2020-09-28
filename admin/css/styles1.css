@@ -157,20 +157,21 @@ h3 {
 /* Tarjetas */
 .conenedor-recetas{
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }
 .tarjetas {
     width: 100%;
-    display: flex;
     flex: 0 0 calc(33.3% - 1rem);
-    justify-content: space-between;
 }
-
+.tam-img{
+    width: 25rem;
+    height: 16rem;
+    object-fit: cover;
+}
 .tarjeta-img {
     border-top-left-radius: 2rem;
     border-top-right-radius: 2rem;
-    width: 25rem;
 }
 
 .tarjeta-info {

@@ -23,7 +23,7 @@
     </head>
     <body>
         <header class="navbar navbar-expand-md navbar-dark" id="nav">
-            <a href="../index.html"><img src="../img/LOGO-03.png" alt=""></a>
+            <a href="../index.php"><img src="../img/LOGO-03.png" alt=""></a>
         </header>
         <div class="row">
 

@@ -20,7 +20,10 @@ $imagen=addslashes(file_get_contents($imagen));
 $utensilios=$_POST['utensilios'];
 
 
-$sql="INSERT INTO tblreceta (titulo, imagen, ingrediente, pasos, cantidadpersonas, tiempopreparacion, ocacion, tiporeceta, tipocomidaid, padecimientoid, tipodietaid, validar, usuarioid, paisid, votacionacomulada) VALUES ('$nombre', null , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', 1 , '$tipodieta', '1', $usuarioid, '$pais', null)";
+/*$sql="INSERT INTO tblreceta (titulo, imagen, ingrediente, pasos, cantidadpersonas, tiempopreparacion, ocacion, tiporeceta, tipocomidaid, padecimientoid, tipodietaid, validar, usuarioid, paisid, votacionacomulada) VALUES ('$nombre', $imagen , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', 1 , '$tipodieta', '1', 7, '$pais', null)";*/
+
+
+$sql="INSERT INTO tblreceta VALUES (null,'$nombre', '$imagen' , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', 1 , '$tipodieta', '1', 7, '$pais', null)";
 
 if ($conn->query($sql) === TRUE) {
   for ($i=0;$i<count($utensilios);$i++){     

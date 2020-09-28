@@ -22,7 +22,7 @@
     <header class="site-header" id="nav">
         <div class="contenedor contenido-header">
             <div class="barra">
-                <a href="../index.html">
+                <a href="../index.php">
                     <img src="../img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                 </a>
                 <nav class="navegacion">
