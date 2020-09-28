@@ -31,8 +31,12 @@
 
     <main>
         <div class="contenedor ingredientes">
+            <div class="col-12 tit-receta">
+                <h1> Titulo receta </h1>
+            </div>
             <div class="row">
-                <div class="col-4">
+
+                <div class="col-4 iconos">
                     <ul>
                         <li><img src="../../img/num-per.png" alt=""></li>
                         <li><img src="../../img/paises.png" alt=""></li>
@@ -45,7 +49,11 @@
                 </div>
                 <div class="col-4">
                     <h1>Ingredientes</h1>
-                    <p></p>
+                    <p> Sed sit amet eleifend ligula. Aenean sit amet tincidunt lacus. Etiam scelerisque, diam in tristique blandit, velit ipsum tempor nibh, sed posuere purus tellus vel mi. Praesent et metus metus. Quisque blandit, libero a faucibus varius,
+                        mauris sapien venenatis libero, quis dapibus dolor diam vitae libero. Aliquam nec dapibus sapien, scelerisque tristique massa. Cras mattis augue et malesuada vestibulum. Fusce nec lectus enim. Suspendisse vel tellus sodales, finibus
+                        lectus ac, gravida diam. Quisque at velit lorem. Quisque tincidunt orci quis mi varius lobortis. Vivamus tristique libero ut iaculis efficitur. In hendrerit sodales mollis. Donec nunc dolor, sollicitudin in urna quis, venenatis
+                        placerat felis. Pellentesque lobortis magna in diam ullamcorper dignissim eget et libero. Sed molestie nec orci a pharetra. Fusce consequat velit vel lacus laoreet semper. Class aptent taciti sociosqu ad litora torquent per conubia
+                        nostra, per inceptos himenaeos. Quisque et eros eu ex tincidunt egestas. </p>
                 </div>
                 <div>
                     <img src="" alt="">
@@ -53,7 +61,51 @@
             </div>
         </div>
 
+        <div class="contenedor">
+            <div class="row">
+                <h2>Preparacion</h2>
+                <p> Sed sit amet eleifend ligula. Aenean sit amet tincidunt lacus. Etiam scelerisque, diam in tristique blandit, velit ipsum tempor nibh, sed posuere purus tellus vel mi. Praesent et metus metus. Quisque blandit, libero a faucibus varius,
+                    mauris sapien venenatis libero, quis dapibus dolor diam vitae libero. Aliquam nec dapibus sapien, scelerisque tristique massa. Cras mattis augue et malesuada vestibulum. Fusce nec lectus enim. Suspendisse vel tellus sodales, finibus
+                    lectus ac, gravida diam. Quisque at velit lorem. Quisque tincidunt orci quis mi varius lobortis. Vivamus tristique libero ut iaculis efficitur. In hendrerit sodales mollis. Donec nunc dolor, sollicitudin in urna quis, venenatis placerat
+                    felis. Pellentesque lobortis magna in diam ullamcorper dignissim eget et libero. Sed molestie nec orci a pharetra. Fusce consequat velit vel lacus laoreet semper. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                    per inceptos himenaeos. Quisque et eros eu ex tincidunt egestas. </p>
+            </div>
+            <div class="row">
+                <h2>Receta echa por:</h2>
+            </div>
+        </div>
+        <br><br>
     </main>
+
+    <footer class="bgcolor">
+        <div class="contenedor contenedor-footer">
+            <div class="row footer-centrar py-4 d-flex align-items-center">
+                <div class="col-2">
+                    <h4 class="copy">Todos los Derechos Reservador 2020 &copy;</h4>
+                </div>
+
+                <div class="col-8 footer-img align-items-center">
+                    <ul class="list-inline text-center">
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/twitter.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/facebook.svg" alt=""></a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="#"><img class="mx-auto" src="../../img/instagram.svg" alt=""></a>
+                        </li>
+                    </ul>
+
+                </div>
+                <div class="col-2">
+                    <a style="text-decoration: none" href="vistas/contacto/contacto.php">
+                        <h2>Contáctenos</h2>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
