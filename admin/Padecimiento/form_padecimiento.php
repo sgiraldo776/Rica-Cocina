@@ -4,9 +4,9 @@
     if(!isset($_SESSION['rol'])){
         header('location: ../../vistas/login/iniciar_sesion.php');
     }else{
-    if($_SESSION['rol'] !=1 ){
-        header('location: ../../vistas/login/iniciar_sesion.php');
-    }
+        if($_SESSION['rol'] !=1 ){
+            header('location: ../../vistas/login/iniciar_sesion.php');
+        }
     }
 ?>
 
@@ -23,7 +23,7 @@
     <title>Formulario Ingresar Padecimiento</title>
 </head>
 <body>
-<header class="site-header" id="nav">
+    <header class="site-header" id="nav">
         <div class="container contenido-header">
             <nav class="navbar navbar-expand-lg navbar-light navegacion">
                 <div class="col-sm-4">

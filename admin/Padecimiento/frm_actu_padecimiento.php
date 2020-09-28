@@ -5,9 +5,9 @@ session_start();
     if(!isset($_SESSION['rol'])){
         header('location: ../../vistas/login/iniciar_sesion.php');
     }else{
-    if($_SESSION['rol'] !=1 ){
-        header('location: ../../vistas/login/iniciar_sesion.php');
-    }
+        if($_SESSION['rol'] !=1 ){
+            header('location: ../../vistas/login/iniciar_sesion.php');
+        }
     }
 
 // $_REQUEST Un array asociativo que por defecto contiene el contenido de $_GET, $_POST y $_COOKIE
