@@ -1,5 +1,10 @@
 <?php
     include('admin/conexion.php');
+    session_start();
+    if(isset($_SESSION['rol'])){
+    header('location: usuarioprueba.php');
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,7 +25,7 @@
         <div class="container contenido-header">
             <nav class="navbar navbar-expand-lg navbar-light navegacion">
                 <div class="col-sm-4">
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="index.php">
                         <img src="img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                     </a>
                 </div>

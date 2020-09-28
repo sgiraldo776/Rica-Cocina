@@ -8,19 +8,54 @@ $usuario = $_POST['usuario'];
 $clave = $_POST['password'];
 $clave=hash("sha256", $clave);
 
-$sql = "SELECT COUNT(*) as contar from tblcuenta where correoelectronico='$usuario' and password='$clave'";
+$sql = "SELECT * from tblcuenta where correoelectronico='$usuario' and password='$clave'";
 
 $consulta = $conn ->query($sql);
 
-$array = mysqli_fetch_array($consulta);
+//$array = mysqli_fetch_array($consulta);
+
+$row=mysqli_fetch_array($consulta);
 
 
-if($array['contar']>0){
-    echo "<script>     location.href='../../../index.html'; </script>";
+if($row == TRUE){
+
+    $rol=$row[3];
+    $_SESSION['rol']=$rol;
+    switch($_SESSION['rol']){
+        case 1:
+            echo "<script>     location.href='../../../admin.php'; </script>";
+        break;
+        case 2:
+            echo "<script>     location.href='../../../usuarioprueba.php'; </script>";
+        break;
+
+        default:
+    }
 
 }else{
     echo "<script> 	alert('datos incorrectos'); </script>";
     echo "<script>  location.href='../iniciar_sesion.php'; </script>";
 }
+
+
+
+/*if($array['contar']>0){
+    $_SESSION['username']= $usuario;
+    $rol= $row[1];
+    $_SESSION['rol']=$rol;
+    switch($_SESSION['rol']){
+        case 1:
+            echo "<script>     location.href='../../../index.php'; </script>";
+        break;
+        case 2:
+        break;
+
+        default:
+    }
+    echo "<script>     location.href='../../../index.php'; </script>";
+}else{
+    echo "<script> 	alert('datos incorrectos'); </script>";
+    echo "<script>  location.href='../iniciar_sesion.php'; </script>";
+}*/
 
 ?>
