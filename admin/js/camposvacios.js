@@ -63,13 +63,6 @@ function validarformulario3() {
         });
         return false;
     } else {
-        Swal.fire(
-            'Excelente',
-            'Ya lo hemos registrado',
-            'byee'
-        );
+        formulario.submit();
     }
-    formulario.submit();
 }
-
-/*setTimeout(afterTwoSeconds, 2000);*/
