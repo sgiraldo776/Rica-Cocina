@@ -48,12 +48,18 @@
                     </ul>
                 </div>
                 <div class="col-4">
+
+                    <?php 
+                        $sel = $conn ->query("mostrar_info_recetas");
+                                
+                        while ($row=$sel->fetch_array()) {
+                    ?> 
                     <h1>Ingredientes</h1>
-                    <p> Sed sit amet eleifend ligula. Aenean sit amet tincidunt lacus. Etiam scelerisque, diam in tristique blandit, velit ipsum tempor nibh, sed posuere purus tellus vel mi. Praesent et metus metus. Quisque blandit, libero a faucibus varius,
-                        mauris sapien venenatis libero, quis dapibus dolor diam vitae libero. Aliquam nec dapibus sapien, scelerisque tristique massa. Cras mattis augue et malesuada vestibulum. Fusce nec lectus enim. Suspendisse vel tellus sodales, finibus
-                        lectus ac, gravida diam. Quisque at velit lorem. Quisque tincidunt orci quis mi varius lobortis. Vivamus tristique libero ut iaculis efficitur. In hendrerit sodales mollis. Donec nunc dolor, sollicitudin in urna quis, venenatis
-                        placerat felis. Pellentesque lobortis magna in diam ullamcorper dignissim eget et libero. Sed molestie nec orci a pharetra. Fusce consequat velit vel lacus laoreet semper. Class aptent taciti sociosqu ad litora torquent per conubia
-                        nostra, per inceptos himenaeos. Quisque et eros eu ex tincidunt egestas. </p>
+                    <p> <?php echo $sel ?> </p>
+                    
+                    <?php	
+                        }
+                    ?>
                 </div>
                 <div>
                     <img src="" alt="">
@@ -110,5 +116,3 @@
 </body>
 
 </html>
-
-<!--  <img src="../../img/num-per.png" width="45px">  -->
