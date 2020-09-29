@@ -25,17 +25,33 @@ $validador = 1;
 
 if($validador == 0){
 for($i = 0; $i < count($arrPass); $i++) {
-  if (ctype_upper($arrPass[$i])) {
+    if (ctype_upper($arrPass[$i])) {
               $validador = 0;
           break;
           } else {
               $validador = 2;                
           }
-}   
+    }   
+}else {
+    // Para tomar los datos y regresarlos a la vista:
+    $datos = array();
+    $datos['nombre'] = $nombre;
+    $datos['apellidos'] = $apellidos;
+    $datos['fechanacimiento'] = $fechanaci;
+    $datos['correo'] = $correo;
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    $_SESSION['datosIngUsuario'] = $datos;
+
+      header("location:form_usuario.php?error=$validador"); // <= Redireccionamos la salida a la página index.php
+      $conn->close();
 }
          
-  if($validador == 0){
-      for($i = 0; $i < count($arrPass); $i++) {
+if($validador == 0){
+    for($i = 0; $i < count($arrPass); $i++) {
           $caracter = $arrPass[$i];
           switch($caracter){
               case '0':
@@ -76,7 +92,23 @@ for($i = 0; $i < count($arrPass); $i++) {
           break;
           }
       }                
-  }
+  }else {
+    // Para tomar los datos y regresarlos a la vista:
+    $datos = array();
+    $datos['nombre'] = $nombre;
+    $datos['apellidos'] = $apellidos;
+    $datos['fechanacimiento'] = $fechanaci;
+    $datos['correo'] = $correo;
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    $_SESSION['datosIngUsuario'] = $datos;
+
+      header("location:form_usuario.php?error=$validador"); // <= Redireccionamos la salida a la página index.php
+      $conn->close();
+}
 
   if($validador == 0){
       for($i = 0; $i < count($arrPass); $i++) {
@@ -110,12 +142,27 @@ for($i = 0; $i < count($arrPass); $i++) {
           break;
           }
       }            
-  }
+  }else {
+    // Para tomar los datos y regresarlos a la vista:
+    $datos = array();
+    $datos['nombre'] = $nombre;
+    $datos['apellidos'] = $apellidos;
+    $datos['fechanacimiento'] = $fechanaci;
+    $datos['correo'] = $correo;
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    $_SESSION['datosIngUsuario'] = $datos;
+
+      header("location:form_usuario.php?error=$validador"); // <= Redireccionamos la salida a la página index.php
+      $conn->close();
+}
 
   if($validador == 0){
 
-    $sql="INSERT INTO tblusuario (Nombres, apellidos, fechanacimiento)
-VALUES ('$nombre', '$apellidos', '$fechanaci')";
+    $sql="INSERT INTO tblusuario (Nombres, apellidos, fechanacimiento) VALUES ('$nombre', '$apellidos', '$fechanaci')";
 
 
     if ($conn->query($sql)) {
@@ -140,10 +187,23 @@ VALUES ('$nombre', '$apellidos', '$fechanaci')";
   $conn->close();
 
    }
-  else {
+   else {
+    // Para tomar los datos y regresarlos a la vista:
+    $datos = array();
+    $datos['nombre'] = $nombre;
+    $datos['apellidos'] = $apellidos;
+    $datos['fechanacimiento'] = $fechanaci;
+    $datos['correo'] = $correo;
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
+
+    $_SESSION['datosIngUsuario'] = $datos;
+
       header("location:form_usuario.php?error=$validador"); // <= Redireccionamos la salida a la página index.php
       $conn->close();
-  }
+    }
 }
 
 

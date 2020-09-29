@@ -1,5 +1,9 @@
 <?php
  include "../admin/conexion.php";
+
+    if(!isset($_SESSION)){
+        session_start();
+    }
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +51,11 @@
                                                 name="nombre"
                                                 class="form-control"
                                                 placeholder="Ingrese el nombre"
-                                                id="nombre">
+                                                id="nombre"
+                                                value="<?= !empty($_GET['error']) && !empty($_SESSION['datosIngUsuario']) ? 
+                                                            $_SESSION['datosIngUsuario']['nombre'] : ''
+                                                       ?>"
+                                            >
                                         </div>
                                     </div>
                                     <div class="row">
@@ -58,7 +66,11 @@
                                                 name="apellidos"
                                                 class="form-control"
                                                 placeholder="Ingrese los apellidos"
-                                                id="apellido">
+                                                id="apellido"
+                                                value="<?= !empty($_GET['error']) && !empty($_SESSION['datosIngUsuario']) ? 
+                                                            $_SESSION['datosIngUsuario']['apellidos'] : ''
+                                                       ?>"                                                
+                                            >
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -71,7 +83,11 @@
                                                     name="fechanacimiento"
                                                     placeholder="Ingrese Fecha de Nacimiento"
                                                     id="fechanacimiento"
-                                                    onblur="myFunction()">
+                                                    onblur="myFunction()"
+                                                    value="<?= !empty($_GET['error']) && !empty($_SESSION['datosIngUsuario']) ? 
+                                                            $_SESSION['datosIngUsuario']['fechanacimiento'] : ''
+                                                            ?>"                                                     
+                                                >
                                             </div>
                                         </div>
                                     </div>
@@ -88,7 +104,11 @@
                                                 class="form-control"
                                                 name="correo"
                                                 placeholder="Ingrese el correo"
-                                                id="correo">
+                                                id="correo"
+                                                value="<?= !empty($_GET['error']) && !empty($_SESSION['datosIngUsuario']) ? 
+                                                            $_SESSION['datosIngUsuario']['correo'] : ''
+                                                        ?>"                                                
+                                            >
                                         </div>
                                     </div>
                                     
@@ -153,6 +173,13 @@
                                 </fieldset>
                                 <button type="button" class="boton boton-amarillo">Registrarse</button>
                             </div>
+
+                            <?php 
+                                if(isset($_SESSION['datosIngUsuario'])){
+                                    $_SESSION['datosIngUsuario'] = null;
+                                }
+                            ?>
+
                         </form>
                     </div>
                     <!-- Div Form -->
