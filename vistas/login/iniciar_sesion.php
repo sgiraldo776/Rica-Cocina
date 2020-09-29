@@ -5,10 +5,10 @@ session_start();
 if(isset($_SESSION['rol'])){
     switch($_SESSION['rol']){
         case 1:
-            echo "<script>     location.href='../../admin.php'; </script>";
+            echo "<script>     location.href='../../index.php'; </script>";
         break;
         case 2:
-            echo "<script>     location.href='../../usuarioprueba.php'; </script>";
+            echo "<script>     location.href='../../index.php'; </script>";
         break;
 
         default:

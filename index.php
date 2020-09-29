@@ -1,13 +1,5 @@
-<?php
-    include('admin/conexion.php');
-    session_start();
-    if(isset($_SESSION['rol'])){
-    header('location: usuarioprueba.php');
-    }
-
-?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -21,29 +13,23 @@
 </head>
 
 <body>
-    <header class="site-header" id="nav">
-        <div class="container contenido-header">
-            <nav class="navbar navbar-expand-lg navbar-light navegacion">
-                <div class="col-sm-4">
-                    <a class="navbar-brand" href="index.php">
-                        <img src="img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
-                    </a>
-                </div>
-                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="col-sm-8">
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav ml-auto">
-                            <a href="vistas/recetas.php">Recetas</a>
-                            <a href="Usuario/form_usuario.php">Registrar</a>
-                            <a href="vistas/login/iniciar_sesion.php">Inicia Sesión</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
-    </header>
+    <?php
+        include('admin/conexion.php');
+        session_start();
+        if(!isset($_SESSION['rol'])){
+            include 'includes/header-idx.php';
+        }else{
+            if($_SESSION['rol'] !=1 ){
+                if($_SESSION['rol'] =2 ){
+                    include 'includes/header-user.php';
+                }else {
+                    include 'includes/header-idx.php';
+                }
+            }else {
+                include 'includes/header-admin.php';
+            }            
+        }
+    ?>
     <section class="sldier">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">

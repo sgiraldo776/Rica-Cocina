@@ -1,10 +1,17 @@
-<?php 
- include "../admin/conexion.php";
+<?php
+    include('../admin/conexion.php');
+    session_start();
+    if(!isset($_SESSION['rol'])){
+        header('location: login/iniciar_sesion.php');
+    }else{
+        if($_SESSION['rol'] !=2 ){
+            header('location: login/iniciar_sesion.php');
+        }
+    }
 ?>
 
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -19,18 +26,25 @@
 </head>
 
 <body>
-    <header class="site-header" id="nav">
-        <div class="contenedor contenido-header">
-            <div class="barra">
-                <a href="../index.php">
-                    <img src="../img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
-                </a>
-                <nav class="navegacion">
-                    <a href="vistas/recetas.php">Recetas</a>
-                    <a href="admin/Usuario/form_usuario.php">Registrar</a>
-                    <a href="#">Inicia Sesión</a>
-                </nav>
-            </div>
+<header class="site-header" id="nav">
+        <div class="container contenido-header">
+            <nav class="navbar navbar-expand-lg navbar-light navegacion">
+                <div class="col-sm-4">
+                    <a class="navbar-brand" href="<?php echo $URL ?>">
+                        <img src="<?php echo $URL ?>img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
+                    </a>
+                </div>
+                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="col-sm-8">
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                        <div class="navbar-nav ml-auto">
+                        <a href="<?php echo $URL ?>vistas/login/config/cerrar_sesion.php">Cerrar Sesión</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
     </header>
 

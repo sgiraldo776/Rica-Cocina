@@ -19,14 +19,16 @@ $row=mysqli_fetch_array($consulta);
 
 if($row == TRUE){
 
+    $usuarioid=$row[5];
+    $_SESSION['usuarioid']=$usuarioid;
     $rol=$row[3];
     $_SESSION['rol']=$rol;
     switch($_SESSION['rol']){
         case 1:
-            echo "<script>     location.href='../../../admin.php'; </script>";
+            echo "<script>     location.href='../../../index.php'; </script>";
         break;
         case 2:
-            echo "<script>     location.href='../../../usuarioprueba.php'; </script>";
+            echo "<script>     location.href='../../../index.php'; </script>";
         break;
 
         default:
