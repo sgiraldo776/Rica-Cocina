@@ -154,11 +154,26 @@
                                             <option value="Snack">Snack</option>
                                         </select>
                                     </div>
-                                    <div id="div_file" class="col">
+                                    <div class="col">
+                                        <label for="">Padecimiento</label>
+                                        <select name="padecimiento" id="padecimiento" class="form-control">
+                                            <option value="0">-Seleccione el Padecimiento-</option>
+                                            <?php 
+                                             $sel = $conn ->query("SELECT * FROM tblpadecimiento");
+                            
+                      		                while ($row=$sel->fetch_array()) {
+                                             ?>
+                                            <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                            <?php	
+                                               }
+                                             ?>
+                                        </select>
+                                    </div>                                  
+                                </div>
+                                <div id="div_file" class="col">
                                         <p id="texto"> Imagen de receta</p>
                                         <input type="file" name="imagen" id="btn_enviar">
                                     </div>
-                                </div>
                                 <div class="col">
                                     <label for="">Utensilios</label>
                                     <select multiple="yes" size="10" name="utensilios[]" id="utensilios" class="form-control">
