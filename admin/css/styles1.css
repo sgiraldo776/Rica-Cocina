@@ -156,13 +156,9 @@ h3 {
 .navegacion a {
     color: white;
     text-decoration: none;
-    font-size: 1.75rem;
+    font-size: 2rem;
     /* = 18px; */
     margin-right: 2rem;
-}
-
-.navegacion li{
-    margin-left: 2rem;
 }
 
 .navegacion a:hover {
@@ -344,7 +340,7 @@ h4 {
 /* Login */
 
 .bgimg {
-    background: url(../../img/bg-login2.jpg);
+    background: url(../../img/bg-login6.jpg);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -362,9 +358,9 @@ h4 {
     margin-top: 1px;
 }
 
-.formulario a {
+/*.formulario a {
     color: #ffb80e;
-}
+}*/
 
 @media (max-width: 530px) {
     .formulario {}

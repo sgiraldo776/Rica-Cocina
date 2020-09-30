@@ -28,9 +28,10 @@
                     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                         <div class="navbar-nav ml-auto">
                             <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
-                            <a href="#">Mis Recetas</a>
+                            <a href="<?php echo $URL ?>vistas/mis_recetas.php">Mis Recetas</a>
                             <a href="<?php echo $URL ?>vistas/ingresar_receta.php">Ingresar Receta</a>
-                            <li class="nav-item dropdown">
+                            <a >
+                                <li class="nav-item dropdown">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Estado cuenta
                                 </a>
@@ -38,7 +39,8 @@
                                     <a class="dropdown-item" href="<?php echo $URL ?>vistas/login/config/cerrar_sesion.php">Cerrar Sesión</a>
                                     <a class="dropdown-item" href="<?php echo $URL ?>vistas/login/config/darse_baja.php">Darse de baja</a>
                                 </div>
-                            </li>
+                                </li>
+                            </a>
                         </div>
                     </div>
                 </div>
