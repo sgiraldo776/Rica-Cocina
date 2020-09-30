@@ -335,3 +335,37 @@ h4 {
     margin-bottom: 4rem;
     font-size: 8rem;
 }
+
+
+/* Login */
+
+.bgimg {
+    background: url(../../img/bg-login2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.formulario {
+    background-color: #ffffff;
+    margin-top: 150px;
+    padding: 6%;
+    margin-bottom: 100px;
+    border-radius: 20px;
+}
+
+.formulario h1 {
+    margin-bottom: 55px;
+    margin-top: 1px;
+}
+
+.formulario a {
+    color: #ffb80e;
+}
+
+@media (max-width: 530px) {
+    .formulario {}
+    .formulario h1 {
+        font-size: 45px;
+        margin-bottom: 35px;
+    }
+}

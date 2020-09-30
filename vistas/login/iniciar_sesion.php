@@ -32,17 +32,13 @@ if(isset($_SESSION['rol'])){
     <link rel="icon" type="image/png" href="../../img/favicon.png">
 </head>
 
-<body>
-    <main class="col-12">
-    <div class="container text-center mt-4">
-                <div>
-                    <h1>Iniciar Sesión</h1>
-                </div><!-- Div Nav-->
-                
+<body class="bgimg">
+    <main class="col-12">                
         <div class="contenedor col-12 text-center">
             <div class="row col-12">
                 <div class="col-12">
-                    <form action="config/login.php" method="POST">
+                    <form action="config/login.php" method="POST" class="formulario">
+                        <h1>Iniciar Sesión</h1>
                         <label for=""> Correo Electrónico</label>
                         <input type="text" class="form-control" name ="usuario" placeholder="Introduce el correo electrónico">
                         <label for="">Contraseña</label>
