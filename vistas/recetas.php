@@ -1,3 +1,20 @@
+<?php
+        include('../admin/conexion.php');
+        session_start();
+        if(!isset($_SESSION['rol'])){
+            include '../includes/header-idx.php';
+        }else{
+            if($_SESSION['rol'] !=1 ){
+                if($_SESSION['rol'] =2 ){
+                    include '../includes/header-user.php';
+                }else {
+                    include '../includes/header-idx.php';
+                }
+            }else {
+                include '../includes/header-admin.php';
+            }            
+        }
+    ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,23 +32,7 @@
 </head>
 
 <body>
-    <?php
-        include('../admin/conexion.php');
-        session_start();
-        if(!isset($_SESSION['rol'])){
-            include '../includes/header-idx.php';
-        }else{
-            if($_SESSION['rol'] !=1 ){
-                if($_SESSION['rol'] =2 ){
-                    include '../includes/header-user.php';
-                }else {
-                    include '../includes/header-idx.php';
-                }
-            }else {
-                include '../includes/header-admin.php';
-            }            
-        }
-    ?>
+
         <div class="row text-center">
             <nav class="col-md-3" id="nav-recetas">
                 <form action="recetas.php" name="add_form" method="post" enctype="multipart/form-data">

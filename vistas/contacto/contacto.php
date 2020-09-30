@@ -1,3 +1,20 @@
+<?php
+        include('../../admin/conexion.php');
+        session_start();
+        if(!isset($_SESSION['rol'])){
+            include '../../includes/header-idx.php';
+        }else{
+            if($_SESSION['rol'] !=1 ){
+                if($_SESSION['rol'] =2 ){
+                    include '../../includes/header-user.php';
+                }else {
+                    include '../../includes/header-idx.php';
+                }
+            }else {
+                include '../../includes/header-admin.php';
+            }            
+        }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +29,7 @@
     <title>Rica Cocina</title>
 </head>
 <body>
+    
     <main>
         <div class="container text-center">
             <div class="row">

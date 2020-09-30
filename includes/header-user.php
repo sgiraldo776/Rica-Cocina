@@ -30,7 +30,15 @@
                             <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
                             <a href="#">Mis Recetas</a>
                             <a href="<?php echo $URL ?>vistas/ingresar_receta.php">Ingresar Receta</a>
-                            <a href="<?php echo $URL ?>vistas/login/config/cerrar_sesion.php">Cerrar Sesión</a>
+                            <li class="nav-item dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Estado cuenta
+                                </a>
+                                <div class="dropdown-menu" style="background-color: #813531;" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?php echo $URL ?>vistas/login/config/cerrar_sesion.php">Cerrar Sesión</a>
+                                    <a class="dropdown-item" href="<?php echo $URL ?>vistas/login/config/darse_baja.php">Darse de baja</a>
+                                </div>
+                            </li>
                         </div>
                     </div>
                 </div>

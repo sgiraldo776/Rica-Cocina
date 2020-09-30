@@ -161,6 +161,10 @@ h3 {
     margin-right: 2rem;
 }
 
+.navegacion li{
+    margin-left: 2rem;
+}
+
 .navegacion a:hover {
     color: #ffb80e;
 }

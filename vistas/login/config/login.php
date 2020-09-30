@@ -19,6 +19,8 @@ $row=mysqli_fetch_array($consulta);
 
 if($row == TRUE){
 
+    $cuentaid=$row[0];
+    $_SESSION['cuentaid']=$cuentaid;
     $usuarioid=$row[5];
     $_SESSION['usuarioid']=$usuarioid;
     $rol=$row[3];
