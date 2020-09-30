@@ -1,3 +1,25 @@
+<?php
+        include('../../admin/conexion.php');
+        session_start();
+        if(!isset($_SESSION['rol'])){
+            include '../includes/header-idx.php';
+        }else{
+            if($_SESSION['rol'] !=1 ){
+                if($_SESSION['rol'] =2 ){
+                    include '../../includes/header-user.php';
+                }else {
+                    include '../../includes/header-idx.php';
+                }
+            }else {
+                include '../../includes/header-admin.php';
+            }            
+        }
+        $id=$_GET['recetaid'];
+        
+        $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion' FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
+                
+        $row=$sel->fetch_array();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,7 +28,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="../../img/favicon.png">
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../../admin/css/style.css">
@@ -14,70 +36,44 @@
 </head>
 
 <body>
-    <header class="site-header" id="nav">
-        <div class="contenedor contenido-header">
-            <div class="barra">
-                <a href="../../index.php">
-                    <img src="../../img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
-                </a>
-                <nav class="navegacion">
-                    <a href="vistas/recetas.php">Recetas</a>
-                    <a href="admin/Usuario/form_usuario.php">Registrar</a>
-                    <a href="#">Inicia Sesión</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
     <main>
         <div class="contenedor ingredientes">
             <div class="col-12 tit-receta">
-                <h1> Titulo receta </h1>
+                <h1> <?php echo $row[0] ?>  </h1>                
             </div>
             <div class="row">
 
                 <div class="col-4 iconos">
                     <ul>
-                        <li><img src="../../img/num-per.png" alt=""></li>
-                        <li><img src="../../img/paises.png" alt=""></li>
-                        <li><img src="../../img/tipo-comida.png" alt=""></li>
-                        <li><img src="../../img/tipo-receta.png" alt=""></li>
-                        <li><img src="../../img/tipo-dieta.png" alt=""></li>
-                        <li><img src="../../img/ocasion.png" alt=""></li>
-                        <li><img src="../../img/tiempo.png" alt=""></li>
+                        <li><img src="../../img/num-per.png" alt=""><?php echo $row[4] ?> </li>
+                        <li><img src="../../img/paises.png" alt=""><?php echo $row[13] ?></li>
+                        <li><img src="../../img/tipo-comida.png" alt=""><?php echo $row[8] ?></li>
+                        <li><img src="../../img/tipo-receta.png" alt=""><?php echo $row[7] ?></li>
+                        <li><img src="../../img/tipo-dieta.png" alt=""><?php echo $row[10] ?></li>
+                        <li><img src="../../img/ocasion.png" alt=""><?php echo $row[6] ?></li>
+                        <li><img src="../../img/tiempo.png" alt=""><?php echo $row[5] ?></li>
                     </ul>
                 </div>
                 <div class="col-4">
 
-                    <?php 
-                        $sel = $conn ->query("mostrar_info_recetas");
-                                
-                        while ($row=$sel->fetch_array()) {
-                    ?> 
                     <h1>Ingredientes</h1>
-                    <p> <?php echo $sel ?> </p>
+                    <p> <?php echo $row[2] ?> </p>
                     
-                    <?php	
-                        }
-                    ?>
                 </div>
-                <div>
-                    <img src="" alt="">
+                <div class="col-4">
+                <img class="" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row[1] ) ?>">
                 </div>
             </div>
         </div>
 
         <div class="contenedor">
             <div class="row">
-                <h2>Preparacion</h2>
-                <p> Sed sit amet eleifend ligula. Aenean sit amet tincidunt lacus. Etiam scelerisque, diam in tristique blandit, velit ipsum tempor nibh, sed posuere purus tellus vel mi. Praesent et metus metus. Quisque blandit, libero a faucibus varius,
-                    mauris sapien venenatis libero, quis dapibus dolor diam vitae libero. Aliquam nec dapibus sapien, scelerisque tristique massa. Cras mattis augue et malesuada vestibulum. Fusce nec lectus enim. Suspendisse vel tellus sodales, finibus
-                    lectus ac, gravida diam. Quisque at velit lorem. Quisque tincidunt orci quis mi varius lobortis. Vivamus tristique libero ut iaculis efficitur. In hendrerit sodales mollis. Donec nunc dolor, sollicitudin in urna quis, venenatis placerat
-                    felis. Pellentesque lobortis magna in diam ullamcorper dignissim eget et libero. Sed molestie nec orci a pharetra. Fusce consequat velit vel lacus laoreet semper. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                    per inceptos himenaeos. Quisque et eros eu ex tincidunt egestas. </p>
+                <h1>Preparacion</h1>
+                <p> <?php echo $row[3] ?></p>
             </div>
             <div class="row">
-                <h2>Receta echa por:</h2>
+                <h1>Receta echa por:</h1>
+                <p> <?php echo $row[12] ?></p>
             </div>
         </div>
         <br><br>

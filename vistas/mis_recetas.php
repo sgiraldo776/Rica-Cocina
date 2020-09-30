@@ -47,7 +47,7 @@
                     ?>
                     <div class="cont-tarjetas">
                         <div class="tarjetas">
-                            <a href="#" style="text-decoration: none">
+                            <a href="receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>" style="text-decoration: none">
                                 <div class="tarjeta-img">
                                     <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
                                     <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
