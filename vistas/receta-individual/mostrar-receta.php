@@ -2,7 +2,7 @@
         include('../../admin/conexion.php');
         session_start();
         if(!isset($_SESSION['rol'])){
-            include '../includes/header-idx.php';
+            include '../../includes/header-idx.php';
         }else{
             if($_SESSION['rol'] !=1 ){
                 if($_SESSION['rol'] =2 ){
