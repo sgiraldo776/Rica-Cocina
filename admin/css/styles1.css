@@ -319,8 +319,9 @@ h4 {
     margin: 0 0 2rem 0;
 }
 
-.ingredientes img {
-    width: 10%;
+.icon {
+    width: 12%;
+    margin-right: 1rem;
 }
 
 .ingredientes h1 {
@@ -328,12 +329,24 @@ h4 {
 }
 
 .iconos {
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 .tit-receta h1 {
     margin-bottom: 4rem;
     font-size: 8rem;
+}
+
+.titulo{
+    color: #813531;
+    font-weight: 400;
+    font-size: 4rem;
+}
+
+.Persona{
+    color: #777777;
+    font-weight: 400;
+    font-size: 4rem;
 }
 
 

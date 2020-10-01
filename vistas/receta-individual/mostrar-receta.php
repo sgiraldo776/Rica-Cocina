@@ -43,37 +43,68 @@
             </div>
             <div class="row">
 
-                <div class="col-4 iconos">
+                <div class="col-3 iconos">
                     <ul>
-                        <li><img src="../../img/num-per.png" alt=""><?php echo $row[4] ?> </li>
-                        <li><img src="../../img/paises.png" alt=""><?php echo $row[13] ?></li>
-                        <li><img src="../../img/tipo-comida.png" alt=""><?php echo $row[8] ?></li>
-                        <li><img src="../../img/tipo-receta.png" alt=""><?php echo $row[7] ?></li>
-                        <li><img src="../../img/tipo-dieta.png" alt=""><?php echo $row[10] ?></li>
-                        <li><img src="../../img/ocasion.png" alt=""><?php echo $row[6] ?></li>
-                        <li><img src="../../img/tiempo.png" alt=""><?php echo $row[5] ?></li>
+                        <li><img class="icon" src="../../img/num-per.png" alt=""><?php echo $row[4] ?> </li>
+                        <li><img class="icon" src="../../img/paises.png" alt=""><?php echo $row[13] ?></li>
+                        <li><img class="icon" src="../../img/tipo-comida.png" alt=""><?php echo $row[8] ?></li>
+                        <li><img class="icon" src="../../img/tipo-receta.png" alt=""><?php echo $row[7] ?></li>
+                        <li><img class="icon" src="../../img/tipo-dieta.png" alt=""><?php echo $row[10] ?></li>
+                        <li><img class="icon" src="../../img/ocasion.png" alt=""><?php echo $row[6] ?></li>
+                        <li><img class="icon" src="../../img/tiempo.png" alt=""><?php echo $row[5] ?></li>
                     </ul>
                 </div>
                 <div class="col-4">
-
-                    <h1>Ingredientes</h1>
-                    <p> <?php echo $row[2] ?> </p>
-                    
+                    <h2 class="titulo">Ingredientes</h2>
+                    <p>
+                        <?php
+                        $ingrediente = $row[2];
+                        ?>
+                        <script type="text/javascript">
+                            var guion = /-/gi;
+                            var bd = <?php echo json_encode($ingrediente);?>;
+                            var remp = bd.replace(guion,'<br>-');
+                            document.write(remp); 
+                        </script>
+                    </p>
                 </div>
-                <div class="col-4">
-                <img class="" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row[1] ) ?>">
+                <div class="col-5">
+                <img class="receta-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row[1] ) ?>">
                 </div>
             </div>
         </div>
 
         <div class="contenedor">
             <div class="row">
-                <h1>Preparacion</h1>
-                <p> <?php echo $row[3] ?></p>
+                <div class="col-8">
+                    <h2 class="titulo">Preparación</h2>
+                    <p>
+                    <?php
+                        $ingrediente = $row[3];
+                        ?>
+                        <script type="text/javascript">
+                            var punto = /-/gi;
+                            var bd = <?php echo json_encode($ingrediente);?>;
+                            var remp = bd.replace(punto,'<br><br>-');
+                            document.write(remp); 
+                        </script>
+                    </p>
+                </div>
+                <div class="col-4">
+                    <h2 class="titulo">Utensilios</h2>
+                    <?php
+                        $sel2 = $conn ->query("SELECT u.nombre FROM tblutensilios as u inner join tblrecetautensilio as ru ON ru.utensilioid = u.utensilioid where ru.recetaid='$id'");
+                        while ($row2=$sel2->fetch_array()) {
+                    ?>
+                    <p> <?php echo $row2[0] ?></p>
+                    <?php
+                        }
+                    ?>
+                </div>
             </div>
             <div class="row">
-                <h1>Receta echa por:</h1>
-                <p> <?php echo $row[12] ?></p>
+                <h2 class="titulo">Receta echa por: </h2>
+                <h3 class="Persona"><?php echo $row[12]?></h3>
             </div>
         </div>
         <br><br>
