@@ -334,19 +334,30 @@ h4 {
 
 .tit-receta h1 {
     margin-bottom: 4rem;
-    font-size: 8rem;
+    font-size: 6rem;
 }
 
-.titulo{
+@media screen and (max-width: 768px) {
+    .tit-receta h1 {
+        font-size: 4rem;
+    }
+}
+
+.titulo {
     color: #813531;
     font-weight: 400;
     font-size: 4rem;
+    margin-top: 0.8rem;
 }
 
-.Persona{
+.Persona {
     color: #777777;
     font-weight: 400;
     font-size: 4rem;
+}
+
+.receta-img {
+    margin-bottom: 2rem;
 }
 
 
@@ -370,6 +381,7 @@ h4 {
     margin-bottom: 55px;
     margin-top: 1px;
 }
+
 
 /*.formulario a {
     color: #ffb80e;

@@ -38,12 +38,15 @@
 <body>
     <main>
         <div class="contenedor ingredientes">
-            <div class="col-12 tit-receta">
+            <div class="col-lg-12 col-md-12 col-sm-6 tit-receta">
                 <h1> <?php echo $row[0] ?>  </h1>                
             </div>
             <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12 receta-img">
+                <img class="receta-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row[1] ) ?>">
+                </div>
 
-                <div class="col-3 iconos">
+                <div class="col-lg-4 col-md-6 col-sm-2 iconos">
                     <ul>
                         <li><img class="icon" src="../../img/num-per.png" alt=""><?php echo $row[4] ?> </li>
                         <li><img class="icon" src="../../img/paises.png" alt=""><?php echo $row[13] ?></li>
@@ -54,7 +57,7 @@
                         <li><img class="icon" src="../../img/tiempo.png" alt=""><?php echo $row[5] ?></li>
                     </ul>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-md-6 col-sm-2">
                     <h2 class="titulo">Ingredientes</h2>
                     <p>
                         <?php
@@ -68,15 +71,12 @@
                         </script>
                     </p>
                 </div>
-                <div class="col-5">
-                <img class="receta-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row[1] ) ?>">
-                </div>
             </div>
         </div>
 
         <div class="contenedor">
             <div class="row">
-                <div class="col-8">
+                <div class="col-lg-8 col-md-8 col-sm-4">
                     <h2 class="titulo">Preparación</h2>
                     <p>
                     <?php
@@ -85,12 +85,12 @@
                         <script type="text/javascript">
                             var punto = /-/gi;
                             var bd = <?php echo json_encode($ingrediente);?>;
-                            var remp = bd.replace(punto,'<br><br>-');
+                            var remp = bd.replace(punto,'<br>');
                             document.write(remp); 
                         </script>
                     </p>
                 </div>
-                <div class="col-4">
+                <div class="col-lg-4 col-md-4 col-sm-2">
                     <h2 class="titulo">Utensilios</h2>
                     <?php
                         $sel2 = $conn ->query("SELECT u.nombre FROM tblutensilios as u inner join tblrecetautensilio as ru ON ru.utensilioid = u.utensilioid where ru.recetaid='$id'");
