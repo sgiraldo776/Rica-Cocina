@@ -21,13 +21,15 @@
                         <img src="<?php echo $URL ?>img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                     </a>
                 </div>
-                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-sm-8">
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav ml-auto">
-                            <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
+                                <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tablas Maestras
@@ -39,8 +41,10 @@
                                     <a class="dropdown-item" href="<?php echo $URL ?>admin/Padecimiento/form_padecimiento.php">Padecimientos</a>
                                 </div>
                             </li>
-                            <a href="<?php echo $URL ?>vistas/login/config/cerrar_sesion.php">Cerrar Sesión</a>
-                        </div>
+                            <li class="nav-item">
+                                <a href="<?php echo $URL ?>vistas/login/config/cerrar_sesion.php">Cerrar Sesión</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
