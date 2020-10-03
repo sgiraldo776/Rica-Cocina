@@ -21,16 +21,22 @@
                         <img src="<?php echo $URL ?>img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                     </a>
                 </div>
-                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="col-sm-8">
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav ml-auto">
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item active">
                             <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
+                            </li>
+                            <li class="nav-item">
                             <a href="<?php echo $URL ?>Usuario/form_usuario.php">Registrar</a>
-                            <a href="<?php echo $URL ?>vistas/login/iniciar_sesion.php">Inicia Sesión</a>
-                        </div>
+                            </li>
+                            <li class="nav-item">
+                                <a href="<?php echo $URL ?>vistas/login/iniciar_sesion.php">Inicia Sesión</a>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>

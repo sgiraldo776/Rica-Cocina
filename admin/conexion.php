@@ -1,7 +1,7 @@
 <?php 
-$conn = new mysqli('localhost','root','','rica_cocina','33065');
+$conn = new mysqli('localhost','root','','rica_cocina');
 
-$URL = "http://localhost:8080/Rica-Cocina/";
+$URL = "http://localhost/GIT/Rica-Cocina/";
 
 
 ?>
