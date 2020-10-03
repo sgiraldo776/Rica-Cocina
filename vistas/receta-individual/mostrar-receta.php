@@ -110,36 +110,21 @@
         <br><br>
     </main>
 
-    <footer class="bgcolor">
-        <div class="contenedor contenedor-footer">
-            <div class="row footer-centrar py-4 d-flex align-items-center">
-                <div class="col-2">
-                    <h4 class="copy">Todos los Derechos Reservador 2020 &copy;</h4>
-                </div>
-
-                <div class="col-8 footer-img align-items-center">
-                    <ul class="list-inline text-center">
-                        <li class="list-inline-item">
-                            <a href="#"><img class="mx-auto" src="../../img/twitter.svg" alt=""></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#"><img class="mx-auto" src="../../img/facebook.svg" alt=""></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#"><img class="mx-auto" src="../../img/instagram.svg" alt=""></a>
-                        </li>
-                    </ul>
-
-                </div>
-                <div class="col-2">
-                    <a style="text-decoration: none" href="vistas/contacto/contacto.php">
-                        <h2>Contáctenos</h2>
-                    </a>
+    <footer class="footer py-4 bgcolor">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
+                    <div class="col-lg-6 my-3 my-lg-0 text-lg-center text-center">
+                        <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto" src="../../img/twitter.svg" style="max-width: 75%"></i></a>
+                        <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto" src="../../img/facebook.svg" style="max-width: 75%"></i></a>
+                        <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto" src="../../img/instagram.svg" style="max-width: 75%"></i></a>
+                    </div>
+                    <div class="col-lg-3 text-lg-center text-center contac">
+                        <h3><a href="vistas/contacto/contacto.php">Contáctenos</a></h3>
+                    </div>
                 </div>
             </div>
-        </div>
-    </footer>
-
+        </footer>
 </body>
 
 </html>
