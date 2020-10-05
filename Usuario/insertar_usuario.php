@@ -167,7 +167,7 @@ if($validador == 0){
 
     if ($conn->query($sql)) {
       // Ingresando la cuenta del último usuarioid registrado en la tabla tblusuario:
-      $sql2="INSERT INTO tblcuenta (correoelectronico,password,tiporolid,estado,usuarioid) VALUES ('$correo', '$password', 1, 1, (SELECT usuarioid FROM tblusuario ORDER BY usuarioid DESC LIMIT 1))";
+      $sql2="INSERT INTO tblcuenta (correoelectronico,password,tiporolid,estado,usuarioid) VALUES ('$correo', '$password', 2, 1, (SELECT usuarioid FROM tblusuario ORDER BY usuarioid DESC LIMIT 1))";
   
       if ($conn->query($sql2)) {
         echo "<script>     location.href='form_usuario.php'; </script>";

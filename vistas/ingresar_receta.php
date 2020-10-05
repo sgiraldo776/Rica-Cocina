@@ -66,10 +66,10 @@
                                 <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta" id="nomreceta" name="nomreceta">
 
                                 <label for="Ingredientes">Ingredientes</label>
-                                <textarea name="ingrediente" id="ingrediente" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="ingrediente" id="ingrediente" cols="30" rows="10" class="form-control" placeholder="-ingrediente1 -ingrediente2 -ingrediente3 ..."></textarea>
 
                                 <label for="">Preparación</label>
-                                <textarea name="preparacion" id="preparacion" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="preparacion" id="preparacion" cols="30" rows="10" class="form-control" placeholder="-1.Paso1 -2.Paso2 -3.Paso3 ..."></textarea>
 
 
 
@@ -102,11 +102,11 @@
                                              $sel = $conn ->query("SELECT * FROM tbltipocomida");
                             
                       		                while ($row=$sel->fetch_array()) {
-                                             ?>
+                                            ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
                                             <?php	
-                                               }
-                                             ?>
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -120,11 +120,11 @@
                                              $sel = $conn ->query("SELECT * FROM tbltipodieta");
                             
                       		                while ($row=$sel->fetch_array()) {
-                                             ?>
+                                            ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
                                             <?php	
-                                               }
-                                             ?>
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -135,11 +135,11 @@
                                              $sel = $conn ->query("SELECT * FROM tblpais");
                             
                       		                while ($row=$sel->fetch_array()) {
-                                             ?>
+                                            ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
                                             <?php	
-                                               }
-                                             ?>
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                 </div>
@@ -162,23 +162,25 @@
                                              $sel = $conn ->query("SELECT * FROM tblpadecimiento");
                             
                       		                while ($row=$sel->fetch_array()) {
-                                             ?>
+                                            ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
                                             <?php	
-                                               }
-                                             ?>
+                                            }
+                                            ?>
                                         </select>
                                     </div>                                  
                                 </div>
                                 <div id="div_file" class="col">
-                                        <p id="texto"> Imagen de receta</p>
-                                        <input type="file" name="imagen" id="btn_enviar">
-                                    </div>
+                                    <p id="texto"> Imagen de receta</p>
+                                    <input type="file" name="imagen" id="btn_enviar">
+                                </div>
                                 <div class="col">
                                     <label for="">Utensilios</label>
+                                    <h5 class="cond-cont">Para seleccionar varios utensilios haga click sobre los utensilios deseados mientras presiona la tecla "Ctrl" o "Control" de su teclado o deje presionado el click del mouse mientras lo arrastra.
+                                    </h5>
                                     <select multiple="yes" size="10" name="utensilios[]" id="utensilios" class="form-control">
                                         <?php 
-                                        $sel = $conn ->query("SELECT * FROM tblutensilios order by utensilioid");
+                                        $sel = $conn ->query("SELECT * FROM tblutensilios");
                       		            while ($row=$sel->fetch_array()) {
                                         ?>
                                         <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
