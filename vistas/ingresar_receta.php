@@ -148,6 +148,7 @@
                                     <div class="col">
                                         <label for="">Tipo de receta</label>
                                         <select name="tiporeceta" id="tiporeceta" class="form-control">
+                                            <option value="0" select-hidden disabled selected>-Seleccione-</option>
                                             <option value="Plato">Plato</option>
                                             <option value="Postre">Postre</option>
                                             <option value="Bebida">Bebida</option>

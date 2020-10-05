@@ -68,7 +68,7 @@ INSERT INTO `tblpais` (`paisid`, `nombre`) VALUES
 (144, 'Afganistán'),
 (114, 'Albania'),
 (18, 'Alemania'),
-(98, 'Algeria'),
+(98, 'Argelia'),
 (145, 'Andorra'),
 (119, 'Angola'),
 (4, 'Anguilla'),

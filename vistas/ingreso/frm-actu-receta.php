@@ -1,5 +1,5 @@
 <?php
-    include('../admin/conexion.php');
+    include('../../admin/conexion.php');
     session_start();
     if(!isset($_SESSION['rol'])){
         header('location: login/iniciar_sesion.php');
@@ -8,6 +8,12 @@
             header('location: login/iniciar_sesion.php');
         }
     }
+
+    $id=$_GET['recetaid'];
+        
+    $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion' FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
+
+    $fila=$sel->fetch_array();
 ?>
 
 <!DOCTYPE html>
@@ -20,8 +26,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="icon" type="image/png" href="../img/favicon.png">
     <!--Importacion css bootstrap-->
-    <link rel="stylesheet" type="text/css" href="../admin/css/styles1.css">
-    <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="../../admin/css/styles1.css">
+    <link rel="stylesheet" type="text/css" href="../../admin/css/style.css">
     <title>Rica Cocina</title>
 </head>
 
@@ -54,7 +60,7 @@
             <div class="row">
                 <div class="container text-center">
                     <div>
-                        <h1>Registra una receta</h1>
+                        <h1>Actualizar receta</h1>
                     </div>
                     <!-- Div Nav-->
 
@@ -63,24 +69,24 @@
 
                             <fieldset>
                                 <label for="">Nombre de la receta</label>
-                                <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta" id="nomreceta" name="nomreceta">
+                                <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta" id="nomreceta" name="nomreceta" value="<?php echo $fila[0] ?>">
 
                                 <label for="Ingredientes">Ingredientes</label>
-                                <textarea name="ingrediente" id="ingrediente" cols="30" rows="10" class="form-control" placeholder="-ingrediente1 -ingrediente2 -ingrediente3 ..."></textarea>
+                                <textarea name="ingrediente" id="ingrediente" cols="30" rows="10" class="form-control" placeholder="-ingrediente1 -ingrediente2 -ingrediente3 ..."><?php echo $fila[2] ?></textarea>
 
                                 <label for="">Preparación</label>
-                                <textarea name="preparacion" id="preparacion" cols="30" rows="10" class="form-control" placeholder="-1.Paso1 -2.Paso2 -3.Paso3 ..."></textarea>
+                                <textarea name="preparacion" id="preparacion" cols="30" rows="10" class="form-control" placeholder="-1.Paso1 -2.Paso2 -3.Paso3 ..."><?php echo $fila[3] ?></textarea>
 
 
 
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tiempo de preparación</label>
-                                        <input type="text" name="tiempo" class="form-control" id="tiempo">
+                                        <input type="text" name="tiempo" class="form-control" id="tiempo" value="<?php echo $fila[5] ?>">
                                     </div>
                                     <div class="col">
                                         <label for="">Cantidad de personas</label>
-                                        <input class="form-control" type="number" min="1" max="30" id="cantidadpersona" name="cantidadpersona">
+                                        <input class="form-control" type="number" min="1" max="30" id="cantidadpersona" name="cantidadpersona" value="<?php echo $fila[4] ?>">
                                     </div>
                                 </div>
 
@@ -89,9 +95,29 @@
                                         <label for="">Ocación</label>
                                         <select name="ocacion" id="ocacion" class="form-control">
                                             <option value="0" select-hidden disabled>-Seleccione-</option>
-                                            <option value="desayuno">Desayuno</option>
+                                            <?php 
+                                            if ($fila[6]=='desayuno'){
+                                            ?>
+                                            <option value="desayuno" selected>Desayuno</option>
                                             <option value="almuerzo">Almuerzo</option>
                                             <option value="cena">Cena</option>
+                                            <?php 
+                                            }else{
+                                                if ($fila[6]=='almuerzo'){
+                                            ?>
+                                            <option value="desayuno">Desayuno</option>
+                                            <option value="almuerzo" selected>Almuerzo</option>
+                                            <option value="cena">Cena</option>
+                                            <?php 
+                                            }else{
+                                            ?>
+                                            <option value="desayuno">Desayuno</option>
+                                            <option value="almuerzo">Almuerzo</option>
+                                            <option value="cena" selected>Cena</option>
+                                            <?php 
+                                            }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -102,9 +128,15 @@
                                              $sel = $conn ->query("SELECT * FROM tbltipocomida");
                             
                       		                while ($row=$sel->fetch_array()) {
+                                                if ($fila[8] == $row[1]){
+                                            ?>
+                                            <option value="<?php echo $row[0] ?>" selected> <?php echo $row[1] ?></option>
+                                            <?php
+                                            }else{
                                             ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                            <?php	
+                                            <?php
+                                            }	
                                             }
                                             ?>
                                         </select>
@@ -119,10 +151,16 @@
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tbltipodieta");
                             
-                      		                while ($row=$sel->fetch_array()) {
+                                             while ($row=$sel->fetch_array()) {
+                                                if ($fila[10] == $row[1]){
+                                            ?>
+                                            <option value="<?php echo $row[0] ?>" selected> <?php echo $row[1] ?></option>
+                                            <?php
+                                            }else{
                                             ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                            <?php	
+                                            <?php
+                                            }	
                                             }
                                             ?>
                                         </select>
@@ -134,10 +172,16 @@
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tblpais");
                             
-                      		                while ($row=$sel->fetch_array()) {
+                                             while ($row=$sel->fetch_array()) {
+                                                if ($fila[12] == $row[1]){
+                                            ?>
+                                            <option value="<?php echo $row[0] ?>" selected> <?php echo $row[1] ?></option>
+                                            <?php
+                                            }else{
                                             ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                            <?php	
+                                            <?php
+                                            }	
                                             }
                                             ?>
                                         </select>
@@ -148,10 +192,42 @@
                                     <div class="col">
                                         <label for="">Tipo de receta</label>
                                         <select name="tiporeceta" id="tiporeceta" class="form-control">
-                                            <option value="Plato">Plato</option>
+                                            <option value="0" select-hidden disabled>-Seleccione-</option>
+                                            <?php 
+                                            if ($fila[7]=='Plato'){
+                                            ?>
+                                            <option value="Plato" selected>Plato</option>
                                             <option value="Postre">Postre</option>
                                             <option value="Bebida">Bebida</option>
                                             <option value="Snack">Snack</option>
+                                            <?php 
+                                            }else{
+                                                if ($fila[7]=='Postre'){
+                                            ?>
+                                            <option value="Plato">Plato</option>
+                                            <option value="Postre" selected>Postre</option>
+                                            <option value="Bebida">Bebida</option>
+                                            <option value="Snack">Snack</option>
+                                            <?php 
+                                            }else{
+                                                if ($fila[7]=='Bebida'){
+                                            ?>
+                                            <option value="Plato">Plato</option>
+                                            <option value="Postre">Postre</option>
+                                            <option value="Bebida" selected>Bebida</option>
+                                            <option value="Snack">Snack</option>
+                                            <?php 
+                                            }else{
+                                            ?>
+                                            <option value="Plato">Plato</option>
+                                            <option value="Postre">Postre</option>
+                                            <option value="Bebida">Bebida</option>
+                                            <option value="Snack" selected>Snack</option>
+                                            <?php
+                                            }
+                                            }
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -161,10 +237,16 @@
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tblpadecimiento");
                             
-                      		                while ($row=$sel->fetch_array()) {
+                                            while ($row=$sel->fetch_array()) {
+                                                if ($fila[9] == $row[1]){
+                                            ?>
+                                            <option value="<?php echo $row[0] ?>" selected> <?php echo $row[1] ?></option>
+                                            <?php
+                                            }else{
                                             ?>
                                             <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                            <?php	
+                                            <?php
+                                            }	
                                             }
                                             ?>
                                         </select>
@@ -172,7 +254,7 @@
                                 </div>
                                 <div id="div_file" class="col">
                                     <p id="texto"> Imagen de receta</p>
-                                    <input type="file" name="imagen" id="btn_enviar">
+                                    <input type="file" name="imagen" id="btn_enviar" value="<?php echo $row[1] ?>">
                                 </div>
                                 <div class="col">
                                     <label for="">Utensilios</label>
@@ -180,13 +262,31 @@
                                     </h5>
                                     <select multiple="yes" size="10" name="utensilios[]" id="utensilios" class="form-control">
                                         <?php 
+                                        $sel2 = $conn ->query("SELECT * FROM tblrecetautensilio where recetaid='$id'");
+                                        $array = [];
+                                        $cont = 0;
+                                        while ($row2=$sel2->fetch_array()) {
+                                            $array[$cont]=$row2[0];
+                                            $cont++;
+                                        }
+                                        print_r($array);
                                         $sel = $conn ->query("SELECT * FROM tblutensilios");
-                      		            while ($row=$sel->fetch_array()) {
-                                        ?>
-                                        <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                        <?php	
+                                        $switch = false;
+                                        while ($row=$sel->fetch_array()) {
+                                            for ($i=0; $i < count($array); $i++) {
+                                                if ($array[$i] == $row[0]){
+                                                    $switch =true;
+                                                    break;
+                                                }
                                             }
-                                        ?>
+                                            if($switch){
+                                                echo "<option value=".$row[0]." selected>".$row[1]."</option>";
+                                                
+                                            }else{
+                                                echo "<option value=".$row[0].">".$row[1]."</option>";
+                                            }
+                                            $switch = false;
+                                        }?>
                                     </select>
                                 </div>
                             </fieldset>
