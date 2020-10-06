@@ -2,10 +2,10 @@
     include('../../admin/conexion.php');
     session_start();
     if(!isset($_SESSION['rol'])){
-        header('location: login/iniciar_sesion.php');
+        header('location: ../login/iniciar_sesion.php');
     }else{
         if($_SESSION['rol'] !=2 ){
-            header('location: login/iniciar_sesion.php');
+            header('location: ../login/iniciar_sesion.php');
         }
     }
 
@@ -24,7 +24,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="icon" type="image/png" href="../img/favicon.png">
+    <link rel="icon" type="image/png" href="<?php echo $URL ?>img/favicon.png">
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../../admin/css/style.css">
@@ -65,9 +65,10 @@
                     <!-- Div Nav-->
 
                     <div class="card-body">
-                        <form action="ingreso/insertar_receta.php" name="add_form" method="post" enctype="multipart/form-data">
+                        <form action="actualizar-receta.php" name="add_form" method="post" enctype="multipart/form-data">
 
                             <fieldset>
+                                <input type="text" class="form-control" id="recetaid" name="recetaid" value="<?php echo $_GET['recetaid'] ?>" hidden>
                                 <label for="">Nombre de la receta</label>
                                 <input type="text" class="form-control" placeholder="Ingrese el nombre de la receta" id="nomreceta" name="nomreceta" value="<?php echo $fila[0] ?>">
 
@@ -254,7 +255,7 @@
                                 </div>
                                 <div id="div_file" class="col">
                                     <p id="texto"> Imagen de receta</p>
-                                    <input type="file" name="imagen" id="btn_enviar" value="<?php echo $row[1] ?>">
+                                    <input type="file" name="imagen" id="btn_enviar" value="<?php echo 'data:image/jpeg;base64,' . base64_encode( $fila[1] ) ?>">
                                 </div>
                                 <div class="col">
                                     <label for="">Utensilios</label>
@@ -306,7 +307,7 @@
     </script>
 
     <!-- Validacion Formulario Receta -->
-    <script type="text/javascript" src="../admin/js/Validacionreceta.js"></script>
+    <script type="text/javascript" src="<?php echo $URL ?>admin/js/Validacionreceta.js"></script>
 </body>
 
 </html>

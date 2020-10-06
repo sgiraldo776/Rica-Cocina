@@ -2,18 +2,15 @@
         include('../admin/conexion.php');
         session_start();
         if(!isset($_SESSION['rol'])){
-            include '../includes/header-idx.php';
+            header('location: login/iniciar_sesion.php');
         }else{
-            if($_SESSION['rol'] !=1 ){
-                if($_SESSION['rol'] =2 ){
-                    include '../includes/header-user.php';
-                }else {
-                    include '../includes/header-idx.php';
-                }
-            }else {
-                include '../includes/header-admin.php';
-            }            
+            if($_SESSION['rol'] !=2 ){
+                header('location: login/iniciar_sesion.php');
+            }else{
+                include '../includes/header-user.php';
+            }
         }
+        
     ?>
 <!DOCTYPE html>
 <html lang="en">

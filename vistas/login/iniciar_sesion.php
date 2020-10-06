@@ -36,6 +36,9 @@ if(isset($_SESSION['rol'])){
     <main class="col-12">                
         <div class="contenedor col-12 text-center">
             <div class="row col-12">
+                <a class="navbar-brand" href="<?php echo $URL ?>">
+                    <img src="<?php echo $URL ?>img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
+                </a>
                 <div class="col-12">
                     <form action="config/login.php" method="POST" class="formulario">
                         <h1>Iniciar Sesión</h1>
@@ -60,11 +63,6 @@ if(isset($_SESSION['rol'])){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
-    <!--validacion de capos vacios-->
-    <script type="text/javascript" src="js/ValidarUsuario.js"></script>
-    <!--validacion de capos vacios-->
 
 </body>
 
