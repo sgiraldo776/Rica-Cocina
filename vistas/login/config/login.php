@@ -18,29 +18,36 @@ $row=mysqli_fetch_array($consulta);
 
 
 if($row == TRUE){
+    if($row[4] != 0){
 
-    $cuentaid=$row[0];
-    $_SESSION['cuentaid']=$cuentaid;
-    $usuarioid=$row[5];
-    $_SESSION['usuarioid']=$usuarioid;
-    $rol=$row[3];
-    $_SESSION['rol']=$rol;
-    switch($_SESSION['rol']){
-        case 1:
-            echo "<script>     location.href='../../../index.php'; </script>";
-        break;
-        case 2:
-            echo "<script>     location.href='../../../index.php'; </script>";
-        break;
-
-        default:
+        $cuentaid=$row[0];
+        $_SESSION['cuentaid']=$cuentaid;
+        $usuarioid=$row[5];
+        $_SESSION['usuarioid']=$usuarioid;
+        $rol=$row[3];
+        $_SESSION['rol']=$rol;
+        switch($_SESSION['rol']){
+            case 1:
+                echo "<script>     location.href='../../../index.php'; </script>";
+            break;
+            case 2:
+                echo "<script>     location.href='../../../index.php'; </script>";
+            break;
+    
+            default:
+        }
+    
+    }else{
+        echo "<script>     location.href='../iniciar_sesion.php'; </script>";
+        echo "<script  type='text/javascript' src='../../../admin/alerts.js'> alerta1(); </script>";
+        
     }
-
+    
+    
 }else{
     echo "<script> 	alert('datos incorrectos'); </script>";
     echo "<script>  location.href='../iniciar_sesion.php'; </script>";
 }
-
 
 
 /*if($array['contar']>0){

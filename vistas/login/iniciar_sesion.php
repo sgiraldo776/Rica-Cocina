@@ -48,7 +48,7 @@ if(isset($_SESSION['rol'])){
                         <input type="password" class="form-control" name="password" placeholder="Introduce la contraseña">
                         <span><a href="recuperacion/frm-correo.php">¿Olvidaste tu contraseña?</a></span>
                         <br>
-                        <button type="submit" class="boton boton-amarillo">INGRESAR </button>
+                        <button type="submit" class="boton boton-amarillo" id="ingresar">INGRESAR </button>
                     </form>
                 </div>
             </div>
@@ -63,6 +63,8 @@ if(isset($_SESSION['rol'])){
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="../../admin/js/alerts.js"></script>
 
 </body>
 
