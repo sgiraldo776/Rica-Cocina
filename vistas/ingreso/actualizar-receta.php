@@ -28,7 +28,11 @@ $utensilios=$_POST['utensilios'];
 
 #$sql="INSERT INTO tblreceta VALUES (null,'$nombre', '$imagen' , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', '$padecimiento' , '$tipodieta', '1', '$_SESSION[usuarioid]', '$pais', null)";
 
-$sql="UPDATE tblreceta SET titulo='$nombre', imagen='$imagen' , ingrediente='$ingrediente', pasos='$preparacion', cantidadpersonas='$cantidadpersona' , tiempopreparacion='$tiempo', ocacion='$ocacion', tiporeceta='$tiporeceta', tipocomidaid='$tipocomida', padecimientoid='$padecimiento' , tipodietaid='$tipodieta', validar='1', paisid='$pais' WHERE recetaid='$idreceta'";
+if($imagen != ""){
+    $sql="UPDATE tblreceta SET titulo='$nombre', imagen='$imagen' , ingrediente='$ingrediente', pasos='$preparacion', cantidadpersonas='$cantidadpersona' , tiempopreparacion='$tiempo', ocacion='$ocacion', tiporeceta='$tiporeceta', tipocomidaid='$tipocomida', padecimientoid='$padecimiento' , tipodietaid='$tipodieta', validar='1', paisid='$pais' WHERE recetaid='$idreceta'";
+}else{    
+    $sql="UPDATE tblreceta SET titulo='$nombre', ingrediente='$ingrediente', pasos='$preparacion', cantidadpersonas='$cantidadpersona' , tiempopreparacion='$tiempo', ocacion='$ocacion', tiporeceta='$tiporeceta', tipocomidaid='$tipocomida', padecimientoid='$padecimiento' , tipodietaid='$tipodieta', validar='1', paisid='$pais' WHERE recetaid='$idreceta'";
+}
 
 $sql3="DELETE FROM tblrecetautensilio WHERE recetaid='$idreceta'";
 

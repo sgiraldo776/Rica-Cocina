@@ -255,7 +255,7 @@
                                 </div>
                                 <div id="div_file" class="col">
                                     <p id="texto"> Imagen de receta</p>
-                                    <input type="file" name="imagen" id="btn_enviar" value="<?php echo 'data:image/jpeg;base64,' . base64_encode( $fila[1] ) ?>">
+                                    <input type="file" name="imagen" id="btn_enviar">
                                 </div>
                                 <div class="col">
                                     <label for="">Utensilios</label>
@@ -307,7 +307,7 @@
     </script>
 
     <!-- Validacion Formulario Receta -->
-    <script type="text/javascript" src="<?php echo $URL ?>admin/js/Validacionreceta.js"></script>
+    <script type="text/javascript" src="<?php echo $URL ?>admin/js/Validacion_actu_receta.js"></script>
 </body>
 
 </html>
