@@ -6,21 +6,20 @@ $sql = "SELECT correoelectronico from tblcuenta where correoelectronico='$usuari
 
 $consulta = $conn ->query($sql);
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer.php';
+require 'PHPMailer/SMTP.php';
 //$array = mysqli_fetch_array($consulta);
 
 
 if($consulta == TRUE){
 
     $asunto = 'Recuperacion de contraseña Rica Cocina';
-    $comentario = 'Haga click sobre el siguiente link para proceder al formulario de cambio de contraseña <br><br><br> https://www.google.com/';
-    $body = "Comentario: " . $comentario;
-
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    require 'PHPMailer/Exception.php';
-    require 'PHPMailer/PHPMailer.php';
-    require 'PHPMailer/SMTP.php';
+    $comentario = 'Haga click sobre el siguiente link para proceder al formulario de cambio de contraseña; ESTE LINK ES COMPLETAMENTE PERSONAL, NO LO COMPARTA CON NADIE. <br><br><br> '.$URL.'vistas/login/recuperacion/recuperacion.php?crr='.$usuario.'<br><br><br> Gracias por usar Rica Cocina.<br>Atentamente: El equipo de desarrollo de Rica Cocina.';
+    $body = $comentario;
 
 
     // Instantiation and passing `true` enables exceptions
@@ -55,14 +54,15 @@ if($consulta == TRUE){
         $mail->isHTML(true);                                  // Set email format to HTML
         $mail->Subject = $asunto;
         $mail->Body    = $body;
-        $mail->charset = 'UTF-8';
+        
+        $mail->CharSet = 'UTF-8';
         
         $mail->send();
-        echo "<script>alert('correo enviado exitosamente')</script>";
-        echo "<script> setTimeout(\"location.href='contacto.php'\",1000)</script>";
+        echo "<script>alert('Se le envio un link de recuperacion a su correo, por favor reviselo')</script>";
+        echo "<script> location.href='frm-correo.php'</script>";
     } catch (Exception $e) {
         echo "<script>alert('No se pudo enviar el correo')</script>";
-        echo "<script> setTimeout(\"location.href='contacto.php'\",1000)</script>";
+        echo "<script> location.href='frm-correo.php'</script>";
     }
 
 }else{
