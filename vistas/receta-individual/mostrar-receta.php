@@ -17,7 +17,7 @@
         $id=$_GET['recetaid'];
         
         $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion' FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
-                
+
         $row=$sel->fetch_array();
 ?>
 <!DOCTYPE html>
@@ -108,8 +108,34 @@
             </div>
         </div>
         <br><br>
-    </main>
 
+        
+    </main>
+    <section class="container comentarios">
+        <div class="row">
+            <form action="ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST">
+                <label>Comentarios</label>
+                <textarea name="comentario" id="comentario" cols="30" rows="10" class="form-control" placeholder="Coloque su comentario"></textarea>
+                <button type="submit" class="boton boton-amarillo">Enviar Comentario</button>
+            </form>
+        </div>
+        <div class="row">
+            <div class="com_seccion">
+            <table class="table table-hover" >                        
+                        <?php 
+                        $sel = $conn ->query("SELECT ra.texto, ra.fecha, concat_ws(' ', us.nombres, us.apellidos) as 'usuario'  FROM tblretroalimentacion as ra INNER JOIN tblusuario as us ON ra.usuarioid=us.usuarioid WHERE recetaid='$id' ");
+                        while ($fila = $sel -> fetch_assoc()) {
+                        ?>
+                        <tr>
+                            <td><?php echo $fila['usuario'] ?></td>
+                            <td><?php echo $fila['texto'] ?></td>
+                            <td><?php echo $fila['fecha'] ?></td>
+                        </tr>
+                        <?php } ?>
+                    </table>
+            </div>
+        </div>
+    </section>
     <footer class="footer py-4 bgcolor">
         <div class="container">
             <div class="row align-items-center">
@@ -120,7 +146,7 @@
                     <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto" src="../../img/instagram.svg" style="max-width: 75%"></i></a>
                 </div>
                 <div class="col-lg-3 text-lg-center text-center contac">
-                    <h3><a href="vistas/contacto/contacto.php">Contáctenos</a></h3>
+                    <h3><a href="<?php echo $URL ?>vistas/contacto/contacto.php">Contáctenos</a></h3>
                 </div>
             </div>
         </div>

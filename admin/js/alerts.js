@@ -1,6 +1,26 @@
-$("#eliminar").click(function(){
-    alert("Mensaje con Alert");    
-});
+function validareliminar(){
+  var formulario = document.add_form;
+  Swal
+      .fire({
+          title: "Venta #123465",
+          text: "¿Eliminar?",
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: "Sí, eliminar",
+          cancelButtonText: "Cancelar",
+      })
+      .then(resultado => {
+          if (resultado.value) {
+              // Hicieron click en "Sí"
+              //console.log("*se elimina la venta*");
+              location.href= 'ingreso/eliminar_receta.php?recetaid='+ $("#recetaid").val()
+          } else {
+              // Dijeron que no
+              console.log("*NO se elimina la venta*");
+          }
+      });
+  };
+
 
 $("#ingresar").click(function alerta1(){
     const swalWithBootstrapButtons = Swal.mixin({
