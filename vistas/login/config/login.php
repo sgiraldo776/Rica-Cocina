@@ -38,9 +38,30 @@ if($row == TRUE){
         }
     
     }else{
-        echo "<script>     location.href='../iniciar_sesion.php'; </script>";
-        echo "<script  type='text/javascript' src='../../../admin/alerts.js'> alerta1(); </script>";
+        $sql1= "UPDATE tblcuenta SET estado=1 WHERE cuentaid='$row[0]'";
+
+        if($conn->query($sql1) === TRUE){
+            $cuentaid=$row[0];
+            $_SESSION['cuentaid']=$cuentaid;
+            $usuarioid=$row[5];
+            $_SESSION['usuarioid']=$usuarioid;
+            $rol=$row[3];
+            $_SESSION['rol']=$rol;
+            switch($_SESSION['rol']){
+                case 1:
+                    echo "<script>     location.href='../../../index.php'; </script>";
+                break;
+                case 2:
+                    echo "<script>     location.href='../../../index.php?estado=1'; </script>";
+                break;
         
+                default:
+            }
+        }else{
+            echo "<script>     alert('No se pudo cambiar el estado'); </script>";
+            //echo "Error: " . $sql1 . "<br>". $conn->error;
+        }
+
     }
     
     
