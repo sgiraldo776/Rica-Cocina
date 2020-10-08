@@ -404,3 +404,39 @@ h4 {
         margin-bottom: 35px;
     }
 }
+
+
+/* Perfil */
+
+.bgimg-perfil {
+    background: url(../../img/bg-login4.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.perfilcss {
+    background-color: #ffffff;
+    padding: 4rem;
+    margin-top: 5rem;
+}
+
+.perfil-img img {
+    margin-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .perfil-img img {
+        width: 50%;
+        margin-bottom: 2rem;
+    }
+}
+
+@media (max-width: 470px) {
+    .perfilcss {
+        padding: 2rem;
+    }
+}
+
+.perfil-img {
+    text-align: center;
+}
