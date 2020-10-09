@@ -58,13 +58,13 @@
                             </a>
                         </div>
                         
-                        <form action="" name="add_form" method="POST">
+                        <form action="ingreso/frm-actu-receta.php?recetaid=<?php echo $row[0] ?>" name="add_form" method="POST">
                         <input type="text" id="recetaid" name="recetaid" value="<?php echo $row[0] ?>" hidden>
-                            <a href="ingreso/frm-actu-receta.php?recetaid=<?php echo $row[0] ?>">EDITAR</a>
+                            <button class="boton boton-amarillo">EDITAR</button>
                             <!--<button type="button" onclick="validareliminar()"><a id="eliminar" href="">ELIMINAR</a></button>-->
                             <!--<button type="button" class="boton boton-amarillo" id="eliminar">eliminar</button>-->
-                            <a href="#" onclick="preguntar(<?php echo $row[0]?>)">ELIMINAR</a>
-                        </form>
+                            <button type="button" class="boton boton-amarillo" href="#" onclick="preguntar(<?php echo $row[0]?>)">ELIMINAR</button>
+                        </form><br>
                     </div>
                     
                     <?php	
