@@ -32,6 +32,7 @@
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../../admin/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Rica Cocina</title>
 </head>
 
@@ -111,7 +112,46 @@
 
         
     </main>
-    <section class="container comentarios">
+    <div class="container col-10">
+            <form action="ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST" name="add_form">
+                <label>Comentarios</label>
+                <textarea name="comentario" id="comentario" cols="60" rows="7" class="form-control" placeholder="Coloque su comentario"></textarea>
+                <button type="button" class="boton boton-amarillo">Enviar Comentario</button>
+            </form>
+    </div><br>
+    <div class="comments-container container col-10">
+            <?php 
+                $sel = $conn ->query("SELECT ra.texto, ra.fecha, concat_ws(' ', us.nombres, us.apellidos) as 'usuario'  FROM tblretroalimentacion as ra INNER JOIN tblusuario as us ON ra.usuarioid=us.usuarioid WHERE recetaid='$id' ");
+                while ($fila = $sel -> fetch_assoc()) {
+            ?>
+        <div class="cabecera">
+            
+            <h3 class="cont-usuario"><?php echo $fila['usuario'] ?></h3>
+            <span><?php echo $fila['fecha'] ?></span>
+
+            
+        </div>
+        <div class="comentario">
+            <p><?php echo $fila['texto'] ?></p>
+
+        </div>
+        <?php } ?>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <!--<section class="container comentarios">
         <div class="row">
             <form action="ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST">
                 <label>Comentarios</label>
@@ -132,10 +172,10 @@
                             <td><?php echo $fila['fecha'] ?></td>
                         </tr>
                         <?php } ?>
-                    </table>
+            </table>
             </div>
         </div>
-    </section>
+    </section>-->
     <footer class="footer py-4 bgcolor">
         <div class="container">
             <div class="row align-items-center">
@@ -155,6 +195,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
+    <script type="text/javascript" src="../../admin/js/camposvacios.js"></script>
 </body>
 
 </html>

@@ -66,3 +66,19 @@ function validarformulario3() {
         formulario.submit();
     }
 }
+
+$(function(){
+    $(".boton-amarillo").on('click', function() {
+        var formulario = document.add_form;
+        if($('#comentario').val() !=""){
+            formulario.submit();
+        }else{
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ups...',
+                text: 'No ha ingresado ningún comentario',
+            });
+            return false;
+        }
+});
+});
