@@ -1,6 +1,9 @@
 <?php
 include('../../../admin/conexion.php');
-$crr = $_GET['crr'];
+
+if(isset($_GET['crr'])){
+    $crr = $_GET['crr'];
+}
 ?>
 
 <!DOCTYPE html>
@@ -27,11 +30,13 @@ $crr = $_GET['crr'];
                     <img src="<?php echo $URL ?>img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                 </a>
                 <div class="col-12">
-                    <form action="cambio.php?crr=<?php echo $crr?>" method="POST" class="formulario">
+                    <form action="cambio.php?<?php if(!empty($_GET['error'])){
+                        $error = $_GET['error'];
+                        echo "error=".$error."&";
+                    } ?>crr=<?php echo $crr?>" method="POST" class="formulario" name="addform">
                         <h1>Cambiar Contraseña</h1>
                         <h5 class="cond-cont">La contraseña debe tener como mínimo un caracter especial, una mayúscula y un número. Tambien debe ser mayor a cinco digitos. Los caracteres especiales permitidos son @ / * = ? $ #</h5>
-                        <div class="row">
-                            <?php
+                        <?php
                             if(!empty($_GET['error'])){
                             $error =  $_GET['error'];    
                             switch($error){
@@ -52,6 +57,7 @@ $crr = $_GET['crr'];
                                 }  
                             }
                             ?>
+                        <div class="row">
                             <div class="col">
                                 <label>Contraseña</label>
                                 <input type="password" name="contrasena" class="form-control" placeholder="Ingrese la contraseña nueva contraseña" id="con1" onkeypress="return validarPassword(event);" required="required" pattern=".{6,20}">
@@ -62,7 +68,7 @@ $crr = $_GET['crr'];
                             </div>
                             <span id="error2"></span>
                         </div>
-                        <button type="submit" class="boton boton-amarillo" id="ingresar">CONFIRMAR CAMBIO </button>
+                        <button type="button" onclick="" class="boton boton-amarillo" id="ingresar">CONFIRMAR CAMBIO </button>
                     </form>
                 </div>
             </div>
@@ -78,7 +84,9 @@ $crr = $_GET['crr'];
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="../../admin/js/alerts.js"></script>
+    <script src="js/ValidarCampCont.js"></script>
+    <script src="js/validarPassRec.js"></script>
+    
 
 </body>
 

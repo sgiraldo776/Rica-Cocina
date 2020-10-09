@@ -1,5 +1,16 @@
 <?php
 include('../../admin/conexion.php');
+session_start();
+        if(!isset($_SESSION['rol'])){
+            header('location: ../login/iniciar_sesion.php');
+        }else{
+            if($_SESSION['rol'] !=2 ){
+                header('location: ../login/iniciar_sesion.php');
+            }else{
+                include '../../includes/header-user.php';
+            }
+        }
+        
 ?>
 
 <!DOCTYPE html>
@@ -25,21 +36,27 @@ include('../../admin/conexion.php');
             <div class="col-12 perfil-img">
             <img src="<?php echo $URL ?>img/logo-rica-cociona1.png" alt="">
             </div>
-        
+            <?php
+                $sql = $conn ->query("SELECT concat_ws(' ', us.nombres, us.apellidos) as 'Persona', us.fechanacimiento, cu.correoelectronico FROM tblusuario as us INNER JOIN tblcuenta as cu ON cu.usuarioid = us.usuarioid WHERE us.usuarioid='$_SESSION[usuarioid]'");
+
+                $row=$sql->fetch_array();
+            ?>
             <div class="dat-usu col-12 text-center">
                 <label for="">Nombre</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" value="<?php echo $row[0]?>" disabled>
 
                 <label for="">Fecha de nacimiento</label>
-                <input type="date" class="form-control">
+                <input type="date" class="form-control" value="<?php echo $row[1]?>" disabled>
 
                 <label for="">Correo</label>
-                <input type="text" class="form-control">
+                <input type="text" class="form-control" value="<?php echo $row[2]?>" disabled>
             </div>
             
             <div class="col-12 text-center bot-perf">
             <button type="submit" class="boton boton-amarillo" id="ingresar">Editar perfil</button>
-            <button type="submit" class="boton boton-amarillo" id="ingresar">Desactivar Cuenta</button>
+            <a href="<?php echo $URL ?>vistas/login/config/darse_baja.php">
+                <button type="submit" class="boton boton-amarillo" id="ingresar">Desactivar Cuenta</button>
+            </a>
             </div>
         
         </div>

@@ -19,9 +19,6 @@ if(isset($_POST['contrasena'])){
 
   if(strlen($passw) < 6){
     $validador = 1;			
-  }else {
-    header("location:recuperacion.php?error=$validador?crr=$crr"); // <= Redireccionamos la salida a la página index.php
-      $conn->close();
   }
 
   if($validador == 0){
@@ -34,7 +31,7 @@ if(isset($_POST['contrasena'])){
         }
     }   
   }else {
-    header("location:recuperacion.php?error=$validador?crr=$crr"); // <= Redireccionamos la salida a la página index.php
+    header("location:recuperacion.php?error=$validador&crr=$crr"); // <= Redireccionamos la salida a la página index.php
     $conn->close();
   }
          
@@ -81,7 +78,7 @@ if(isset($_POST['contrasena'])){
         }
     }                
   }else {
-    header("location:recuperacion.php?error=$validador?crr=$crr"); // <= Redireccionamos la salida a la página index.php
+    header("location:recuperacion.php?error=$validador&crr=$crr"); // <= Redireccionamos la salida a la página index.php
     $conn->close();
   }
 
@@ -118,25 +115,28 @@ if(isset($_POST['contrasena'])){
           }
       }            
   }else {
-    header("location:recuperacion.php?error=$validador?crr=$crr"); // <= Redireccionamos la salida a la página index.php
+    header("location:recuperacion.php?error=$validador&crr=$crr"); // <= Redireccionamos la salida a la página index.php
     $conn->close();
   }
 
   if($validador == 0){
     $sql2="UPDATE tblcuenta SET password='$password' where correoelectronico='$crr'";
 
-    if ($conn->query($sql)) {
+    if ($conn->query($sql2)) {
       // Ingresando la cuenta del último usuarioid registrado en la tabla tblusuario:
-      
+        echo "<script> alert('La contraseña se cambio correctamente') </script>";
     } else {
-        header("location:recuperacion.php?crr=$crr"); // <= Redireccionamos la salida a la página index.php
+        #header("location:recuperacion.php?crr=$crr"); // <= Redireccionamos la salida a la página index.php
         $conn->close();
         echo "<script> alert('No se pudo actualizar la contraseña') </script>";
     }
   
     $conn->close();
 
-   }
+  }else {
+    header("location:recuperacion.php?error=$validador&crr=$crr"); // <= Redireccionamos la salida a la página index.php
+    $conn->close();
+  }
 }
 
 ?>

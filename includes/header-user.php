@@ -42,8 +42,8 @@
                                 Estado cuenta
                                 </a>
                                 <div class="dropdown-menu" style="background-color: #813531;" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?php echo $URL ?>vistas/perfil/perfil.php">Perfil</a>
                                     <a class="dropdown-item" href="<?php echo $URL ?>vistas/login/config/cerrar_sesion.php">Cerrar Sesión</a>
-                                    <a class="dropdown-item" href="<?php echo $URL ?>vistas/login/config/darse_baja.php">Darse de baja</a>
                                 </div>
                             </li>
                         </ul>
