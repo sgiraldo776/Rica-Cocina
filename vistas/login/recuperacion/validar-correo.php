@@ -17,8 +17,8 @@ require 'PHPMailer/SMTP.php';
 
 if($consulta == TRUE){
 
-    $asunto = 'Recuperacion de contraseña Rica Cocina';
-    $comentario = 'Haga click sobre el siguiente link para proceder al formulario de cambio de contraseña;<br><strong>Este link es completamente personal e intransferible, No lo comparta con nadie; Si lo hace, Rica Cocina no se hace responzabe sobre lo que pueda pasar con su cuenta.</strong> <br><br><br> '.$URL.'vistas/login/recuperacion/recuperacion.php?crr='.$usuario.'<br><br><br> Gracias por usar Rica Cocina.<br>Atentamente: El equipo de desarrollo de Rica Cocina.';
+    $asunto = 'Recuperación de contraseña Rica Cocina';
+    $comentario = 'Haga click sobre el siguiente link para ir al formulario de cambio de contraseña;<br><strong>Este link es completamente personal e intransferible, No lo comparta con nadie; Si lo hace, Rica Cocina no se hace responsable por manejos incorrectos de su cuenta.</strong> <br><br><br> '.$URL.'vistas/login/recuperacion/recuperacion.php?crr='.$usuario.'<br><br><br> Gracias por usar Rica Cocina.<br>Atentamente: El equipo de desarrollo de Rica Cocina.';
     $body = $comentario;
 
 
