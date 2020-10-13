@@ -38,7 +38,52 @@
                 </div>
                 <div class="conenedor-recetas">
                     <?php 
-                        $sel = $conn ->query("SELECT re.recetaid,re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE re.usuarioid='$_SESSION[usuarioid]'");
+                        $sel = $conn ->query("SELECT re.recetaid,re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE re.usuarioid='$_SESSION[usuarioid]' AND validar='2'");
+                                
+                        while ($row=$sel->fetch_array()) {
+                    ?>
+                    <div class="cont-tarjetas">
+                        <div class="tarjetas">
+                            <a href="receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>" style="text-decoration: none">
+                                <div class="tarjeta-img">
+                                    <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                                    <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+                                
+                                </div>
+                                <div class="tarjeta-info">
+                                    <h3 class="card-title"><?php echo $row[2] ?></h3>
+                                    <p class="card-text">Por: <?php echo $row[3]?></p>
+                                    <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <form action="ingreso/frm-actu-receta.php?recetaid=<?php echo $row[0] ?>" name="add_form" method="POST">
+                        <input type="text" id="recetaid" name="recetaid" value="<?php echo $row[0] ?>" hidden>
+                            <!--<button class="boton boton-amarillo">EDITAR</button>-->
+                            <!--<button type="button" onclick="validareliminar()"><a id="eliminar" href="">ELIMINAR</a></button>-->
+                            <!--<button type="button" class="boton boton-amarillo" id="eliminar">eliminar</button>-->
+                            <button type="button" class="boton boton-amarillo" href="#" onclick="preguntar(<?php echo $row[0]?>)">ELIMINAR</button>
+                        </form><br>
+                    </div>
+                    
+                    <?php	
+                        }
+                    ?>
+                    
+                </div>
+            </div>
+
+
+
+
+            <div class="col-md-12">
+                <div>
+                    <h1>Recetas en espera de aprobación</h1>
+                </div>
+                <div class="conenedor-recetas">
+                    <?php 
+                        $sel = $conn ->query("SELECT re.recetaid,re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE re.usuarioid='$_SESSION[usuarioid]' AND validar='1'");
                                 
                         while ($row=$sel->fetch_array()) {
                     ?>
@@ -73,6 +118,51 @@
                     
                 </div>
             </div>
+
+
+
+            <div class="col-md-12">
+                <div>
+                    <h1>Recetas no aprobadas</h1>
+                </div>
+                <div class="conenedor-recetas">
+                    <?php 
+                        $sel = $conn ->query("SELECT re.recetaid,re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE re.usuarioid='$_SESSION[usuarioid]' AND validar='3'");
+                                
+                        while ($row=$sel->fetch_array()) {
+                    ?>
+                    <div class="cont-tarjetas">
+                        <div class="tarjetas">
+                            <a href="receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>" style="text-decoration: none">
+                                <div class="tarjeta-img">
+                                    <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                                    <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+                                
+                                </div>
+                                <div class="tarjeta-info">
+                                    <h3 class="card-title"><?php echo $row[2] ?></h3>
+                                    <p class="card-text">Por: <?php echo $row[3]?></p>
+                                    <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
+                                </div>
+                            </a>
+                        </div>
+                        
+                        <form action="ingreso/frm-actu-receta.php?recetaid=<?php echo $row[0] ?>" name="add_form" method="POST">
+                        <input type="text" id="recetaid" name="recetaid" value="<?php echo $row[0] ?>" hidden>
+                            <button class="boton boton-amarillo">EDITAR</button>
+                            <!--<button type="button" onclick="validareliminar()"><a id="eliminar" href="">ELIMINAR</a></button>-->
+                            <!--<button type="button" class="boton boton-amarillo" id="eliminar">eliminar</button>-->
+                            <button type="button" class="boton boton-amarillo" href="#" onclick="preguntar(<?php echo $row[0]?>)">ELIMINAR</button>
+                        </form><br>
+                    </div>
+                    
+                    <?php	
+                        }
+                    ?>
+                    
+                </div>
+            </div>
+
         </div>
     <footer class="bgcolor">
         <div class="contenedor contenedor-footer">
@@ -120,7 +210,7 @@
                     window.location.href="ingreso/eliminar_receta.php?recetaid="+id
                 } else {
                     // Dijeron que no
-                    console.log("*NO se elimina la venta*");
+                    console.log("*NO se elimina*");
                 }
             });
 

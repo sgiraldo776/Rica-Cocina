@@ -125,6 +125,7 @@ if(isset($_POST['contrasena'])){
     if ($conn->query($sql2)) {
       // Ingresando la cuenta del último usuarioid registrado en la tabla tblusuario:
         echo "<script> alert('La contraseña se cambio correctamente') </script>";
+        header("location:../iniciar_sesion.php?crr=$crr");
     } else {
         #header("location:recuperacion.php?crr=$crr"); // <= Redireccionamos la salida a la página index.php
         $conn->close();

@@ -31,7 +31,7 @@
                                 <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
                             </li>
                             <li class="nav-item active">
-                                <a href="<?php echo $URL ?>vistas/recetas.php">Admistracion Recetas</a>
+                                <a href="<?php echo $URL ?>admin/recetas/receta_val.php">Admistracion Recetas</a>
                             </li>
                             
                             <li class="nav-item dropdown">
