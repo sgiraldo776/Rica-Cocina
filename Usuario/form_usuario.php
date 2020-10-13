@@ -23,6 +23,11 @@
             href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap"
             rel="stylesheet">
         <link rel="icon" type="image/png" href="../img/favicon.png">
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+
+
         <title>Registrarse</title>
     </head>
     <body>
@@ -215,6 +220,22 @@
                     </div>
                 </div>
             </footer>
+
+            <?php
+    if(isset($_GET['er'])){
+    ?>
+
+    <script>
+         Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'eL Correo Ya se encuentra Registrado',
+})
+    </script>
+
+    <?php
+    }
+    ?>
 
             <!--JS de bootstrap-->
             <script

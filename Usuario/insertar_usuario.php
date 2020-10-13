@@ -174,7 +174,9 @@ if($validador == 0){
       } else {
         $sql3="DELETE FROM tblusuario ORDER BY usuarioid DESC LIMIT 1";
         if ($conn->query($sql3)){
-          echo "Error: No se pudo ingresar" . $sql2 . "<br>". $conn->error;       
+          echo "Error: No se pudo ingresar" . $sql2 . "<br>". $conn->error;  
+          echo "<script>     location.href='form_usuario.php?er=1'; </script>";
+     
         } else {
           echo "Error: " . $sql3 . "<br>". $conn->error;
         } 
