@@ -87,7 +87,7 @@
             <div class="col-12 md-2 top">
                 <div class="conenedor-recetas">
                     <?php 
-                        $sel = $conn ->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid ORDER BY re.votacionacomulada DESC LIMIT 3");
+                        $sel = $conn ->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 3");
                                 
                         while ($row=$sel->fetch_array()) {
                     ?>

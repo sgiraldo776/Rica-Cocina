@@ -30,6 +30,10 @@
                             <li class="nav-item active">
                                 <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
                             </li>
+                            <li class="nav-item active">
+                                <a href="<?php echo $URL ?>vistas/recetas.php">Admistracion Recetas</a>
+                            </li>
+                            
                             <li class="nav-item dropdown">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Tablas Maestras
