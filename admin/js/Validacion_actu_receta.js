@@ -9,7 +9,22 @@ $(function(){
                             if($('#tipocomida').val() !=0){
                                 if($('#tipodieta').val() !=0){
                                     if($('#pais').val() !=0){
-                                            formulario.submit();
+                                        if($('#tiporeceta').val() !=0){
+                                            if($('#padecimiento').val() !=0){
+                                                    if($('#utensilios').val() !=""){
+                                                        formulario.submit();  
+                                                    }else{
+                                                        alert("Error, No ha Seleccionado ningún Utensilio");
+                                                    }
+                                            }else{
+                                                alert("Error, No ha Ingresado el Padecimiento");
+                                                $('#padecimiento').focus().addClass("is-invalid");
+                                            }
+
+                                        }else{
+                                            alert("Error, No ha Ingresado el Tipo de Receta");
+                                            $('#tiporeceta').focus().addClass("is-invalid");
+                                        }
                                             
                                     }else {
                                         alert("Error, No ha Ingresado el Pais");

@@ -18,7 +18,9 @@ $pais=$_POST['pais'];
 $tiporeceta=$_POST['tiporeceta'];
 $padecimiento=$_POST['padecimiento'];
 $imagen=$_FILES['imagen']['tmp_name'];
-$imagen=addslashes(file_get_contents($imagen));
+if($imagen !=""){
+  $imagen=addslashes(file_get_contents($imagen));
+}
 $utensilios=$_POST['utensilios'];
 
 

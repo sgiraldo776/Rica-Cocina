@@ -128,7 +128,7 @@
                                     <div class="col">
                                         <label for="">Tipo comida</label>
                                         <select name="tipocomida" id="tipocomida" class="form-control">
-                                            <option value="0">-Seleccione el Tipo de Comida-</option>
+                                            <option value="0" select-hidden disabled>-Seleccione el Tipo de Comida-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tbltipocomida");
                             
@@ -152,7 +152,7 @@
                                     <div class="col">
                                         <label for="">Tipo dieta</label>
                                         <select name="tipodieta" id="tipodieta" class="form-control">
-                                            <option value="0">-Seleccione el Tipo de Dieta-</option>
+                                            <option value="0" select-hidden disabled>-Seleccione el Tipo de Dieta-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tbltipodieta");
                             
@@ -173,7 +173,7 @@
                                     <div class="col">
                                         <label for="">País</label>
                                         <select name="pais" id="pais" class="form-control">
-                                            <option value="0">-Seleccione el Pais-</option>
+                                            <option value="0" select-hidden disabled>-Seleccione el Pais-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tblpais");
                             
@@ -238,7 +238,7 @@
                                     <div class="col">
                                         <label for="">Padecimiento</label>
                                         <select name="padecimiento" id="padecimiento" class="form-control">
-                                            <option value="0">-Seleccione el Padecimiento-</option>
+                                            <option value="0" select-hidden disabled>-Seleccione el Padecimiento-</option>
                                             <?php 
                                              $sel = $conn ->query("SELECT * FROM tblpadecimiento");
                             
