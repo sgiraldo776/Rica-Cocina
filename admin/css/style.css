@@ -273,3 +273,10 @@ input#btn_enviar {
     overflow: scroll;
     margin-bottom: 5rem;
 }
+
+.page-item.activo .page-link {
+    z-index: 3;
+    color: #fff;
+    background-color: #ffb80e;
+    border-color: #e0a20f;
+}

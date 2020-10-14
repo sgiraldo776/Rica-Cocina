@@ -70,6 +70,7 @@
                                         <label for="">Ocación</label>
                                         <select name="ocacion" id="ocacion" class="form-control">
                                             <option value="0" select-hidden disabled>-Seleccione-</option>
+                                            <option value="cualquiera">Cualquiera</option>
                                             <option value="desayuno">Desayuno</option>
                                             <option value="almuerzo">Almuerzo</option>
                                             <option value="cena">Cena</option>
@@ -130,6 +131,7 @@
                                         <label for="">Tipo de receta</label>
                                         <select name="tiporeceta" id="tiporeceta" class="form-control">
                                             <option value="0">-Seleccione el Tipo de Receta-</option>
+                                            <option value="Indefinido">Indefinido</option>
                                             <option value="Plato">Plato</option>
                                             <option value="Postre">Postre</option>
                                             <option value="Bebida">Bebida</option>

@@ -54,6 +54,7 @@
                         <li><img class="icon" src="../../img/tipo-comida.png" alt=""><?php echo $row[8] ?></li>
                         <li><img class="icon" src="../../img/tipo-receta.png" alt=""><?php echo $row[7] ?></li>
                         <li><img class="icon" src="../../img/tipo-dieta.png" alt=""><?php echo $row[10] ?></li>
+                        <li><img class="icon" src="../../img/tiempo.png" alt=""><?php echo $row[9] ?></li>
                         <li><img class="icon" src="../../img/ocasion.png" alt=""><?php echo $row[6] ?></li>
                         <li><img class="icon" src="../../img/tiempo.png" alt=""><?php echo $row[5] ?></li>
                     </ul>
@@ -138,60 +139,6 @@
         <?php } ?>
     </div>
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <!--<section class="container comentarios">
-        <div class="row">
-            <form action="ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST">
-                <label>Comentarios</label>
-                <textarea name="comentario" id="comentario" cols="30" rows="10" class="form-control" placeholder="Coloque su comentario"></textarea>
-                <button type="submit" class="boton boton-amarillo">Enviar Comentario</button>
-            </form>
-        </div>
-        <div class="row">
-            <div class="com_seccion">
-            <table class="table table-hover" >                        
-                        <?php 
-                        $sel = $conn ->query("SELECT ra.texto, ra.fecha, concat_ws(' ', us.nombres, us.apellidos) as 'usuario'  FROM tblretroalimentacion as ra INNER JOIN tblusuario as us ON ra.usuarioid=us.usuarioid WHERE recetaid='$id' ");
-                        while ($fila = $sel -> fetch_assoc()) {
-                        ?>
-                        <tr>
-                            <td><?php echo $fila['usuario'] ?></td>
-                            <td><?php echo $fila['texto'] ?></td>
-                            <td><?php echo $fila['fecha'] ?></td>
-                        </tr>
-                        <?php } ?>
-            </table>
-            </div>
-        </div>
-    </section>-->
-    <footer class="footer py-4 bgcolor">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
-                <div class="col-lg-6 my-3 my-lg-0 text-lg-center text-center">
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto" src="../../img/twitter.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto" src="../../img/facebook.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto" src="../../img/instagram.svg" style="max-width: 75%"></i></a>
-                </div>
-                <div class="col-lg-3 text-lg-center text-center contac">
-                    <h3><a href="<?php echo $URL ?>vistas/contacto/contacto.php">Contáctenos</a></h3>
-                </div>
-            </div>
-        </div>
-    </footer>
-
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
@@ -199,3 +146,6 @@
 </body>
 
 </html>
+<?php
+    include '../../includes/footer.php';
+?>

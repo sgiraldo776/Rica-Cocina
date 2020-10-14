@@ -106,7 +106,10 @@
     <script src="sweetalert2.min.js"></script>
     <!--validacion de capos vacios-->
     <script type="text/javascript" src="../js/camposvacios.js"></script>
-     <!--validacion de capos vacios-->
+    <!--validacion de capos vacios-->
     
 </body>
 </html>
+<?php
+    include '../../includes/footer.php';
+?>
