@@ -107,6 +107,3 @@
     <!--validacion de capos vacios-->
 </body>
 </html>
-<?php
-    include '../../includes/footer.php';
-?>

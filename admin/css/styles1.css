@@ -356,14 +356,16 @@ h4 {
 .titulo {
     color: #813531;
     font-weight: 400;
-    font-size: 4rem;
+    font-size: 3.4rem;
     margin-top: 0.8rem;
 }
 
 .Persona {
     color: #777777;
     font-weight: 400;
-    font-size: 4rem;
+    font-size: 3.4rem;
+    margin-top: 0.8rem;
+    margin-left: 1rem;
 }
 
 .receta-img {
@@ -440,4 +442,8 @@ h4 {
 
 .perfil-img {
     text-align: center;
+}
+
+.contenido {
+    /* min-height: calc(100vh - # - #); */
 }
