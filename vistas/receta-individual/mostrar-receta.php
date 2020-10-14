@@ -54,7 +54,7 @@
                         <li><img class="icon" src="../../img/tipo-comida.png" alt=""><?php echo $row[8] ?></li>
                         <li><img class="icon" src="../../img/tipo-receta.png" alt=""><?php echo $row[7] ?></li>
                         <li><img class="icon" src="../../img/tipo-dieta.png" alt=""><?php echo $row[10] ?></li>
-                        <li><img class="icon" src="../../img/tiempo.png" alt=""><?php echo $row[9] ?></li>
+                        <li><img class="icon" src="../../img/padecimiento.png" alt=""><?php echo $row[9] ?></li>
                         <li><img class="icon" src="../../img/ocasion.png" alt=""><?php echo $row[6] ?></li>
                         <li><img class="icon" src="../../img/tiempo.png" alt=""><?php echo $row[5] ?></li>
                     </ul>
