@@ -170,7 +170,7 @@ if($validador == 0){
       $sql2="INSERT INTO tblcuenta (correoelectronico,password,tiporolid,estado,usuarioid) VALUES ('$correo', '$password', 2, 1, (SELECT usuarioid FROM tblusuario ORDER BY usuarioid DESC LIMIT 1))";
   
       if ($conn->query($sql2)) {
-        echo "<script>     location.href='form_usuario.php'; </script>";
+        echo "<script>     location.href='form_usuario.php?msg=1'; </script>";
       } else {
         $sql3="DELETE FROM tblusuario ORDER BY usuarioid DESC LIMIT 1";
         if ($conn->query($sql3)){

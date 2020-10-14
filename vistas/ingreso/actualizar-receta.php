@@ -48,7 +48,7 @@ if ($conn->query($sql) === TRUE) {
                 $i = count($utensilios);
             }
         }
-        echo "<script> location.href=' ../mis_recetas.php'; </script>";
+        echo "<script> location.href=' frm-actu-receta.php?recetaid=$idreceta&msg=1'; </script>";
     } else {
         echo "Error: Se actualizo la receta pero no los utensilios" . $sql3 . "<br>". $conn->error;
     }

@@ -16,6 +16,7 @@ include('../../../admin/conexion.php');
     <link rel="stylesheet" type="text/css" href="../../../admin/css/styles1.css">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="../../../img/favicon.png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body class="bgimg">
@@ -34,7 +35,43 @@ include('../../../admin/conexion.php');
         </div>
 
     </main>
+    <?php
+    if(isset($_GET['msg'])){
+        if ($_GET['msg']==1) {
+    ?>
 
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Hecho!',
+            text: 'Se ha enviado un mensaje a su correo, por favor revíselo',
+            confirmButtonText: "Entendido",
+        })
+        .then(resultado => {
+                if (resultado.value) {
+                    // Hicieron click en "Sí"
+                    //console.log("se elimina la venta");
+                    window.location.href="../../../index.php"
+                } 
+        });
+    </script>
+
+    <?php
+    }else{
+    ?>
+    <script>
+        Swal.fire({
+            icon: 'warning',
+            title: 'Oh no!',
+            text: 'No se pudo enviar el correo, verfique que lo haya escrito correctamente',
+            confirmButtonText: "Entendido",
+        })
+    </script>
+
+    <?php
+    }
+    }
+    ?>
 
     <!--JS de bootstrap-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

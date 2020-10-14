@@ -58,11 +58,9 @@ if($consulta == TRUE){
         $mail->CharSet = 'UTF-8';
         
         $mail->send();
-        echo "<script>alert('Se le envio un link de recuperacion a su correo, por favor reviselo')</script>";
-        echo "<script> location.href='frm-correo.php'</script>";
+        echo "<script> location.href='frm-correo.php?msg=1'</script>";
     } catch (Exception $e) {
-        echo "<script>alert('No se pudo enviar el correo')</script>";
-        echo "<script> location.href='frm-correo.php'</script>";
+        echo "<script> location.href='frm-correo.php?msg=2'</script>";
     }
 
 }else{

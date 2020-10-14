@@ -43,7 +43,7 @@ if ($conn->query($sql) === TRUE) {
       $i = count($utensilios);
     }
   }
-  echo "<script> location.href='../ingresar_receta.php'; </script>";
+  echo "<script> location.href='../ingresar_receta.php?msg=1'; </script>";
 } else {
   echo "Error: " . $sql . "<br>". $conn->error;
 }

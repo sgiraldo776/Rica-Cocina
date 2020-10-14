@@ -25,6 +25,8 @@
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
     <title>Rica Cocina</title>
 </head>
 
@@ -69,7 +71,7 @@
                                     <div class="col">
                                         <label for="">Ocación</label>
                                         <select name="ocacion" id="ocacion" class="form-control">
-                                            <option value="0" select-hidden disabled>-Seleccione-</option>
+                                            <option value="0" select-hidden disabled selected>-Seleccione-</option>
                                             <option value="cualquiera">Cualquiera</option>
                                             <option value="desayuno">Desayuno</option>
                                             <option value="almuerzo">Almuerzo</option>
@@ -181,7 +183,30 @@
             </div>
         </div>
     </main>
+    <?php
+    if(isset($_GET['msg'])){
+    ?>
 
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Hecho!',
+            text: 'Tu Receta ha sido registrada correctamente',
+            confirmButtonText: "Ver Mis Recetas",
+            
+        })
+        .then(resultado => {
+                if (resultado.value) {
+                    // Hicieron click en "Sí"
+                    //console.log("se elimina la venta");
+                    window.location.href="mis_recetas.php"
+                } 
+        });
+    </script>
+
+    <?php
+    }
+    ?>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">

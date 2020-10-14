@@ -25,9 +25,7 @@
         <link rel="icon" type="image/png" href="../img/favicon.png">
 
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-
-
-
+        
         <title>Registrarse</title>
     </head>
     <body>
@@ -117,7 +115,7 @@
                                         </div>
                                     </div>
                                     
-                                    <h5 class="cond-cont">La contraseña debe tener como mínimo un caracter especial, una mayúscula y un número. Tambien debe ser mayor a cinco digitos. Los caracteres especiales permitidos son @ / * = ? $ #
+                                    <h5 class="cond-cont">La contraseña debe tener como mínimo un caracter especial, una mayúscula y un número. Tambien debe ser mayor a cinco caracteres. Los caracteres especiales permitidos son @ / * = ? $ #
                                     </h5>
 
                                     <?php
@@ -209,7 +207,7 @@
         </div>
     </footer>
 
-            <?php
+    <?php
     if(isset($_GET['er'])){
     ?>
 
@@ -217,8 +215,30 @@
          Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'eL Correo Ya se encuentra Registrado',
-})
+            text: 'El Correo Ya se encuentra Registrado',
+    })
+    </script>
+
+    <?php
+    }
+    if(isset($_GET['msg'])){
+    ?>
+
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Hecho!',
+            text: 'Te has registrado correctamente',
+            confirmButtonText: "Iniciar Sesion",
+            
+        })
+        .then(resultado => {
+                if (resultado.value) {
+                    // Hicieron click en "Sí"
+                    //console.log("se elimina la venta");
+                    window.location.href="../vistas/login/iniciar_sesion.php"
+                } 
+        });
     </script>
 
     <?php
