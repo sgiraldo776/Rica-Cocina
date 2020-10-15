@@ -87,7 +87,7 @@ $(function(){
 document.getElementById("vot").addEventListener("submit", function(event){
     let hasError = false;
     
-    // obtenemos todos los input radio del grupo horario que esten chequeados
+    // obtenemos todos los input radio de la votacion
     // si no hay ninguno lanzamos alerta
     if(!document.querySelector('input[id="radio5"]:checked')) {
       if(!document.querySelector('input[id="radio4"]:checked')) {

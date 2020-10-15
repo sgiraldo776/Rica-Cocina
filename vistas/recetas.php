@@ -14,6 +14,8 @@
                 include '../includes/header-admin.php';
             }            
         }
+
+        $sql="SELECT"
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,26 +39,74 @@
             <nav class="col-md-3" id="nav-recetas">
                 <form action="recetas.php" name="add_form" method="post" enctype="multipart/form-data">
                     <fieldset>
-                        <label for="" class="lbl-form-receta">País: </label>
+                        <label for="" class="lbl-form-receta">Tipo Comida: </label>
+                        <select name="tipocomida" id="tipocomida" class="form-control">
+                            <option value="0">-Seleccione-</option>
+                            <?php 
+                                $sel = $conn ->query("SELECT * FROM tbltipocomida");
+                            
+                      		    while ($row=$sel->fetch_array()) {
+                                ?>
+                                <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                <?php	
+                                }
+                                ?>
+                        </select>
+                        <label for="" class="lbl-form-receta">Tipo de Dieta: </label>
+                        <select name="tipodieta" id="tipodieta" class="form-control">
+                            <option value="0">-Seleccione-</option>
+                            <?php 
+                                             $sel = $conn ->query("SELECT * FROM tbltipodieta");
+                            
+                      		                while ($row=$sel->fetch_array()) {
+                                            ?>
+                                            <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                            <?php	
+                                            }
+                                            ?>
+                        </select>
+                        <label for="" class="lbl-form-receta">Tipo Receta: </label>
+                        <select name="tiporeceta" id="tiporeceta" class="form-control">
+                            <option value="0">-Seleccione-</option>
+                            <option value="Indefinido">Indefinido</option>
+                            <option value="Plato">Plato</option>
+                            <option value="Postre">Postre</option>
+                            <option value="Bebida">Bebida</option>
+                            <option value="Snack">Snack</option>
+                        </select>
+                        <label for="" class="lbl-form-receta">Padecimiento: </label>
+                        <select name="padecimiento" id="padecimiento" class="form-control">
+                        <option value="0">-Seleccione-</option>
+                                <?php 
+                                    $sel = $conn ->query("SELECT * FROM tblpadecimiento");
+                            
+                      		        while ($row=$sel->fetch_array()) {
+                                    ?>
+                                    <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                    <?php	
+                                    }
+                                    ?>
+                        </select>
+                        <label for="" class="lbl-form-receta">Ocación: </label>
                         <select name="ocacion" id="ocacion" class="form-control">
-                            <option value="0" select-hidden disabled>-Seleccione-</option>
+                            <option value="0">-Seleccione-</option>
+                            <option value="cualquiera">Cualquiera</option>
                             <option value="desayuno">Desayuno</option>
                             <option value="almuerzo">Almuerzo</option>
                             <option value="cena">Cena</option>
                         </select>
                         <label for="" class="lbl-form-receta">País: </label>
-                        <select name="ocacion" id="ocacion" class="form-control">
-                            <option value="0" select-hidden disabled>-Seleccione-</option>
-                            <option value="desayuno">Desayuno</option>
-                            <option value="almuerzo">Almuerzo</option>
-                            <option value="cena">Cena</option>
-                        </select>
-                        <label for="" class="lbl-form-receta">País: </label>
-                        <select name="ocacion" id="ocacion" class="form-control">
-                            <option value="0" select-hidden disabled>-Seleccione-</option>
-                            <option value="desayuno">Desayuno</option>
-                            <option value="almuerzo">Almuerzo</option>
-                            <option value="cena">Cena</option>
+                        <select name="pais" id="pais" class="form-control">
+                            <option value="0">-Seleccione-</option>
+                                <?php 
+                                 $sel = $conn ->query("SELECT * FROM tblpais");
+                            
+                      		    while ($row=$sel->fetch_array()) {
+                                ?>
+                                <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                <?php	
+                                }
+                                ?>
                         </select>
                     </fieldset>
                     <input type="submit" value="Filtrar" class="boton boton-rojo form-control">

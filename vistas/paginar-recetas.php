@@ -3,7 +3,7 @@ include('../admin/conexion.php');
 $paginaActual = $_POST['partida'];
 
 $nroRecetas = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tblreceta where validar='2'"));
-$nroLotes = 3;
+$nroLotes = 25;
 $nroPaginas = ceil($nroRecetas/$nroLotes);
 $lista = '';
 $tabla = '';
