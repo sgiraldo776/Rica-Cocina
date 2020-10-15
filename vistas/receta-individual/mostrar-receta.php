@@ -16,7 +16,7 @@
         }
         $id=$_GET['recetaid'];
         
-        $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion' FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
+        $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion', re.usuarioid FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
 
         $row=$sel->fetch_array();
 ?>
@@ -110,14 +110,39 @@
             </div>
         </div>
         <br><br>
-
         
     </main>
+    <?php
+    if(isset($_SESSION['usuarioid'])){
+    if ($row[15] != $_SESSION['usuarioid']){
+    ?>
+    <div class="container col-10">
+            <form id="vot" action="ingresar_votacion.php?recetaid=<?php echo $id ?>" method="POST" name="addform">
+                <label>Votacion</label>
+                <p class="clasificacion">
+                    <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                    --><label id="estrella" for="radio1">★</label><!--
+                    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                    --><label id="estrella" for="radio2">★</label><!--
+                    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                    --><label id="estrella" for="radio3">★</label><!--
+                    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                    --><label id="estrella" for="radio4">★</label><!--
+                    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                    --><label id="estrella" for="radio5">★</label>
+                </p>
+                <button type="button" id="voto" class="boton boton-amarillo">Enviar Votacion</button>
+            </form>
+    </div><br>
+    <?php
+    }
+    }
+    ?>
     <div class="container col-10">
             <form action="ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST" name="add_form">
                 <label>Comentarios</label>
                 <textarea name="comentario" id="comentario" cols="60" rows="7" class="form-control" placeholder="Coloque su comentario"></textarea>
-                <button type="button" class="boton boton-amarillo">Enviar Comentario</button>
+                <button type="button" id="com" class="boton boton-amarillo">Enviar Comentario</button>
             </form>
     </div><br>
     <div class="comments-container container col-10">

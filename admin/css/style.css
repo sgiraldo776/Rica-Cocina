@@ -280,3 +280,36 @@ input#btn_enviar {
     background-color: #ffb80e;
     border-color: #e0a20f;
 }
+
+/* VOTACIONES */
+  #vot{
+    width: min-content;
+  }
+
+  #vot #estrella {
+    font-size: 5rem;
+  }
+  
+  input[type="radio"] {
+    display: none;
+  }
+  
+  #estrella {
+    color: #b4b4b4;
+  }
+  
+  .clasificacion {
+    display: flex;
+    direction: rtl;
+    unicode-bidi: bidi-override;
+  }
+  
+  #estrella:hover,
+  #estrella:hover ~ #estrella {
+    color: #813531;
+    cursor: pointer;
+  }
+  
+  input[type="radio"]:checked ~ #estrella {
+    color: #813531;
+  }

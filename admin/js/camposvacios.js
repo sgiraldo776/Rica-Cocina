@@ -68,7 +68,7 @@ function validarformulario3() {
 }
 
 $(function(){
-    $(".boton-amarillo").on('click', function() {
+    $("#com").on('click', function() {
         var formulario = document.add_form;
         if($('#comentario').val() !=""){
             formulario.submit();
@@ -79,6 +79,58 @@ $(function(){
                 text: 'No ha ingresado ningún comentario',
             });
             return false;
+        }
+});
+});
+
+$(function(){
+    $("#voto").on('click', function() {
+        var formulario = document.addform;
+        if($(!'#radio1').checked){
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ups...',
+                text: 'No ha seleccionado ninguna estrella',
+            });
+            return false;
+        }else{
+            if($(!'#radio2'.checked)){
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ups...',
+                    text: 'No ha seleccionado ninguna estrella',
+                });
+                return false;
+            }else{
+                if($(!'#radio3'.checked)){
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Ups...',
+                        text: 'No ha seleccionado ninguna estrella',
+                    });
+                    return false;
+                }else{
+                    if($(!'#radio4'.checked)){
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Ups...',
+                            text: 'No ha seleccionado ninguna estrella',
+                        });
+                        return false;
+                    }else{
+                        if($(!'#radio5'.checked)){
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Ups...',
+                                text: 'No ha seleccionado ninguna estrella',
+                            });
+                            return false;
+                        }else{
+                            formulario.submit();
+                        }
+                    }
+                }
+            }
         }
 });
 });
