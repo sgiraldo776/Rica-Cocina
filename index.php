@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="admin/css/styles1.css">
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -68,15 +70,57 @@
     <section class="contenedor">
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-3 buscador">
-                <form action="#">
-                    <input type="text" placeholder="Buscar" class="buscar">
-                    <button class="boton-buscar" type="submit">
-                            <img src="img/buscar.svg">
-                        </button>
+                <form action="index.php" method="POST">
+                    <input type="text" name="buscar" placeholder="Buscar" class="buscar">
+                    
+                    <button class="boton-buscar" type="submit" value="buscar">
+                        <img src="img/buscar.svg">
+                    </button>
                 </form>
             </div>
         </div>
     </section>
+    <br><br><br>
+    <div class="row">
+        <div class="col-12">
+            <div class="conenedor-recetas">
+
+
+                <?php
+                    include 'buscador.php'; ?>
+                <div class="col-md-9">
+                <div>
+                        <h1>Recetas</h1>
+                    </div>
+                    <div class="conenedor-recetas" id="agrega-registros">
+                    </div>
+                    <ul class="pagination justify-content-center" id="pagination"></ul>
+                </div>
+                <?php
+                    while ($row=mysqli_fetch_array($sql_query)) {
+                ?>
+                <div class="tarjetas">
+                    <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
+                        style="text-decoration: none">
+                        <div class="tarjeta-img">
+                            <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                            <img class="tarjeta-img tam-img"
+                                src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+
+                        </div>
+                        <div class="tarjeta-info">
+                            <h3 class="card-title"><?php echo $row[2] ?></h3>
+                            <p class="card-text">Por: <?php echo $row[3]?></p>
+                            <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
+                        </div>
+                    </a>
+                </div>
+                <?php	
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
     <main class="seccion contenedor">
         <div class="row">
             <div class="col-12 md-2 top">
@@ -92,11 +136,13 @@
                         while ($row=$sel->fetch_array()) {
                     ?>
                     <div class="tarjetas">
-                        <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>" style="text-decoration: none">
+                        <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
+                            style="text-decoration: none">
                             <div class="tarjeta-img">
                                 <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
-                                <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
-                                
+                                <img class="tarjeta-img tam-img"
+                                    src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+
                             </div>
                             <div class="tarjeta-info">
                                 <h3 class="card-title"><?php echo $row[2] ?></h3>
@@ -118,9 +164,12 @@
             <div class="row align-items-center">
                 <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
                 <div class="col-lg-6 my-3 my-lg-0 text-lg-center text-center">
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto" src="<?php echo $URL ?>img/twitter.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto" src="<?php echo $URL ?>img/facebook.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto" src="<?php echo $URL ?>img/instagram.svg" style="max-width: 75%"></i></a>
+                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto"
+                                src="<?php echo $URL ?>img/twitter.svg" style="max-width: 75%"></i></a>
+                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto"
+                                src="<?php echo $URL ?>img/facebook.svg" style="max-width: 75%"></i></a>
+                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto"
+                                src="<?php echo $URL ?>img/instagram.svg" style="max-width: 75%"></i></a>
                 </div>
                 <div class="col-lg-3 text-lg-center text-center contac">
                     <h3><a href="<?php echo $URL ?>vistas/contacto/contacto.php">Contáctenos</a></h3>
@@ -139,20 +188,24 @@
             text: 'Disfruta de más recetas',
             icon: 'success',
             confirmButtonText: 'OK'
-        })    
+        })
     </script>
 
     <?php
     }
     ?>
 
-
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+    <script src="vistas/js/paginacion.js"></script>
     
-
 </body>
 
 </html>
