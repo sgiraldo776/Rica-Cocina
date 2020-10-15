@@ -83,54 +83,34 @@ $(function(){
 });
 });
 
-$(function(){
-    $("#voto").on('click', function() {
-        var formulario = document.addform;
-        if($(!'#radio1').checked){
-            Swal.fire({
-                icon: 'warning',
-                title: 'Ups...',
-                text: 'No ha seleccionado ninguna estrella',
-            });
-            return false;
-        }else{
-            if($(!'#radio2'.checked)){
-                Swal.fire({
-                    icon: 'warning',
-                    title: 'Ups...',
-                    text: 'No ha seleccionado ninguna estrella',
-                });
-                return false;
-            }else{
-                if($(!'#radio3'.checked)){
-                    Swal.fire({
-                        icon: 'warning',
-                        title: 'Ups...',
-                        text: 'No ha seleccionado ninguna estrella',
-                    });
-                    return false;
-                }else{
-                    if($(!'#radio4'.checked)){
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Ups...',
-                            text: 'No ha seleccionado ninguna estrella',
-                        });
-                        return false;
-                    }else{
-                        if($(!'#radio5'.checked)){
-                            Swal.fire({
-                                icon: 'warning',
-                                title: 'Ups...',
-                                text: 'No ha seleccionado ninguna estrella',
-                            });
-                            return false;
-                        }else{
-                            formulario.submit();
-                        }
+
+document.getElementById("vot").addEventListener("submit", function(event){
+    let hasError = false;
+    
+    // obtenemos todos los input radio del grupo horario que esten chequeados
+    // si no hay ninguno lanzamos alerta
+    if(!document.querySelector('input[id="radio5"]:checked')) {
+      if(!document.querySelector('input[id="radio4"]:checked')) {
+        if(!document.querySelector('input[id="radio4"]:checked')) {
+            if(!document.querySelector('input[id="radio3"]:checked')) {
+                if(!document.querySelector('input[id="radio2"]:checked')) {
+                    if(!document.querySelector('input[id="radio1"]:checked')) {
+                        hasError = true;
                     }
                 }
             }
         }
-});
+      }
+    }
+    
+    if(hasError){
+        Swal.fire({
+            icon: 'warning',
+            title: 'Ups...',
+            text: 'No ha seleccionado ninguna estrella',
+        });
+    }
+    
+    // si hay algún error no efectuamos la acción submit del form
+    if(hasError) event.preventDefault();
 });

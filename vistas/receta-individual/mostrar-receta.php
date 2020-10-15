@@ -107,6 +107,10 @@
             <div class="row">
                 <h2 class="titulo">Receta echa por: </h2>
                 <h3 class="Persona"><?php echo $row[12]?></h3>
+            </div><br>
+            <div class="row">
+                        <h2 class="titulo">Puntuación de la receta:</h2>
+                        <h3 class="Persona"><?php echo $row[14] ?></h3>
             </div>
         </div>
         <br><br>
@@ -131,7 +135,7 @@
                     --><input id="radio5" type="radio" name="estrellas" value="1"><!--
                     --><label id="estrella" for="radio5">★</label>
                 </p>
-                <button type="button" id="voto" class="boton boton-amarillo">Enviar Votacion</button>
+                <button type="submit" id="voto" class="boton boton-amarillo">Enviar Votacion</button>
             </form>
     </div><br>
     <?php
