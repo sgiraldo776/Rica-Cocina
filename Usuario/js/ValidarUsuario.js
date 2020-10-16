@@ -64,51 +64,77 @@ $(function() {
             if ($('#apellido').val() != "") {
                 if ($('#fechanacimiento').val() != "") {
                     if ($('#correo').val() != "") {
-                        if ($('#municipio').val() != 0) {
                             if ($('#con1').val() != "") {
                                 if ($('#con2').val() != "") {
                                     if ($('#con1').val() == $('#con2').val()) {
                                         if ($('#Terminos').is(':checked')) {
                                             formulario.submit();
                                         } else {
-                                            alert("Error, No has aceptado los terminos y condiciones")
+                                            Swal.fire({
+                                                icon: 'warning',
+                                                title: 'Error',
+                                                text: 'No has aceptado los terminos y condiciones',
+                                            });
                                         }
                                     } else {
-                                        alert("Error, Las Contraseñas Ingresadas no son Iguales")
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Error',
+                                            text: 'Las Contraseñas Ingresadas no Coinciden',
+                                        });
                                     }
 
                                 } else {
-                                    alert("Error, No ha Confirmado la Contraseña");
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Ups...',
+                                        text: 'No ha Confirmado la Contraseña',
+                                    });
                                     $('#con2').focus().addClass("is-invalid");
                                 }
 
                             } else {
-                                alert("Error, No ha Ingresado la Contraseña");
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Ups...',
+                                    text: 'No ha Ingresado la Contraseña',
+                                });
                                 $('#con1').focus().addClass("is-invalid");
                             }
 
-                        } else {
-                            alert("Error, No ha seleccionado ningún Municipio");
-                            $('#municipio').focus().addClass("is-invalid");
-                        }
-
                     } else {
-                        alert("Error, No ha Ingresado el Correo");
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Ups...',
+                            text: 'No ha Ingresado el Correo',
+                        });
                         $('#correo').focus().addClass("is-invalid");
                     }
 
                 } else {
-                    alert("Error, No ha Ingresado La Fecha de Nacimiento");
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Ups...',
+                        text: 'No ha Ingresado la Fecha de Nacimiento',
+                    });
                     $('#fechanacimiento').focus().addClass("is-invalid");
                 }
 
             } else {
-                alert("Error, No ha Ingresado los Apellidos");
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ups...',
+                    text: 'No ha Ingresado los Apellidos',
+                });
                 $('#apellido').focus().addClass("is-invalid");
             }
 
         } else {
-            alert("Error, No ha Ingresado el Nombre");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ups...',
+                text: 'No ha Ingresado el Nombre',
+            });
             $('#nombre').focus().addClass("is-invalid");
             elemento.blur();
         }

@@ -71,7 +71,7 @@
                                     <div class="col">
                                         <label for="">Ocación</label>
                                         <select name="ocacion" id="ocacion" class="form-control">
-                                            <option value="0" select-hidden disabled selected>-Seleccione-</option>
+                                            <option value="0">-Seleccione-</option>
                                             <option value="cualquiera">Cualquiera</option>
                                             <option value="desayuno">Desayuno</option>
                                             <option value="almuerzo">Almuerzo</option>

@@ -14,55 +14,99 @@ $(function(){
                                                     if($('#utensilios').val() !=""){
                                                         formulario.submit();  
                                                     }else{
-                                                        alert("Error, No ha Seleccionado ningún Utensilio");
+                                                        Swal.fire({
+                                                            icon: 'warning',
+                                                            title: 'Ups...',
+                                                            text: 'No ha Seleccionado ningún Utensilio',
+                                                        });
                                                     }
                                             }else{
-                                                alert("Error, No ha Ingresado el Padecimiento");
+                                                Swal.fire({
+                                                    icon: 'warning',
+                                                    title: 'Ups...',
+                                                    text: 'No ha Ingresado el Padecimiento',
+                                                });
                                                 $('#padecimiento').focus().addClass("is-invalid");
                                             }
 
                                         }else{
-                                            alert("Error, No ha Ingresado el Tipo de Receta");
+                                            Swal.fire({
+                                                icon: 'warning',
+                                                title: 'Ups...',
+                                                text: 'No ha Ingresado el Tipo de Receta',
+                                            });
                                             $('#tiporeceta').focus().addClass("is-invalid");
                                         }
                                             
                                     }else {
-                                        alert("Error, No ha Ingresado el Pais");
+                                        Swal.fire({
+                                            icon: 'warning',
+                                            title: 'Ups...',
+                                            text: 'No ha Ingresado el País de la Receta',
+                                        });
                                         $('#pais').focus().addClass("is-invalid");
                                     }
 
                                 }else {
-                                    alert("Error, No ha Ingresado el Tipo de Dieta ");
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Ups...',
+                                        text: 'No ha Ingresado el Tipo de Dieta',
+                                    });
                                     $('#tipodieta').focus().addClass("is-invalid");
                                 }
 
                             }else {
-                            alert("Error, No ha Ingresado el tipo de Comida");
-                            $('#tipocomida').focus().addClass("is-invalid");
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Ups...',
+                                    text: 'No ha Ingresado el Tipo de Comida',
+                                });
+                                $('#tipocomida').focus().addClass("is-invalid");
                             }
                             
                         }else {
-                            alert("Error, No ha Ingresado la Cantidad de personas");
+                            Swal.fire({
+                                icon: 'warning',
+                                title: 'Ups...',
+                                text: 'No ha Ingresado la Cantidad de Personas',
+                            });
                             $('#cantidadpersona').focus().addClass("is-invalid");
                         }
 
                     }else {
-                        alert("Error, No ha Ingresado el Tiempo Preparacion");
+                        Swal.fire({
+                            icon: 'warning',
+                            title: 'Ups...',
+                            text: 'No ha Ingresado el Tiempo de Preparación',
+                        });
                         $('#tiempo').focus().addClass("is-invalid");
                     }
 
                 }else {
-                   alert("Error, No ha Ingresado la Preparacion");
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Ups...',
+                        text: 'No ha Ingresado la Preparación',
+                    });
                    $('#preparacion').focus().addClass("is-invalid");
                }
 
              }else {
-                alert("Error, No ha Ingresado los Ingredientes");
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Ups...',
+                    text: 'No ha Ingresado los Ingredientes',
+                });
                 $('#ingrediente').focus().addClass("is-invalid");
             }
 
          }else {
-            alert("Error, No ha Ingresado el Nombre de la receta");
+            Swal.fire({
+                icon: 'warning',
+                title: 'Ups...',
+                text: 'No ha Ingresado el Nombre de la Receta',
+            });
             $('#nomreceta').focus().addClass("is-invalid");
         }
         
