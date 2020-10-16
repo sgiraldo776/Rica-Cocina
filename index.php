@@ -67,60 +67,6 @@
             </a>
         </div>
     </section>
-    <section class="contenedor">
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-3 buscador">
-                <form action="index.php" method="POST">
-                    <input type="text" name="buscar" placeholder="Buscar" class="buscar">
-                    
-                    <button class="boton-buscar" type="submit" value="buscar">
-                        <img src="img/buscar.svg">
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-    <br><br><br>
-    <div class="row">
-        <div class="col-12">
-            <div class="conenedor-recetas">
-
-
-                <?php
-                    include 'buscador.php'; ?>
-                <div class="col-md-9">
-                <div>
-                        <h1>Recetas</h1>
-                    </div>
-                    <div class="conenedor-recetas" id="agrega-registros">
-                    </div>
-                    <ul class="pagination justify-content-center" id="pagination"></ul>
-                </div>
-                <?php
-                    while ($row=mysqli_fetch_array($sql_query)) {
-                ?>
-                <div class="tarjetas">
-                    <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
-                        style="text-decoration: none">
-                        <div class="tarjeta-img">
-                            <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
-                            <img class="tarjeta-img tam-img"
-                                src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
-
-                        </div>
-                        <div class="tarjeta-info">
-                            <h3 class="card-title"><?php echo $row[2] ?></h3>
-                            <p class="card-text">Por: <?php echo $row[3]?></p>
-                            <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
-                        </div>
-                    </a>
-                </div>
-                <?php	
-                    }
-                ?>
-            </div>
-        </div>
-    </div>
     <main class="seccion contenedor">
         <div class="row">
             <div class="col-12 md-2 top">
@@ -131,7 +77,7 @@
             <div class="col-12 md-2 top">
                 <div class="conenedor-recetas">
                     <?php 
-                        $sel = $conn ->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 3");
+                        $sel = $conn ->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 5");
                                 
                         while ($row=$sel->fetch_array()) {
                     ?>
@@ -158,6 +104,54 @@
             </div>
         </div>
     </main>
+    <div class="row seccion contenedor">
+        <div class="row">
+            <div class="col-12 md-2 tit-busc">
+                <h1>Buscar Recetas</h1>
+            </div>
+        </div>
+        <div class="contenedor">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-3 buscador busc">
+                    <form action="index.php" method="POST">
+                        <input type="text" name="buscar" placeholder="Buscar" class="buscar">
+                        
+                        <button class="boton-buscar" type="submit" value="buscar">
+                            <img src="img/buscar.svg">
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="conenedor-recetas">
+                <?php
+                    include 'buscador.php';
+                    while ($row=mysqli_fetch_array($sql_query)) {
+                ?>
+                <div class="tarjetas">
+                    <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
+                        style="text-decoration: none">
+                        <div class="tarjeta-img">
+                            <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                            <img class="tarjeta-img tam-img"
+                                src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+
+                        </div>
+                        <div class="tarjeta-info">
+                            <h3 class="card-title"><?php echo $row[2] ?></h3>
+                            <p class="card-text">Por: <?php echo $row[3]?></p>
+                            <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
+                        </div>
+                    </a>
+                </div>
+                <?php	
+                    }
+                ?>
+            </div>
+        </div>
+    </div>
+    
 
     <footer class="footer py-4 bgcolor">
         <div class="container">

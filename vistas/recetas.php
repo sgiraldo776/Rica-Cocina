@@ -14,8 +14,6 @@
                 include '../includes/header-admin.php';
             }            
         }
-
-        $sql="SELECT"
     ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,6 +28,7 @@
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Rica Cocina</title>
 </head>
 
@@ -109,7 +108,7 @@
                                 ?>
                         </select>
                     </fieldset>
-                    <input type="submit" value="Filtrar" class="boton boton-rojo form-control">
+                    <button type="button" id="filtrar" class="boton boton-rojo form-control">Filtrar</button>
                 </form>
             </nav><!-- Nav -->
             <div class="col-md-9">
