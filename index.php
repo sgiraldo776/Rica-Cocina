@@ -10,6 +10,7 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="admin/css/styles1.css">
+    <link rel="stylesheet" href="vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
     <link rel="icon" type="image/png" href="img/favicon.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Rica Cocina</title>
@@ -125,24 +126,24 @@
         </div>
         <div class="col-12">
             <div class="conenedor-recetas">
-            <link rel="stylesheet" href="../vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
                 <?php
                     include 'buscador.php';
-                    while ($row=mysqli_fetch_array($sql_query)) {
+                    // while ($row=mysqli_fetch_array($sql_query)) {
+                    while ($receta = $sql_query->fetch_object()) {
                 ?>
                 <div class="tarjetas">
-                    <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
+                    <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
                         style="text-decoration: none">
                         <div class="tarjeta-img">
                             <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
                             <img class="tarjeta-img tam-img"
-                                src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+                                src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
 
                         </div>
                         <div class="tarjeta-info">
-                            <h3 class="card-title"><?php echo $row[2] ?></h3>
-                            <p class="card-text">Por: <?php echo $row[3]?></p>
-                            <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
+                            <h3 class="card-title"><?= $receta->titulo; ?></h3>
+                            <p class="card-text">Por: <?= $receta->nombres; ?></p>
+                            <p class="card-text"> Puntaje: <?= $receta->votacionacomulada; ?></p>
                         </div>
                     </a>
                 </div>
@@ -151,12 +152,12 @@
                 ?>
             </div>
         </div>
-        <?php if(isset($renderizar) && $renderizar == true) : ?>
-            <div><?php $paginacion->render(); ?></div>
-        <?php endif; ?>
     </div>
+    <?php if(isset($renderizar) && $renderizar == true) : ?>
+                <div><?php $paginacion->render(); ?></div>
+    <?php endif; ?>
+    <br/>
     
-
     <footer class="footer py-4 bgcolor">
         <div class="container">
             <div class="row align-items-center">
@@ -202,7 +203,7 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
-    <script src="vistas/js/paginacion.js"></script>
+    <!-- <script src="vistas/js/paginacion.js"></script> -->
     
 </body>
 
