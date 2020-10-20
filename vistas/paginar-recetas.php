@@ -7,7 +7,7 @@ if(isset($_POST['tipocomida']) OR isset($_POST['tipodieta']) OR isset($_POST['ti
     if($_POST['tipocomida'] != 0){
         if($_POST['tipodieta'] != 0){
             if($_POST['tiporeceta'] != "0"){
-                if(($_POST['padecimiento'] != 0){
+                if($_POST['padecimiento'] != 0){
                     if($_POST['ocacion'] != "0"){
                         if($_POST['pais'] != 0){
                             $tipocomida=$_POST['tipocomida'];

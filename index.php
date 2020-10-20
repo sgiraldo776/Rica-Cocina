@@ -125,6 +125,7 @@
         </div>
         <div class="col-12">
             <div class="conenedor-recetas">
+            <link rel="stylesheet" href="../vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
                 <?php
                     include 'buscador.php';
                     while ($row=mysqli_fetch_array($sql_query)) {
@@ -150,6 +151,9 @@
                 ?>
             </div>
         </div>
+        <?php if(isset($renderizar) && $renderizar == true) : ?>
+            <div><?php $paginacion->render(); ?></div>
+        <?php endif; ?>
     </div>
     
 

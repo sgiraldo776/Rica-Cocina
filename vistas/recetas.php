@@ -28,6 +28,7 @@
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
+    <link rel="stylesheet" type="text/css" href="admin/css/styles1.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <title>Rica Cocina</title>
 </head>
@@ -36,7 +37,7 @@
 
         <div class="row text-center">
             <nav class="col-md-3" id="nav-recetas">
-                <form action="recetas.php" name="add_form" method="post" enctype="multipart/form-data">
+                <form action="filtrar_recetas.php" name="add_form" method="POST">
                     <fieldset>
                         <label for="" class="lbl-form-receta">Tipo Comida: </label>
                         <select name="tipocomida" id="tipocomida" class="form-control">
@@ -108,16 +109,40 @@
                                 ?>
                         </select>
                     </fieldset>
-                    <button type="button" id="filtrar" class="boton boton-rojo form-control">Filtrar</button>
+                    <!-- <button type="button" id="filtrar" class="boton boton-rojo form-control">Filtrar</button> -->
+                    <input type="submit" class="boton boton-rojo form-control" value="Filtrar" />
                 </form>
             </nav><!-- Nav -->
             <div class="col-md-9">
                 <div>
                     <h1>Recetas</h1>
                 </div>
-                <div class="conenedor-recetas" id="agrega-registros">
-                </div>
-                <ul class="pagination justify-content-center" id="pagination"></ul>
+            <div class="row">
+                <div class="col-12 md-2 top">
+                    <div class="conenedor-recetas">                
+                        <div class="tarjetas">
+                            <link rel="stylesheet" href="../vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
+                            <?php if(!empty($recetas)) :?>
+                                <div class="tarjeta-info">
+                                    <?php while($receta = $recetas->fetch_object()) : ?>
+                                        <a href="../vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
+                                            style="text-decoration: none">
+                                        <img class="tarjeta-img tam-img"
+                                            src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
+                                        <h3 class="card-title"><?= $receta->titulo; ?></h3> 
+                                        <p class="card-text">Por: <?= $receta->Nombre; ?></p> 
+                                        <p class="card-text">Puntaje: <?= $receta->votacionacomulada; ?></p><br/>    
+                                        </a>                                           
+                                    <?php endwhile; ?>
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>  
+                </div> 
+            </div>                
+                <?php if(isset($renderizar) && $renderizar == true) : ?>
+                    <div><?php $paginacion->render(); ?></div>
+                <?php endif; ?>
             </div>
         </div>
 
@@ -140,6 +165,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
-    <script src="js/paginacion.js"></script>
+    <!-- <script src="js/paginacion.js"></script> -->
+    <!-- <script src="js/filtros.js"></script> -->
 </body>
 </html>
