@@ -119,24 +119,24 @@
                 </div>
             <div class="row">
                 <div class="col-12 md-2 top">
-                    <div class="conenedor-recetas">                
-                        <div class="tarjetas">
-                            <link rel="stylesheet" href="../vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
-                            <?php if(!empty($recetas)) :?>
-                                <div class="tarjeta-info">
-                                    <?php while($receta = $recetas->fetch_object()) : ?>
-                                        <a href="../vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
-                                            style="text-decoration: none">
-                                        <img class="tarjeta-img tam-img"
-                                            src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
+                    <div class="conenedor-recetas">   
+                        <?php if(!empty($recetas)) :?>   
+                            <?php while($receta = $recetas->fetch_object()) : ?>          
+                            <div class="tarjetas">
+                                <a href="../vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>" style="text-decoration: none">
+                                <link rel="stylesheet" href="../vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
+                                    <div class="tarjeta-img">
+                                        <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
+                                    </div>
+                                    <div class="tarjeta-info">
                                         <h3 class="card-title"><?= $receta->titulo; ?></h3> 
                                         <p class="card-text">Por: <?= $receta->Nombre; ?></p> 
-                                        <p class="card-text">Puntaje: <?= $receta->votacionacomulada; ?></p><br/>    
-                                        </a>                                           
-                                    <?php endwhile; ?>
-                                </div>
-                            <?php endif; ?>
-                        </div>
+                                        <p class="card-text">Puntaje: <?= $receta->votacionacomulada; ?></p><br/> 
+                                    </div>
+                                </a> 
+                            </div>
+                            <?php endwhile; ?>
+                        <?php endif; ?>
                     </div>  
                 </div> 
             </div>                
