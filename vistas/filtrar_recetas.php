@@ -124,28 +124,553 @@
         }
         ////////////////////////////////// VALIDACION POR T_DIETA //////////////////////////////////
         if($_POST['tipodieta'] != 0){
-            $tipodieta=$_POST['tipodieta'];
-            $filtro="AND tipodietaid='$tipodieta'";
+            if($_POST['tipocomida'] != 0){
+                if($_POST['tiporeceta'] != "0"){
+                    if($_POST['padecimiento'] != 0){
+                        if($_POST['ocacion'] != "0"){
+                            if($_POST['pais'] != 0){
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $pais=$_POST['pais'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion' AND paisid='$pais'";
+                            }
+                            else{
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion'";
+                            }
+                        }
+                        elseif($_POST['pais'] != 0){
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $pais=$_POST['pais'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND paisid='$pais'";
+                        }
+                        else{
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento'";
+                        }
+                    }
+                    elseif($_POST['ocacion'] != "0"){
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $ocacion=$_POST['ocacion'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND ocacion='$ocacion'";
+                    }
+                    elseif($_POST['pais'] != 0){
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $pais=$_POST['pais'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND paisid='$pais'";
+                    }
+                    else{
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta'";
+                    }
+                }
+                elseif($_POST['padecimiento'] != 0){
+                    $tipocomida=$_POST['tipocomida'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND padecimientoid='$padecimiento'";
+                }
+                elseif($_POST['ocacion'] != "0"){
+                    $tipocomida=$_POST['tipocomida'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $ocacion=$_POST['ocacion'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND ocacion='$ocacion'";
+                }
+                elseif($_POST['pais'] != 0){
+                    $tipocomida=$_POST['tipocomida'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $pais=$_POST['pais'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND paisid='$pais'";
+                }
+                else{
+                    $tipocomida=$_POST['tipocomida'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta'";
+                }
+            }
+            elseif($_POST['tiporeceta'] != "0"){
+                $tipodieta=$_POST['tipodieta'];
+                $tiporeceta=$_POST['tiporeceta'];
+                $filtro="AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta'";
+            }
+            elseif($_POST['padecimiento'] != 0){
+                $tipodieta=$_POST['tipodieta'];
+                $padecimiento=$_POST['padecimiento'];
+                $filtro="AND tipodietaid='$tipodieta' AND padecimientoid='$padecimiento'";
+            }
+            elseif($_POST['ocacion'] != "0"){
+                $tipodieta=$_POST['tipodieta'];
+                $ocacion=$_POST['ocacion'];
+                $filtro="AND tipodietaid='$tipodieta' AND ocacion='$ocacion'";
+            }
+            elseif($_POST['pais'] != 0){
+                $tipodieta=$_POST['tipodieta'];
+                $pais=$_POST['pais'];
+                $filtro="AND tipodietaid='$tipodieta' AND paisid='$pais'";
+            }
+            else{
+                $tipodieta=$_POST['tipodieta'];
+                $filtro="AND tipodietaid='$tipodieta'";
+            }
         }
         ////////////////////////////////// VALIDACION POR T_RECETA //////////////////////////////////
         if($_POST['tiporeceta'] != "0"){
-            $tiporeceta=$_POST['tiporeceta'];
-            $filtro="AND tiporeceta='$tiporeceta'";
+            if($_POST['tipodieta'] != 0){
+                if($_POST['tipocomida'] != 0){
+                    if($_POST['padecimiento'] != 0){
+                        if($_POST['ocacion'] != "0"){
+                            if($_POST['pais'] != 0){
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $pais=$_POST['pais'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion' AND paisid='$pais'";
+                            }
+                            else{
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion'";
+                            }
+                        }
+                        elseif($_POST['pais'] != 0){
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $pais=$_POST['pais'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND paisid='$pais'";
+                        }
+                        else{
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento'";
+                        }
+                    }
+                    elseif($_POST['ocacion'] != "0"){
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $ocacion=$_POST['ocacion'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND ocacion='$ocacion'";
+                    }
+                    elseif($_POST['pais'] != 0){
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $pais=$_POST['pais'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND paisid='$pais'";
+                    }
+                    else{
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta'";
+                    }
+                }
+                elseif($_POST['padecimiento'] != 0){
+                    $tiporeceta=$_POST['tiporeceta'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $filtro="AND tiporeceta='$tiporeceta' AND tipodietaid='$tipodieta' AND padecimientoid='$padecimiento'";
+                }
+                elseif($_POST['ocacion'] != "0"){
+                    $tiporeceta=$_POST['tiporeceta'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $ocacion=$_POST['ocacion'];
+                    $filtro="AND tiporeceta='$tiporeceta' AND tipodietaid='$tipodieta' AND ocacion='$ocacion'";
+                }
+                elseif($_POST['pais'] != 0){
+                    $tiporeceta=$_POST['tiporeceta'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $pais=$_POST['pais'];
+                    $filtro="AND tiporeceta='$tiporeceta' AND tipodietaid='$tipodieta' AND paisid='$pais'";
+                }
+                else{
+                    $tiporeceta=$_POST['tiporeceta'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $filtro="AND tiporeceta='$tiporeceta' AND tipodietaid='$tipodieta'";
+                }
+            }
+            elseif($_POST['tipocomida'] != 0){
+                $tipocomida=$_POST['tipocomida'];
+                $tiporeceta=$_POST['tiporeceta'];
+                $filtro="AND tipocomidaid='$tipocomida' AND tiporeceta='$tiporeceta'";
+            }
+            elseif($_POST['padecimiento'] != 0){
+                $tiporeceta=$_POST['tiporeceta'];
+                $padecimiento=$_POST['padecimiento'];
+                $filtro="AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento'";
+            }
+            elseif($_POST['ocacion'] != "0"){
+                $tiporeceta=$_POST['tiporeceta'];
+                $ocacion=$_POST['ocacion'];
+                $filtro="AND tiporeceta='$tiporeceta' AND ocacion='$ocacion'";
+            }
+            elseif($_POST['pais'] != 0){
+                $tiporeceta=$_POST['tiporeceta'];
+                $pais=$_POST['pais'];
+                $filtro="AND tiporeceta='$tiporeceta' AND paisid='$pais'";
+            }
+            else{
+                $tiporeceta=$_POST['tiporeceta'];
+                $filtro="AND tiporeceta='$tiporeceta'";
+            }
         }
         ////////////////////////////////// VALIDACION POR T_PADECIMIENTO //////////////////////////////////
         if($_POST['padecimiento'] != 0){
-            $padecimiento=$_POST['padecimiento'];
-            $filtro="AND padecimientoid='$padecimiento'";
+            if($_POST['tipocomida'] != 0){
+                if($_POST['tiporeceta'] != "0"){
+                    if($_POST['tipodieta'] != 0){
+                        if($_POST['ocacion'] != "0"){
+                            if($_POST['pais'] != 0){
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $pais=$_POST['pais'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion' AND paisid='$pais'";
+                            }
+                            else{
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion'";
+                            }
+                        }
+                        elseif($_POST['pais'] != 0){
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $pais=$_POST['pais'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND paisid='$pais'";
+                        }
+                        else{
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento'";
+                        }
+                    }
+                    elseif($_POST['ocacion'] != "0"){
+                        $tipocomida=$_POST['tipocomida'];
+                        $padecimiento=$_POST['padecimiento'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $ocacion=$_POST['ocacion'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND padecimientoid='$padecimiento' AND tiporeceta='$tiporeceta' AND ocacion='$ocacion'";
+                    }
+                    elseif($_POST['pais'] != 0){
+                        $tipocomida=$_POST['tipocomida'];
+                        $padecimiento=$_POST['padecimiento'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $pais=$_POST['pais'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND padecimientoid='$padecimiento' AND tiporeceta='$tiporeceta' AND paisid='$pais'";
+                    }
+                    else{
+                        $tipocomida=$_POST['tipocomida'];
+                        $padecimiento=$_POST['padecimiento'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND padecimientoid='$padecimiento' AND tiporeceta='$tiporeceta'";
+                    }
+                }
+                elseif($_POST['tipodieta'] != 0){
+                    $tipocomida=$_POST['tipocomida'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND padecimientoid='$padecimiento' AND padecimientoid='$padecimiento'";
+                }
+                elseif($_POST['ocacion'] != "0"){
+                    $tipocomida=$_POST['tipocomida'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $ocacion=$_POST['ocacion'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND padecimientoid='$padecimiento' AND ocacion='$ocacion'";
+                }
+                elseif($_POST['pais'] != 0){
+                    $tipocomida=$_POST['tipocomida'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $pais=$_POST['pais'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND padecimientoid='$padecimiento' AND paisid='$pais'";
+                }
+                else{
+                    $tipocomida=$_POST['tipocomida'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND padecimientoid='$padecimiento'";
+                }
+            }
+            elseif($_POST['tiporeceta'] != "0"){
+                $padecimiento=$_POST['padecimiento'];
+                $tiporeceta=$_POST['tiporeceta'];
+                $filtro="AND padecimientoid='$padecimiento' AND tiporeceta='$tiporeceta'";
+            }
+            elseif($_POST['tipodieta'] != 0){
+                $tipodieta=$_POST['tipodieta'];
+                $padecimiento=$_POST['padecimiento'];
+                $filtro="AND tipodietaid='$tipodieta' AND padecimientoid='$padecimiento'";
+            }
+            elseif($_POST['ocacion'] != "0"){
+                $padecimiento=$_POST['padecimiento'];
+                $ocacion=$_POST['ocacion'];
+                $filtro="AND padecimientoid='$padecimiento' AND ocacion='$ocacion'";
+            }
+            elseif($_POST['pais'] != 0){
+                $padecimiento=$_POST['padecimiento'];
+                $pais=$_POST['pais'];
+                $filtro="AND padecimientoid='$padecimiento' AND paisid='$pais'";
+            }
+            else{
+                $padecimiento=$_POST['padecimiento'];
+                $filtro="AND padecimientoid='$padecimiento'";
+            }
         }
         ////////////////////////////////// VALIDACION POR OCACION //////////////////////////////////
         if($_POST['ocacion'] != "0"){
-            $ocacion=$_POST['ocacion'];
-            $filtro="AND ocacion='$ocacion'";
+            if($_POST['tipodieta'] != 0){
+                if($_POST['tipocomida'] != 0){
+                    if($_POST['padecimiento'] != 0){
+                        if($_POST['tiporeceta'] != "0"){
+                            if($_POST['pais'] != 0){
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $pais=$_POST['pais'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion' AND paisid='$pais'";
+                            }
+                            else{
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion'";
+                            }
+                        }
+                        elseif($_POST['pais'] != 0){
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $ocacion=$_POST['ocacion'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $pais=$_POST['pais'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND ocacion='$ocacion' AND padecimientoid='$padecimiento' AND paisid='$pais'";
+                        }
+                        else{
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $ocacion=$_POST['ocacion'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND ocacion='$ocacion' AND padecimientoid='$padecimiento'";
+                        }
+                    }
+                    elseif($_POST['tiporeceta'] != "0"){
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $ocacion=$_POST['ocacion'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND ocacion='$ocacion'";
+                    }
+                    elseif($_POST['pais'] != 0){
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['ocacion'];
+                        $pais=$_POST['pais'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND ocacion='$ocacion' AND paisid='$pais'";
+                    }
+                    else{
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['ocacion'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND ocacion='$ocacion'";
+                    }
+                }
+                elseif($_POST['padecimiento'] != 0){
+                    $tiporeceta=$_POST['ocacion'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $filtro="AND ocacion='$ocacion' AND tipodietaid='$tipodieta' AND padecimientoid='$padecimiento'";
+                }
+                elseif($_POST['tiporeceta'] != "0"){
+                    $tiporeceta=$_POST['tiporeceta'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $ocacion=$_POST['ocacion'];
+                    $filtro="AND ocacion='$ocacion' AND tipodietaid='$tipodieta' AND ocacion='$ocacion'";
+                }
+                elseif($_POST['pais'] != 0){
+                    $ocacion=$_POST['ocacion'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $pais=$_POST['pais'];
+                    $filtro="AND ocacion='$ocacion' AND tipodietaid='$tipodieta' AND paisid='$pais'";
+                }
+                else{
+                    $tiporeceta=$_POST['tiporeceta'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $filtro="AND tiporeceta='$tiporeceta' AND tipodietaid='$tipodieta'";
+                }
+            }
+            elseif($_POST['tipocomida'] != 0){
+                $ocacion=$_POST['ocacion'];
+                $tiporeceta=$_POST['tiporeceta'];
+                $filtro="AND tipocomidaid='$tipocomida' AND ocacion='$ocacion'";
+            }
+            elseif($_POST['padecimiento'] != 0){
+                $ocacion=$_POST['ocacion'];
+                $padecimiento=$_POST['padecimiento'];
+                $filtro="AND ocacion='$ocacion' AND padecimientoid='$padecimiento'";
+            }
+            elseif($_POST['tiporeceta'] != "0"){
+                $tiporeceta=$_POST['tiporeceta'];
+                $ocacion=$_POST['ocacion'];
+                $filtro="AND ocacion='$ocacion' AND ocacion='$ocacion'";
+            }
+            elseif($_POST['pais'] != 0){
+                $ocacion=$_POST['ocacion'];
+                $pais=$_POST['pais'];
+                $filtro="AND ocacion='$ocacion' AND paisid='$pais'";
+            }
+            else{
+                $ocacion=$_POST['ocacion'];
+                $filtro="AND ocacion='$ocacion'";
+            }
         }
         ////////////////////////////////// VALIDACION POR PAIS //////////////////////////////////
         if($_POST['pais'] != 0){
-            $pais=$_POST['pais'];
-            $filtro="AND paisid='$pais'";
+            if($_POST['tipodieta'] != 0){
+                if($_POST['tiporeceta'] != "0"){
+                    if($_POST['padecimiento'] != 0){
+                        if($_POST['ocacion'] != "0"){
+                            if($_POST['tipocomida'] != 0){
+                                $tipocomida=$_POST['tipocomida'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $pais=$_POST['pais'];
+                                $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion' AND paisid='$pais'";
+                            }
+                            else{
+                                $pais=$_POST['pais'];
+                                $tipodieta=$_POST['tipodieta'];
+                                $tiporeceta=$_POST['tiporeceta'];
+                                $padecimiento=$_POST['padecimiento'];
+                                $ocacion=$_POST['ocacion'];
+                                $filtro="AND paisid='$pais' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND ocacion='$ocacion'";
+                            }
+                        }
+                        elseif($_POST['tipocomida'] != 0){
+                            $tipocomida=$_POST['tipocomida'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $pais=$_POST['pais'];
+                            $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento' AND paisid='$pais'";
+                        }
+                        else{
+                            $pais=$_POST['pais'];
+                            $tipodieta=$_POST['tipodieta'];
+                            $tiporeceta=$_POST['tiporeceta'];
+                            $padecimiento=$_POST['padecimiento'];
+                            $filtro="AND paisid='$pais' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND padecimientoid='$padecimiento'";
+                        }
+                    }
+                    elseif($_POST['ocacion'] != "0"){
+                        $pais=$_POST['pais'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $ocacion=$_POST['ocacion'];
+                        $filtro="AND paisid='$pais' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND ocacion='$ocacion'";
+                    }
+                    elseif($_POST['tipocomida'] != 0){
+                        $tipocomida=$_POST['tipocomida'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $pais=$_POST['pais'];
+                        $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta' AND paisid='$pais'";
+                    }
+                    else{
+                        $pais=$_POST['pais'];
+                        $tipodieta=$_POST['tipodieta'];
+                        $tiporeceta=$_POST['tiporeceta'];
+                        $filtro="AND paisid='$pais' AND tipodietaid='$tipodieta' AND tiporeceta='$tiporeceta'";
+                    }
+                }
+                elseif($_POST['padecimiento'] != 0){
+                    $pais=$_POST['pais'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $padecimiento=$_POST['padecimiento'];
+                    $filtro="AND paisid='$pais' AND tipodietaid='$tipodieta' AND padecimientoid='$padecimiento'";
+                }
+                elseif($_POST['ocacion'] != "0"){
+                    $pais=$_POST['pais'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $ocacion=$_POST['ocacion'];
+                    $filtro="AND paisid='$pais' AND tipodietaid='$tipodieta' AND ocacion='$ocacion'";
+                }
+                elseif($_POST['tipocomida'] != 0){
+                    $tipocomida=$_POST['tipocomida'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $pais=$_POST['pais'];
+                    $filtro="AND tipocomidaid='$tipocomida' AND tipodietaid='$tipodieta' AND paisid='$pais'";
+                }
+                else{
+                    $pais=$_POST['pais'];
+                    $tipodieta=$_POST['tipodieta'];
+                    $filtro="AND paisid='$pais' AND tipodietaid='$tipodieta'";
+                }
+            }
+            elseif($_POST['tiporeceta'] != "0"){
+                $pais=$_POST['pais'];
+                $tiporeceta=$_POST['tiporeceta'];
+                $filtro="AND paisid='$pais' AND tiporeceta='$tiporeceta'";
+            }
+            elseif($_POST['padecimiento'] != 0){
+                $pais=$_POST['pais'];
+                $padecimiento=$_POST['padecimiento'];
+                $filtro="AND paisid='$pais' AND padecimientoid='$padecimiento'";
+            }
+            elseif($_POST['ocacion'] != "0"){
+                $pais=$_POST['pais'];
+                $ocacion=$_POST['ocacion'];
+                $filtro="AND paisid='$pais' AND ocacion='$ocacion'";
+            }
+            elseif($_POST['tipocomida'] != 0){
+                $tipocomida=$_POST['tipocomida'];
+                $pais=$_POST['pais'];
+                $filtro="AND tipocomidaid='$tipocomida' AND paisid='$pais'";
+            }
+            else{
+                $pais=$_POST['pais'];
+                $filtro="AND paisid='$pais'";
+            }
         }
 
         if(isset($filtro)){
@@ -192,44 +717,4 @@
     $conn->close();
     
 }
-
- 
-
-
-
-
-
-    // var_dump($_POST['opTipoComida']);
-    // die();
-
-    // if(isset($_POST['opcTipoComida'])){
-    /* if(isset($data->opTipoComida)){
-        
-        var_dump($data->opTipoComida);
-        die();
-
-
-        $tipoComida =  $_POST['opcTipoComida'];
-        $tipoComida = (INT)$tipoComida;
-
-        $sql = "SELECT * FROM tblreceta WHERE tipocomidaid = $tipoComida AND validar = 2;";
-        $recetas = $conn->query($sql);
-
-        if($recetas->num_rows > 0){
-            $respuesta = $recetas->fetch_object();
-            echo json_encode($respuesta);
-            exit;            
-        }
-
-    } else {
-        echo json_encode(array('errror' => TRUE, 'message' => 'El parametro de busqueda llego vacio'));
-        exit;
-    }
-    */
-
-
-
-
-
-
 ?>
