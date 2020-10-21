@@ -2,7 +2,6 @@
     require "admin/conexion.php";
     // Llamada al autoload de la libreria stefangabos/zebra_pagination
      require_once "vendor/stefangabos/zebra_pagination/Zebra_Pagination.php";
-    // require_once '../vendor/autoload.php';    
 
 if ($conn->connect_error) {
     die("Conección exitosa: " . $conn->connect_error);
@@ -24,6 +23,12 @@ if($buscar == "" ){
 }
 
 $renderizar = false;
+
+if($numero_elementos == 0){
+    $_SESSION['msg'] = 1;
+    require_once 'index.php';
+}
+
 if($numero_elementos > 0){
     // Determinamos la cantidad de elementos a mostrar en la página
     $numero_elementos_pagina = 4;

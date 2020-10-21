@@ -679,42 +679,42 @@
         }
 
         if($numero_elementos == 0){
-            echo "<script>alert('No hubo resultados')</script>";
+            header("Location:".'../vistas/recetas.php?msg=1');
         }
     }else{
         $numero_elementos = mysqli_num_rows(mysqli_query($conn,"SELECT * FROM tblreceta where validar='2'"));
         if($numero_elementos == 0){
-            echo "<script>alert('No hubo resultados')</script>";
+            header("Location:".'../vistas/recetas.php?msg=1');
         }
     } 
 
     $renderizar = false;
     if($numero_elementos > 0){
-    // Determinamos la cantidad de elementos a mostrar en la página
-    $numero_elementos_pagina = 2;
-    // Hacer paginación
-    $paginacion = new zebra_pagination();
-    // Numero total de elementos a paginar
-    $paginacion->records($numero_elementos);    
+        // Determinamos la cantidad de elementos a mostrar en la página
+        $numero_elementos_pagina = 2;
+        // Hacer paginación
+        $paginacion = new zebra_pagination();
+        // Numero total de elementos a paginar
+        $paginacion->records($numero_elementos);    
 
-    // Numero de elementos por página:
-    $paginacion->records_per_page($numero_elementos_pagina);
-    $page = $paginacion->get_page();  // Toma el número de la páginación por GET.
-    $empieza_aqui = (($page - 1) * $numero_elementos_pagina);
+        // Numero de elementos por página:
+        $paginacion->records_per_page($numero_elementos_pagina);
+        $page = $paginacion->get_page();  // Toma el número de la páginación por GET.
+        $empieza_aqui = (($page - 1) * $numero_elementos_pagina);
 
-    $sql = '';
-    if(!empty($filtro)){
-        $sql = "SELECT R.recetaid, R.titulo, concat_ws(' ', Nombres, apellidos) as Nombre, R.votacionacomulada, R.imagen FROM tblreceta AS R INNER JOIN tblusuario AS U ON R.usuarioid = U.usuarioid where validar='2' $filtro ORDER BY (R.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
-    }else{
-        $sql = "SELECT R.recetaid, R.titulo, concat_ws(' ', Nombres, apellidos) as Nombre, R.votacionacomulada, R.imagen FROM tblreceta AS R INNER JOIN tblusuario AS U ON R.usuarioid = U.usuarioid where validar='2' ORDER BY (R.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
-    }
-    $recetas = $conn->query($sql);
+        $sql = '';
+        if(!empty($filtro)){
+            $sql = "SELECT R.recetaid, R.titulo, concat_ws(' ', Nombres, apellidos) as Nombre, R.votacionacomulada, R.imagen FROM tblreceta AS R INNER JOIN tblusuario AS U ON R.usuarioid = U.usuarioid where validar='2' $filtro ORDER BY (R.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+        }else{
+            $sql = "SELECT R.recetaid, R.titulo, concat_ws(' ', Nombres, apellidos) as Nombre, R.votacionacomulada, R.imagen FROM tblreceta AS R INNER JOIN tblusuario AS U ON R.usuarioid = U.usuarioid where validar='2' ORDER BY (R.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+        }
+        $recetas = $conn->query($sql);
 
-    $renderizar = true;
+        $renderizar = true;
 
-    require_once '../vistas/recetas.php';
-    // header("location:recetas.php");
-    $conn->close();
-    
-}
+        require_once '../vistas/recetas.php';
+        // header("location:recetas.php");
+        $conn->close();
+    } 
+
 ?>

@@ -126,30 +126,29 @@
         </div>
         <div class="col-12">
             <div class="conenedor-recetas">
-                <?php
-                    include 'buscador.php';
-                    // while ($row=mysqli_fetch_array($sql_query)) {
-                    while ($receta = $sql_query->fetch_object()) {
-                ?>
-                <div class="tarjetas">
-                    <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
-                        style="text-decoration: none">
-                        <div class="tarjeta-img">
-                            <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
-                            <img class="tarjeta-img tam-img"
-                                src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
+                <?php include 'buscador.php'; ?>
+                <?php if(!isset($_SESSION['msg'])) : ?>
+                    <?php
+                        while ($receta = $sql_query->fetch_object()) :
+                    ?>
+                    <div class="tarjetas">
+                        <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
+                            style="text-decoration: none">
+                            <div class="tarjeta-img">
+                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                                <img class="tarjeta-img tam-img"
+                                    src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
 
-                        </div>
-                        <div class="tarjeta-info">
-                            <h3 class="card-title"><?= $receta->titulo; ?></h3>
-                            <p class="card-text">Por: <?= $receta->nombres; ?></p>
-                            <p class="card-text"> Puntaje: <?= $receta->votacionacomulada; ?></p>
-                        </div>
-                    </a>
-                </div>
-                <?php	
-                    }
-                ?>
+                            </div>
+                            <div class="tarjeta-info">
+                                <h3 class="card-title"><?= $receta->titulo; ?></h3>
+                                <p class="card-text">Por: <?= $receta->nombres; ?></p>
+                                <p class="card-text"> Puntaje: <?= $receta->votacionacomulada; ?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <?php endwhile; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>
@@ -193,6 +192,31 @@
     <?php
     }
     ?>
+
+<?php
+        if(isset($_SESSION['msg']) && $_SESSION['msg'] == '1') :
+    ?>
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Observación!',
+                text: 'No hubo resultados',
+                confirmButtonText: "Aceptar",
+                
+            })
+            .then(resultado => {
+                    if (resultado.value) {
+                        // Hicieron click en "Sí"
+                        //console.log("se elimina la venta");
+                        // window.location.href="mis_recetas.php"
+                    } 
+            });
+        </script>
+
+        <?php $_SESSION['msg'] = null; ?>
+
+    <?php endif; ?>
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
