@@ -9,10 +9,19 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <!--Importacion css bootstrap-->
-    <link rel="stylesheet" type="text/css" href="admin/css/styles1.css">
+    <!-- <link rel="stylesheet" type="text/css" href="admin/css/styles1.css"> -->
+
+    <link rel="stylesheet" href="./admin/css/styles1.css">
     <link rel="stylesheet" href="vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
     <link rel="icon" type="image/png" href="img/favicon.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function buscarSuegerencia(sugerencia){
+            $(".buscar").val(sugerencia);
+            $("#frm-buscar").submit();
+        }
+
+    </script>
     <title>Rica Cocina</title>
 </head>
 
@@ -39,8 +48,35 @@
         }
 
     ?>
-    <section class="sldier">
+    <section class="sldier contendor-slider">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="contenedor-slider_buscardor-receta">
+                <div class="row">
+                    <div class="col-12 md-2 tit-busc">
+                        <h1>Buscar Recetas</h1>
+                    </div>
+                </div>
+                <div class="contenedor">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-3 buscador busc">
+                            <form action="index.php" method="POST" id="frm-buscar">
+                                <input type="text" name="buscar" placeholder="Buscar" class="buscar">
+                                <button class="boton-buscar" type="submit" value="buscar">
+                                    <img src="img/buscar.svg">
+                                </button>
+
+                                <span class="buscador-sugerencia">Palabra sugeridas: 
+                                    <button type="button" onclick='buscarSuegerencia("cualquiera")' class='link-sugerencia'>Cualquiera</button>
+                                    <button type="button" onclick='buscarSuegerencia("Desayuno")' class='link-sugerencia'>Desayuno</button>
+                                    <button type="button" onclick='buscarSuegerencia("Almuerzo")' class='link-sugerencia'>Almuerzo</button>
+                                    <button type="button" onclick='buscarSuegerencia("Cena")' class='link-sugerencia'>Cena</button>
+                                
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+                </div>        
+            </div>       
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <img class="d-block w-100 sli-img" src="img/slider-06.jpg" alt="First slide">
@@ -66,64 +102,18 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+               
+        </div>    
+         
     </section>
-    <main class="seccion contenedor">
-        <div class="row">
-            <div class="col-12 md-2 top">
-                <h1>Top Recetas</h1>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12 md-2 top">
-                <div class="conenedor-recetas">
-                    <?php 
-                        $sel = $conn ->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 5");
-                                
-                        while ($row=$sel->fetch_array()) {
-                    ?>
-                    <div class="tarjetas">
-                        <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
-                            style="text-decoration: none">
-                            <div class="tarjeta-img">
-                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
-                                <img class="tarjeta-img tam-img"
-                                    src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
 
-                            </div>
-                            <div class="tarjeta-info">
-                                <h3 class="card-title"><?php echo $row[2] ?></h3>
-                                <p class="card-text">Por: <?php echo $row[3]?></p>
-                                <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
-                            </div>
-                        </a>
-                    </div>
-                    <?php	
-                        }
-                    ?>
-                </div>
-            </div>
-        </div>
-    </main>
     <div class="row seccion contenedor">
         <div class="row">
             <div class="col-12 md-2 tit-busc">
-                <h1>Buscar Recetas</h1>
+                <h1>Resultado Recetas</h1>
             </div>
         </div>
-        <div class="contenedor">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-3 buscador busc">
-                    <form action="index.php" method="POST">
-                        <input type="text" name="buscar" placeholder="Buscar" class="buscar">
-                        
-                        <button class="boton-buscar" type="submit" value="buscar">
-                            <img src="img/buscar.svg">
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
+
         <div class="col-12">
             <div class="conenedor-recetas">
                 <?php include 'buscador.php'; ?>
@@ -155,7 +145,47 @@
     <?php if(isset($renderizar) && $renderizar == true) : ?>
                 <div><?php $paginacion->render(); ?></div>
     <?php endif; ?>
-    <br/>
+
+    <main class="seccion contenedor">
+        <div class="row">
+            <div class="col-12 md-2 top">
+                <h1>Top Recetas</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 md-2 top">
+                <div class="conenedor-recetas">
+                    <?php 
+                        $sel = $conn->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 5");
+                                
+                        while ($row=$sel->fetch_array()) {
+                    ?>
+                    <div class="tarjetas">
+                        <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
+                            style="text-decoration: none">
+                            <div class="tarjeta-img">
+                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                                <img class="tarjeta-img tam-img"
+                                    src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+
+                            </div>
+                            <div class="tarjeta-info">
+                                <h3 class="card-title"><?php echo $row[2] ?></h3>
+                                <p class="card-text">Por: <?php echo $row[3]?></p>
+                                <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
+                            </div>
+                        </a>
+                    </div>
+                    <?php	
+                        }
+$conn->close();
+
+                    ?>
+                </div>
+            </div>
+        </div>
+    </main>
+
     
     <footer class="footer py-4 bgcolor">
         <div class="container">
@@ -227,6 +257,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+
+    
     <!-- <script src="vistas/js/paginacion.js"></script> -->
     
 </body>

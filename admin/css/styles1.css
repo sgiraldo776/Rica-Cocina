@@ -39,11 +39,10 @@ h3 {
 .tit-busc{
     align-items: center;
     text-align: center;
-    color: #813531;
+    color: white;
     font-size: 2rem;
     margin-top: 5rem;
 }
-
 
 
 /* Buscador */
@@ -69,7 +68,72 @@ h3 {
     cursor: not-allowed;
     margin-right: 0;
     margin-bottom: 5rem;
+    cursor: default;
     display: block;
+}
+
+.buscador-sugerencia{
+    display: block;
+    z-index: 2;
+    color: white;
+    margin: 10px 10px;
+    justify-self: start;
+    font-size: 16px;
+    cursor: default;
+    
+}
+
+.link-sugerencia{
+    margin: 0 10px;
+    color: white;
+    transition: all 0.3s;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
+.link-sugerencia:hover{
+    color: #ffb80e;
+    text-decoration: none;
+    border: none;
+    outline: none;
+}
+
+.link-sugerencia:focus{
+    outline: none;
+}
+
+/* Carrusel */
+
+
+.contendor-slider{
+    display: flex;
+    background:rgba(0, 0, 0, 0.2);
+}
+
+.contenedor-slider_buscardor-receta{
+    z-index: 2;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    background:rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel{
+    width: 100%;
+}
+
+.carousel-inner{
+    z-index: 1;
+}
+
+.carousel-control-next , .carousel-control-prev{
+    z-index: 2;
 }
 
 .buscar {
@@ -79,6 +143,11 @@ h3 {
     background-color: #d6d6d6;
     box-sizing: inherit;
     align-items: center;
+}
+
+.buscar:focus{
+    border: none;
+    outline: none;
 }
 
 
