@@ -16,12 +16,9 @@
     <link rel="icon" type="image/png" href="img/favicon.png">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-        function buscarSuegerencia(sugerencia){
-            $(".buscar").val(sugerencia);
-            $("#frm-buscar").submit();
-        }
-
+        var palabrasBuscar = [];    
     </script>
+
     <title>Rica Cocina</title>
 </head>
 
@@ -62,7 +59,7 @@
                             <form action="index.php" method="POST" id="frm-buscar">
                                 <input type="text" name="buscar" placeholder="Buscar" class="buscar">
                                 <button class="boton-buscar" type="submit" value="buscar">
-                                    <img src="img/buscar.svg">
+                                    <img src="img/lupa.svg" style="background:transparent">
                                 </button>
 
                                 <span class="buscador-sugerencia">Palabra sugeridas: 
@@ -70,8 +67,9 @@
                                     <button type="button" onclick='buscarSuegerencia("Desayuno")' class='link-sugerencia'>Desayuno</button>
                                     <button type="button" onclick='buscarSuegerencia("Almuerzo")' class='link-sugerencia'>Almuerzo</button>
                                     <button type="button" onclick='buscarSuegerencia("Cena")' class='link-sugerencia'>Cena</button>
-                                
                                 </span>
+                                <!-- <span class="palabras-busqueda">
+                                </span> -->
                             </form>
                         </div>
                     </div>
@@ -257,7 +255,44 @@ $conn->close();
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
     </script>
+    <script>
+        function buscarSuegerencia(sugerencia){
+            $(".buscar").val(sugerencia);
+            $("#frm-buscar").submit();
+        }
+        // function eliminarPalabra(indice){
+        //     palabrasBuscar.splice(indice, 1);
+        //     renderizarPalabras();
+        // }
+        // function renderizarPalabras(){
+        //         $(".palabras-buscar").empty();
+        //     palabrasBuscar.map((item, i) => {
+        //         $(".palabras-buscar").append("<span class='palabras-buscar'>"+item+'<a onClick="eliminarPalabra('+i+')" class="eliminar"></a></span>');
+        //     })
+        // }
+        
+        
+        $(function() {
+            $(".buscar").keyup(function (e) { 
+                $(".palabras-busqueda").empty();
+                var palabrasBuscar = $(".buscar").val().split(" ");
+                palabrasBuscar.map((item, i) => {
+                    $(".palabras-busqueda").append("<span class='palabras-buscar'>"+item+'<a onclick="eliminarPalabra('+i+')" class="eliminar"></a></span>');
+                })
+            });
+            $(".eliminar").click(function (e) { 
+                palabrasBuscar.splice(indice, 1);
+                $(".palabras-busqueda").empty();
+                var palabrasBuscar = $(".buscar").val().split(" ");
+                palabrasBuscar.map((item, i) => {
+                    $(".palabras-busqueda").append("<span class='palabras-buscar'>"+item+'<a onclick="eliminarPalabra('+i+')" class="eliminar"></a></span>');
+                })
+            });
+        });
 
+    
+        
+    </script>
     
     <!-- <script src="vistas/js/paginacion.js"></script> -->
     

@@ -175,8 +175,23 @@
                                         ?>
                                     </select>
                                 </div>
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <label for="">Agregar tags para una mejor busqueda</label>
+                                            <input type="text" onkeypress="pulsar(event)" name="tags" id="ingresar-tags" class="form-control" placeholder="ingresar las tags">
+                                            <input type="hidden" name="tags-agregadas" id="tags-enviar">                                            
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label for="">Tags Agregadas</label>
+                                        <div class="col-lg-12" id="tags-agregadas">
+                                            
+                                        </div>  
+                                    </div>
+                                </div>
                             </fieldset>
-                            <input type="button" value="Enviar" class="boton boton-amarillo">
+                            <input type="button" value="Enviar" class="boton boton-amarillo" id="boton-enviar">
                         </form>
                     </div>
                 </div>
@@ -212,6 +227,51 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
     </script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+    </script>
+
+    <script>
+        var cantPalabras = 0;
+        var palabras = [];
+
+        $(document).ready(function () {
+            $("#ingresar-tags").keyup(function (e) { 
+                if(e.keycode===13){
+                    alert("presiono enter")
+                }
+            });
+            $("#boton-enviar").click(function (e) { 
+                e.preventDefault();
+                let tagsEnviar = "";
+                for (let index = 0; index < palabras.length; index++) {
+                    tagsEnviar += palabras[index];
+                    if(index < palabras.length - 1){
+                        tagsEnviar += ",";
+                    }
+                }
+                $("#tags-enviar").val(tagsEnviar);
+                return true;
+            });
+        });
+
+        function pulsar(e) {
+            if (e.keyCode === 13 && e.target.value !="") {
+                let palabra = cantPalabras + "," +"'"+e.target.value+"'";
+                $("#tags-agregadas").append("<span class='tag' id='"+cantPalabras+"'>"+e.target.value+'<a onclick="eliminarPalabra('+palabra+')" class="eliminar text-dark"></a></span>');
+                cantPalabras+=1;
+                palabras.push(e.target.value);
+                console.log(palabras);
+                $("#ingresar-tags").val("");
+            }
+        }
+
+        function eliminarPalabra(e,palabra){
+            for (let index = 0; index < palabras.length; index++) {
+                if(palabras[index] === palabra){
+                    palabras.splice(index, 1);
+                }
+            }
+            $("#"+e).remove();
+        }
     </script>
 
     <!-- Validacion Formulario Receta -->
