@@ -19,7 +19,7 @@ $buscar = $_POST['buscar'];
 if($buscar == "" ){
     $numero_elementos = mysqli_num_rows(mysqli_query($conn,"SELECT re.recetaid FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' LIMIT 25;"));
 }else{
-    $numero_elementos = mysqli_num_rows(mysqli_query($conn,"SELECT re.recetaid FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' AND  MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') LIMIT 25;"));
+    $numero_elementos = mysqli_num_rows(mysqli_query($conn,"SELECT re.recetaid FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.ocacion LIKE '%" . $buscar . "%' or re.validar='2' AND  MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') LIMIT 25;"));
 }
 
 $renderizar = false;
@@ -45,7 +45,7 @@ if($numero_elementos > 0){
     if($buscar == "" ){
         $read = "SELECT re.recetaid, re.imagen, re.titulo, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
     }else{
-        $read = "SELECT re.recetaid, re.imagen, re.titulo, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' AND MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+        $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.ocacion LIKE '%" . $buscar . "%' or re.validar='2' AND MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
         // echo $read;
     }
 

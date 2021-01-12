@@ -8,9 +8,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <!--Importacion css bootstrap-->
-    <!-- <link rel="stylesheet" type="text/css" href="admin/css/styles1.css"> -->
-
     <link rel="stylesheet" href="./admin/css/styles1.css">
     <link rel="stylesheet" href="vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
     <link rel="icon" type="image/png" href="img/favicon.png">
@@ -68,8 +65,6 @@
                                     <button type="button" onclick='buscarSuegerencia("Almuerzo")' class='link-sugerencia'>Almuerzo</button>
                                     <button type="button" onclick='buscarSuegerencia("Cena")' class='link-sugerencia'>Cena</button>
                                 </span>
-                                <!-- <span class="palabras-busqueda">
-                                </span> -->
                             </form>
                         </div>
                     </div>
@@ -123,7 +118,6 @@
                         <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
                             style="text-decoration: none">
                             <div class="tarjeta-img">
-                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
                                 <img class="tarjeta-img tam-img"
                                     src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
 
@@ -132,6 +126,37 @@
                                 <h3 class="card-title"><?= $receta->titulo; ?></h3>
                                 <p class="card-text">Por: <?= $receta->nombres; ?></p>
                                 <p class="card-text"> Puntaje: <?= $receta->votacionacomulada; ?></p>
+                                <p>
+                                    <?php
+                                        if(isset($receta->tags)){
+                                            $buscar2 = explode(" ", $buscar);
+                                            $palabras = "";
+                                            $countPalabras = 0;
+                                            for ($i=0; $i < count($buscar2); $i++) {
+                                                $boTitulo = stristr($receta->titulo, $buscar2[$i]);
+                                                $boTags = stristr($receta->tags, $buscar2[$i]);
+                                                $boIngrediente = stristr($receta->ingrediente, $buscar2[$i]);
+                                                $ocacion = "cualquiera desayuno almuerzo cena";
+                                                $boOcacion = stristr($ocacion, $buscar2[$i]);
+
+                                                if($boTags === false and $boTitulo === false and $boIngrediente === false and $boOcacion === false){
+                                                    if($countPalabras == 0){
+                                                        $palabras = $palabras." ".$buscar2[$i];
+                                                    }else{
+                                                        $palabras = $palabras.", ".$buscar2[$i];
+                                                    }
+                                                    $countPalabras = $countPalabras + 1;
+                                                }
+                                            }
+                                            if($countPalabras > 0 ){
+                                                echo $countPalabras > 1 ? "No contiene las palabras ":"No contiene la palabra ";echo"<u>".$palabras."</u>";
+                                            }
+                                            $palabras = "";
+                                            $countPalabras = 0;
+                                        }
+                                        
+                                    ?>
+                                </p>
                             </div>
                         </a>
                     </div>
@@ -162,7 +187,6 @@
                         <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
                             style="text-decoration: none">
                             <div class="tarjeta-img">
-                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
                                 <img class="tarjeta-img tam-img"
                                     src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
 
@@ -176,7 +200,7 @@
                     </div>
                     <?php	
                         }
-$conn->close();
+                        $conn->close();
 
                     ?>
                 </div>
@@ -234,9 +258,7 @@ $conn->close();
             })
             .then(resultado => {
                     if (resultado.value) {
-                        // Hicieron click en "Sí"
-                        //console.log("se elimina la venta");
-                        // window.location.href="mis_recetas.php"
+                    
                     } 
             });
         </script>
@@ -260,17 +282,6 @@ $conn->close();
             $(".buscar").val(sugerencia);
             $("#frm-buscar").submit();
         }
-        // function eliminarPalabra(indice){
-        //     palabrasBuscar.splice(indice, 1);
-        //     renderizarPalabras();
-        // }
-        // function renderizarPalabras(){
-        //         $(".palabras-buscar").empty();
-        //     palabrasBuscar.map((item, i) => {
-        //         $(".palabras-buscar").append("<span class='palabras-buscar'>"+item+'<a onClick="eliminarPalabra('+i+')" class="eliminar"></a></span>');
-        //     })
-        // }
-        
         
         $(function() {
             $(".buscar").keyup(function (e) { 
@@ -293,9 +304,7 @@ $conn->close();
     
         
     </script>
-    
-    <!-- <script src="vistas/js/paginacion.js"></script> -->
-    
+
 </body>
 
 </html>

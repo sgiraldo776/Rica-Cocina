@@ -54,8 +54,6 @@
                                 <label for="">Preparación</label>
                                 <textarea name="preparacion" id="preparacion" cols="30" rows="10" class="form-control" placeholder="-1.Paso1 -2.Paso2 -3.Paso3 ..."></textarea>
 
-
-
                                 <div class="row">
                                     <div class="col">
                                         <label for="">Tiempo de preparación</label>
@@ -213,7 +211,6 @@
         .then(resultado => {
                 if (resultado.value) {
                     // Hicieron click en "Sí"
-                    //console.log("se elimina la venta");
                     window.location.href="mis_recetas.php"
                 } 
         });
@@ -273,8 +270,6 @@
             $("#"+e).remove();
         }
     </script>
-
-    <!-- Validacion Formulario Receta -->
     <script type="text/javascript" src="../admin/js/Validacionreceta.js"></script>
 </body>
 
