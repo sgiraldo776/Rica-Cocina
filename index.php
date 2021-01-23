@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,7 +23,6 @@
 <body>
     <?php
         include('admin/conexion.php');
-        session_start();
         if(!isset($_SESSION['rol'])){
             include 'includes/header-idx.php';
         }else{
@@ -40,7 +40,6 @@
         if(isset($_GET['estado'])){
             $estado=$_GET['estado'];
         }
-
     ?>
     <section class="sldier contendor-slider">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
