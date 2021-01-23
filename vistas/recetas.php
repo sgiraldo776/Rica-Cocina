@@ -35,118 +35,117 @@
 
 <body>
 
-        <div class="row text-center">
-            <nav class="col-md-3" id="nav-recetas">
-                <form action="filtrar_recetas.php" name="add_form" method="POST">
-                    <fieldset>
-                        <label for="" class="lbl-form-receta">Tipo Comida: </label>
-                        <select name="tipocomida" id="tipocomida" class="form-control">
-                            <option value="0">-Seleccione-</option>
-                            <?php 
-                                $sel = $conn ->query("SELECT * FROM tbltipocomida");
-                            
-                      		    while ($row=$sel->fetch_array()) {
-                                ?>
-                                <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                <?php	
-                                }
-                                ?>
-                        </select>
-                        <label for="" class="lbl-form-receta">Tipo de Dieta: </label>
-                        <select name="tipodieta" id="tipodieta" class="form-control">
-                            <option value="0">-Seleccione-</option>
-                            <?php 
-                                             $sel = $conn ->query("SELECT * FROM tbltipodieta");
-                            
-                      		                while ($row=$sel->fetch_array()) {
-                                            ?>
-                                            <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                            <?php	
-                                            }
-                                            ?>
-                        </select>
-                        <label for="" class="lbl-form-receta">Tipo Receta: </label>
-                        <select name="tiporeceta" id="tiporeceta" class="form-control">
-                            <option value="0">-Seleccione-</option>
-                            <option value="Indefinido">Indefinido</option>
-                            <option value="Plato">Plato</option>
-                            <option value="Postre">Postre</option>
-                            <option value="Bebida">Bebida</option>
-                            <option value="Snack">Snack</option>
-                        </select>
-                        <label for="" class="lbl-form-receta">Padecimiento: </label>
-                        <select name="padecimiento" id="padecimiento" class="form-control">
-                        <option value="0">-Seleccione-</option>
+        <div class="row text-center filtros">
+            <h1 class="mx-auto">Buscador de recetas</h1>
+            <nav class="col-md-12" id="nav-recetas">
+                <form action="filtrar_recetas.php" id="form-filtros" name="add_form" method="POST">
+                    <fieldset class="linea-filtros">
+                        <div class="mb-3 filtro">
+                            <label for="" class="lbl-form-receta">Tipo Comida: </label>
+                            <select name="tipocomida" id="tipocomida" class="form-control">
+                                <option value="0">-Seleccione-</option>
                                 <?php 
-                                    $sel = $conn ->query("SELECT * FROM tblpadecimiento");
-                            
-                      		        while ($row=$sel->fetch_array()) {
+                                    $sel = $conn ->query("SELECT * FROM tbltipocomida");
+                                
+                                    while ($row=$sel->fetch_array()) {
                                     ?>
                                     <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
                                     <?php	
                                     }
                                     ?>
-                        </select>
-                        <label for="" class="lbl-form-receta">Ocación: </label>
-                        <select name="ocacion" id="ocacion" class="form-control">
-                            <option value="0">-Seleccione-</option>
-                            <option value="cualquiera">Cualquiera</option>
-                            <option value="desayuno">Desayuno</option>
-                            <option value="almuerzo">Almuerzo</option>
-                            <option value="cena">Cena</option>
-                        </select>
-                        <label for="" class="lbl-form-receta">País: </label>
-                        <select name="pais" id="pais" class="form-control">
-                            <option value="0">-Seleccione-</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 filtro">
+                            <label for="" class="lbl-form-receta">Tipo de Dieta: </label>
+                            <select name="tipodieta" id="tipodieta" class="form-control">
+                                <option value="0">-Seleccione-</option>
                                 <?php 
-                                 $sel = $conn ->query("SELECT * FROM tblpais");
-                            
-                      		    while ($row=$sel->fetch_array()) {
-                                ?>
-                                <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                <?php	
-                                }
-                                ?>
-                        </select>
+                                                $sel = $conn ->query("SELECT * FROM tbltipodieta");
+                                
+                                                while ($row=$sel->fetch_array()) {
+                                                ?>
+                                                <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                                <?php	
+                                                }
+                                                ?>
+                            </select>
+                        </div>
+                        <div class="mb-3 filtro">
+                            <label for="" class="lbl-form-receta">Tipo Receta: </label>
+                            <select name="tiporeceta" id="tiporeceta" class="form-control">
+                                <option value="0">-Seleccione-</option>
+                                <option value="Indefinido">Indefinido</option>
+                                <option value="Plato">Plato</option>
+                                <option value="Postre">Postre</option>
+                                <option value="Bebida">Bebida</option>
+                                <option value="Snack">Snack</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 filtro">
+                            <label for="" class="lbl-form-receta">Padecimiento: </label>
+                            <select name="padecimiento" id="padecimiento" class="form-control">
+                            <option value="0">-Seleccione-</option>
+                                    <?php 
+                                        $sel = $conn ->query("SELECT * FROM tblpadecimiento");
+                                
+                                        while ($row=$sel->fetch_array()) {
+                                        ?>
+                                        <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                        <?php	
+                                        }
+                                        ?>
+                            </select>
+                        </div>
+                        <div class="mb-3 filtro">
+                            <label for="" class="lbl-form-receta">Ocación: </label>
+                            <select name="ocacion" id="ocacion" class="form-control">
+                                <option value="0">-Seleccione-</option>
+                                <option value="cualquiera">Cualquiera</option>
+                                <option value="desayuno">Desayuno</option>
+                                <option value="almuerzo">Almuerzo</option>
+                                <option value="cena">Cena</option>
+                            </select>
+                        </div>
+                        <div class="mb-3 filtro">
+                            <label for="" class="lbl-form-receta">País: </label>
+                            <select name="pais" id="pais" class="form-control">
+                                <option value="0">-Seleccione-</option>
+                                    <?php 
+                                    $sel = $conn ->query("SELECT * FROM tblpais");
+                                
+                                    while ($row=$sel->fetch_array()) {
+                                    ?>
+                                    <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                    <?php	
+                                    }
+                                    ?>
+                            </select>
+                        </div>
+
+                        <div class="mb-3 filtro">
+                            <label for="" class="lbl-form-receta">Ingredientes</label>
+                            <input type="text" onkeypress="pulsar(event)" name="tags" id="ingresar-ingredientes" class="form-control" placeholder="ingresar ingredientes">
+                            <input type="hidden" name="ingrecientes-agregados" id="ingredientes-buscar">                                            
+                        </div>
                     </fieldset>
-                    <!-- <button type="button" id="filtrar" class="boton boton-rojo form-control">Filtrar</button> -->
-                    <input type="submit" class="boton boton-rojo form-control" value="Filtrar" />
+                    <div class="row ingredientes">
+                        <label for="">Ingredientes a buscar</label>
+                        <div class="col-lg-12 ingredientes-agregados" id="ingredientes-agregados">
+                            
+                        </div>  
+                    </div>
+                    <button type="button" id="boton-enviar" class="boton boton-rojo btn-filtro">Filtrar</button>
+                    <!-- <input type="submit" class="boton boton-rojo btn-filtro" value="Filtrar" /> -->
                 </form>
             </nav><!-- Nav -->
-            <div class="col-md-9">
-                <div>
-                    <h1>Recetas</h1>
-                </div>
-            <div class="row">
-                <div class="col-12 md-2 top">
-                    <div class="conenedor-recetas">   
-                        <?php if(!empty($recetas)) :?>   
-                            <?php while($receta = $recetas->fetch_object()) : ?>          
-                            <div class="tarjetas">
-                                <a href="../vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>" style="text-decoration: none">
-                                <link rel="stylesheet" href="../vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
-                                    <div class="tarjeta-img">
-                                        <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
-                                    </div>
-                                    <div class="tarjeta-info">
-                                        <h3 class="card-title"><?= $receta->titulo; ?></h3> 
-                                        <p class="card-text">Por: <?= $receta->Nombre; ?></p> 
-                                        <p class="card-text">Puntaje: <?= $receta->votacionacomulada; ?></p><br/> 
-                                    </div>
-                                </a> 
-                            </div>
-                            <?php endwhile; ?>
-                        <?php endif; ?>
-                    </div>  
-                </div> 
-            </div>                
-                <?php if(isset($renderizar) && $renderizar == true) : ?>
-                    <div><?php $paginacion->render(); ?></div>
-                <?php endif; ?>
-            </div>
         </div>
 
-        <footer class="footer py-4 bgcolor">
+        <div class="row recetas" id="resultado-recetas">            
+            <h1>Resultados</h1>
+            <div class="row recetas-resultados"></div>
+        </div>
+
+    <footer class="footer py-4 bgcolor">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
@@ -188,5 +187,65 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"crossorigin="anonymous"></script>
     <!-- <script src="js/paginacion.js"></script> -->
     <!-- <script src="js/filtros.js"></script> -->
+
+    <script>
+        var cantPalabras = 0;
+        var palabras = [];
+
+        $(document).ready(function () {
+            $("#ingresar-tags").keyup(function (e) { 
+                if(e.keycode===13){
+                    alert("presiono enter")
+                    e.preventDefault();
+                }
+            });
+            $("#boton-enviar").click(function (e) { 
+                e.preventDefault();
+                let tagsEnviar = "";
+                for (let index = 0; index < palabras.length; index++) {
+                    tagsEnviar += palabras[index];
+                    if(index < palabras.length - 1){
+                        tagsEnviar += ",";
+                    }
+                }
+                $("#ingredientes-buscar").val(tagsEnviar);
+                
+
+                $.ajax({
+                    type: "POST",
+                    url: "recetas-filtro.php",
+                    data: $("#form-filtros").serialize(),
+                    success: function (response) {
+                        // alert(response);
+                        $('#resultado-recetas').html(response);
+                        // $('#resultado-recetas').load('recetas-filtro.php');
+                    }
+                });
+                return true;
+
+
+            });
+        });
+
+        function pulsar(e) {
+            if (e.keyCode === 13 && e.target.value !="") {
+                e.preventDefault();
+                let palabra = cantPalabras + " , " +"'"+e.target.value+"'";
+                $("#ingredientes-agregados").append("<span class='tag' id='"+cantPalabras+"'>"+e.target.value+'<a onclick="eliminarPalabra('+palabra+')" class="eliminar text-dark"></a></span>');
+                cantPalabras+=1;
+                palabras.push(e.target.value);
+                $("#ingresar-ingredientes").val("");
+            }
+        }
+
+        function eliminarPalabra(e,palabra){
+            for (let index = 0; index < palabras.length; index++) {
+                if(palabras[index] === palabra){
+                    palabras.splice(index, 1);
+                }
+            }
+            $("#"+e).remove();
+        }
+    </script>
 </body>
 </html>
