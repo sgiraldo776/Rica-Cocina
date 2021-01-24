@@ -74,6 +74,37 @@ if(isset($_POST['ingrecientes-agregados'])){
                                     <h3 class="card-title"><?= $receta->titulo; ?></h3> 
                                     <p class="card-text">Por: <?= $receta->nombres; ?></p> 
                                     <p class="card-text">Puntaje: <?= $receta->votacionacomulada; ?></p><br/> 
+                                    <p>
+                                        <?php
+                                            if(isset($receta->tags) and !empty($_POST['ingrecientes-agregados'])){
+                                                $buscar2 = explode(" ", $_POST['ingrecientes-agregados']);
+                                                $palabras = "";
+                                                $countPalabras = 0;
+                                                for ($i=0; $i < count($buscar2); $i++) {
+                                                    $boTitulo = stristr($receta->titulo, $buscar2[$i]);
+                                                    $boTags = stristr($receta->tags, $buscar2[$i]);
+                                                    $boIngrediente = stristr($receta->ingrediente, $buscar2[$i]);
+                                                    $ocacion = "cualquiera desayuno almuerzo cena";
+                                                    $boOcacion = stristr($ocacion, $buscar2[$i]);
+
+                                                    if($boTags === false and $boTitulo === false and $boIngrediente === false and $boOcacion === false){
+                                                        if($countPalabras == 0){
+                                                            $palabras = $palabras." ".$buscar2[$i];
+                                                        }else{
+                                                            $palabras = $palabras.", ".$buscar2[$i];
+                                                        }
+                                                        $countPalabras = $countPalabras + 1;
+                                                    }
+                                                }
+                                                if($countPalabras > 0 ){
+                                                    echo $countPalabras > 1 ? "No contiene las palabras ":"No contiene la palabra ";echo"<u>".$palabras."</u>";
+                                                }
+                                                $palabras = "";
+                                                $countPalabras = 0;
+                                            }
+                                            
+                                        ?>
+                                    </p>
                                 </div>
                             </a> 
                         </div>

@@ -23,7 +23,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="../admin/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="../img/favicon.png">
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../admin/css/styles1.css">
@@ -142,8 +142,113 @@
 
         <div class="row recetas" id="resultado-recetas">            
             <h1>Resultados</h1>
-            <div class="row recetas-resultados"></div>
-        </div>
+            <div class="row recetas-resultados">
+                <?php
+                    require_once "../vendor/stefangabos/zebra_pagination/Zebra_Pagination.php";
+                    $buscar = $_POST['buscar'];
+
+                    // Hallamos el número total de elementos en la consualta:
+                    if($buscar == "" ){
+                        $numero_elementos = mysqli_num_rows(mysqli_query($conn,"SELECT re.recetaid FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' LIMIT 25;"));
+                        // echo "SELECT re.recetaid FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' LIMIT 25;";
+                    }else{
+                        $numero_elementos = mysqli_num_rows(mysqli_query($conn,"SELECT re.recetaid FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.ocacion LIKE '%" . $buscar . "%' or re.validar='2' AND  MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') LIMIT 25;"));
+                        // echo "SELECT re.recetaid FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.ocacion LIKE '%" . $buscar . "%' or re.validar='2' AND  MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') LIMIT 25;";
+                    }
+
+                    $renderizar = false;
+
+                    if($numero_elementos > 0){
+                        // Determinamos la cantidad de elementos a mostrar en la página
+                        $numero_elementos_pagina = 4;
+                        // Hacer paginación
+                        $paginacion = new zebra_pagination();
+                        // Numero total de elementos a paginar
+                        $paginacion->records($numero_elementos);    
+                        // Numero de elementos por página:
+                        $paginacion->records_per_page($numero_elementos_pagina);
+                        $page = $paginacion->get_page();  // Toma el número de la páginación por GET.
+                        $empieza_aqui = (($page - 1) * $numero_elementos_pagina);
+
+                        // $read = "SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' AND titulo LIKE '%" . $buscar . "%' LIMIT 25";
+                        if($buscar == "" ){
+                            $read = "SELECT re.recetaid, re.imagen, re.titulo, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+                        }else{
+                            $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.ocacion LIKE '%" . $buscar . "%' or re.validar='2' AND MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+                            // echo $read;
+                        }
+
+                        $sql_query= mysqli_query($conn,$read);
+                        // echo $read;
+                        $renderizar = true;
+                    }else{
+                        echo "No hay resultados";
+                    }
+
+                ?>
+                <div class="col-12">
+                    <div class="contenedor-recetas">
+                        <?php
+                            while ($receta = $sql_query->fetch_object()) :
+                        ?>
+                        <div class="tarjetas">
+                            <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
+                                style="text-decoration: none">
+                                <div class="tarjeta-img">
+                                    <img class="tarjeta-img tam-img"
+                                        src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $receta->imagen ) ?>">
+
+                                </div>
+                                <div class="tarjeta-info">
+                                    <h3 class="card-title"><?= $receta->titulo; ?></h3>
+                                    <p class="card-text">Por: <?= $receta->nombres; ?></p>
+                                    <p class="card-text"> Puntaje: <?= $receta->votacionacomulada; ?></p>
+                                    <p>
+                                        <?php
+                                            if(isset($receta->tags)){
+                                                $buscar2 = explode(" ", $buscar);
+                                                $palabras = "";
+                                                $countPalabras = 0;
+                                                for ($i=0; $i < count($buscar2); $i++) {
+                                                    $boTitulo = stristr($receta->titulo, $buscar2[$i]);
+                                                    $boTags = stristr($receta->tags, $buscar2[$i]);
+                                                    $boIngrediente = stristr($receta->ingrediente, $buscar2[$i]);
+                                                    $ocacion = "cualquiera desayuno almuerzo cena";
+                                                    $boOcacion = stristr($ocacion, $buscar2[$i]);
+
+                                                    if($boTags === false and $boTitulo === false and $boIngrediente === false and $boOcacion === false){
+                                                        if($countPalabras == 0){
+                                                            $palabras = $palabras." ".$buscar2[$i];
+                                                        }else{
+                                                            $palabras = $palabras.", ".$buscar2[$i];
+                                                        }
+                                                        $countPalabras = $countPalabras + 1;
+                                                    }
+                                                }
+                                                if($countPalabras > 0 ){
+                                                    echo $countPalabras > 1 ? "No contiene las palabras ":"No contiene la palabra ";echo"<u>".$palabras."</u>";
+                                                }
+                                                $palabras = "";
+                                                $countPalabras = 0;
+                                            }
+                                            
+                                        ?>
+                                    </p>
+                                </div>
+                            </a>
+                        </div>
+                        <?php endwhile; ?>
+    
+                    </div>
+                </div>
+            </div>
+            <?php if(isset($renderizar) && $renderizar == true) : ?>
+                        <div><?php $paginacion->render(); ?></div>
+            <?php endif; ?>
+                    
+                    
+        <!-- </div> -->
+    </div>
 
     <footer class="footer py-4 bgcolor">
         <div class="container">

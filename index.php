@@ -52,7 +52,7 @@
                 <div class="contenedor">
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-3 buscador busc">
-                            <form action="index.php" method="POST" id="frm-buscar">
+                            <form action="vistas/recetas.php" method="POST" id="frm-buscar">
                                 <input type="text" name="buscar" placeholder="Buscar" class="buscar">
                                 <button class="boton-buscar" type="submit" value="buscar">
                                     <img src="img/lupa.svg" style="background:transparent">
@@ -99,7 +99,7 @@
          
     </section>
 
-    <div class="row seccion contenedor">
+    <!-- <div class="row seccion contenedor">
         <div class="row">
             <div class="col-12 md-2 tit-busc">
                 <h1>Resultado Recetas</h1>
@@ -107,7 +107,7 @@
         </div>
 
         <div class="col-12">
-            <div class="conenedor-recetas">
+            <div class="contenedor-recetas">
                 <?php include 'buscador.php'; ?>
                 <?php if(!isset($_SESSION['msg'])) : ?>
                     <?php
@@ -166,7 +166,7 @@
     </div>
     <?php if(isset($renderizar) && $renderizar == true) : ?>
                 <div><?php $paginacion->render(); ?></div>
-    <?php endif; ?>
+    <?php endif; ?> -->
 
     <main class="seccion contenedor">
         <div class="row">
@@ -176,7 +176,7 @@
         </div>
         <div class="row">
             <div class="col-12 md-2 top">
-                <div class="conenedor-recetas">
+                <div class="contenedor-recetas">
                     <?php 
                         $sel = $conn->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 5");
                                 
