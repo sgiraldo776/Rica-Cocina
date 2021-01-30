@@ -14,7 +14,7 @@
                 include '../includes/header-admin.php';
             }            
         }
-        if($_SESSION['premium'] == true){
+        if($_SESSION['premium'] == false){
             $disabled = "disabled='true' title='Paga una suscripción para usar este filtro'";
         }else{
             $disabled = "";
@@ -344,6 +344,8 @@
         var palabras = [];
         $(".mostrar-filtro").hide();
         $(".caja-blanca").show();
+        $(".recetas").hide();
+        $(".footer").hide();
         
         $(document).ready(function () {
             $("#ingresar-tags").keyup(function (e) { 
@@ -356,12 +358,16 @@
                 e.preventDefault();
                 $(".caja-blanca").show();
                 $(".mostrar-filtro").hide();
+                $(".recetas").hide();
+                $(".footer").hide();
             });
 
             $("#ocultar-filtros").click(function (e) { 
                 e.preventDefault();
                 $(".mostrar-filtro").show();
                 $(".caja-blanca").hide();
+                $(".recetas").show();
+                $(".footer").show();
             });
 
             $("#boton-enviar").click(function (e) { 

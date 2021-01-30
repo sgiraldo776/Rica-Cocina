@@ -698,6 +698,9 @@ h4 {
         margin: 0;
 
     }
+    .sldier{
+        background-color:white;
+    }
 
     .filtros{
         padding-bottom: 0px;
@@ -707,6 +710,7 @@ h4 {
         justify-content: space-around;
         width: 100%;
         margin-bottom: 20px;
+        height: 100%;
     }
 
     .filtros > h1{
@@ -724,9 +728,13 @@ h4 {
     .caja-blanca{
         background-color: white !important;
         z-index: 5 !important;
+        /* min-height: 100vh; */
+        height: 100%;
+        /* position: absolute; */
+        /* overflow: hidden; */
     }
 
-    .carousel-inner, .carousel-control-next, .carousel-control-prev{
+    .caja-blanca >.carousel-inner, .carousel-control-next, .carousel-control-prev{
         display: none;
     }
     
@@ -740,6 +748,8 @@ h4 {
 
     .caja-ingredientes{
         padding: 0px;
+        width: 100%;
+        background-color: white;
     }
 
     .caja-ingredientes > div > label {
