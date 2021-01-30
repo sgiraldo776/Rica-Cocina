@@ -47,7 +47,7 @@
         <section class="sldier contendor-slider">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="row text-center filtros">
-                <h1 class="mx-auto">Buscador de recetas</h1>
+                <h1 class="mx-auto text-white">Buscador de recetas</h1>
                 <nav class="col-md-12" id="nav-recetas">
                     <form action="filtrar_recetas.php" id="form-filtros" name="add_form" method="POST">
                         <fieldset class="linea-filtros">
@@ -66,7 +66,7 @@
                                         ?>
                                 </select>
                             </div>
-                            <div class="mb-3 filtro">
+                            <div class="mb-3 col-lg-2 filtro">
                                 <label for="" class="lbl-form-receta">Tipo de Dieta: </label>
                                 <select name="tipodieta" id="tipodieta" class="form-control" <?php echo $disabled; ?>>
                                     <option value="0">-Seleccione-</option>
@@ -92,7 +92,7 @@
                                     <option value="Snack">Snack</option>
                                 </select>
                             </div>
-                            <div class="mb-3 filtro">
+                            <div class="mb-3 col-lg-2 filtro">
                                 <label for="" class="lbl-form-receta">Padecimiento: </label>
                                 <select name="padecimiento" id="padecimiento" class="form-control" <?php echo $disabled; ?>>
                                 <option value="0">-Seleccione-</option>
