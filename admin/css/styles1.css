@@ -343,9 +343,6 @@ opacity: 1;
     margin-top: 20px;
 }
 
-
-
-
 .filtro label{
     font-family: 13px;
     color: white;
@@ -355,10 +352,10 @@ opacity: 1;
 .lbl-form-receta{
     font-family: 13px;
 }
-
+/* 
 #pais{
     width: 150px !important;
-}
+} */
 /* 
 .ingredientes{
     display: flex;
@@ -376,6 +373,8 @@ opacity: 1;
     min-height: 50px;
     background-color: white;
     border-radius: 4px;
+    border:1px solid #ccc;
+    /* margin: 10px; */
 }
 
 /* form control */
@@ -667,8 +666,83 @@ h4 {
 }
 .contenedor-ingredientes > label{
     color:white;
+
+}
+
+.contenedor-ingredientes {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
 }
 
 .caja-ingredientes{
     padding: 0px 40px;
+    transition: all 0.3s;
+}
+
+.ocultar{
+    top:-1000px;
+    position: absolute;
+    opacity: 0;
+}
+
+@media (max-width: 1024px) {
+    .linea-filtros {
+        display: flex;
+        background-color: white !important;
+        flex-direction: column;
+        justify-content: space-evenly;
+        z-index: 2;
+        width: 100%;
+        padding: 0px;
+        margin: 0;
+
+    }
+
+    .filtros{
+        padding-bottom: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        padding-top: 0px;
+        justify-content: space-around;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .filtros > h1{
+        width: 100%;
+        height: 50px;
+        background: white;
+    }
+    .nav-recetas{
+        padding: 0px;
+    }
+
+    .linea-filtros div > label{
+        color:black;
+    }
+    .caja-blanca{
+        background-color: white !important;
+        z-index: 5 !important;
+    }
+
+    .carousel-inner, .carousel-control-next, .carousel-control-prev{
+        display: none;
+    }
+    
+    .recetas{
+        z-index: 1;
+    }
+
+    .btn-filtro{
+        margin-bottom: 10px;
+    }
+
+    .caja-ingredientes{
+        padding: 0px;
+    }
+
+    .caja-ingredientes > div > label {
+        color:black;
+    }
 }

@@ -41,17 +41,14 @@
 </head>
 
 <body>
-
-        
-
-        <section class="sldier contendor-slider">
+    <section class="sldier contendor-slider caja-blanca">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="row text-center filtros">
-                <h1 class="mx-auto text-white">Buscador de recetas</h1>
-                <nav class="col-md-12" id="nav-recetas">
+                <h1 class="mx-auto">Buscador de recetas</h1>
+                <nav class="col-md-12 nav-recetas" id="nav-recetas">
                     <form action="filtrar_recetas.php" id="form-filtros" name="add_form" method="POST">
                         <fieldset class="linea-filtros">
-                            <div class="mb-3 filtro">
+                            <div class="mb-3 col-lg-2 filtro">
                                 <label for="" class="lbl-form-receta">Tipo Comida: </label>
                                 <select name="tipocomida" id="tipocomida" class="form-control">
                                     <option value="0">-Seleccione-</option>
@@ -81,7 +78,7 @@
                                                     ?>
                                 </select>
                             </div>
-                            <div class="mb-3 filtro">
+                            <div class="mb-3 col-lg-2 filtro">
                                 <label for="" class="lbl-form-receta">Tipo Receta: </label>
                                 <select name="tiporeceta" id="tiporeceta" class="form-control">
                                     <option value="0">-Seleccione-</option>
@@ -107,7 +104,7 @@
                                             ?>
                                 </select>
                             </div>
-                            <div class="mb-3 filtro">
+                            <div class="mb-3 col-lg-2 filtro">
                                 <label for="" class="lbl-form-receta">Ocación: </label>
                                 <select name="ocacion" id="ocacion" class="form-control">
                                     <option value="0">-Seleccione-</option>
@@ -117,7 +114,7 @@
                                     <option value="cena">Cena</option>
                                 </select>
                             </div>
-                            <div class="mb-3 filtro">
+                            <div class="mb-3 col-lg-2 filtro">
                                 <label for="" class="lbl-form-receta">País: </label>
                                 <select name="pais" id="pais" class="form-control">
                                     <option value="0">-Seleccione-</option>
@@ -136,12 +133,12 @@
                             
                         </fieldset>
                         <div class="row caja-ingredientes">
-                            <div class="col-lg-6 filtro">
+                            <div class="col-lg-6 col-md-12 filtro">
                                 <label for="" class="">Ingredientes</label>
                                 <input type="text" onkeypress="pulsar(event)" name="tags" id="ingresar-ingredientes" class="form-control" placeholder="ingresar ingredientes" <?php echo $disabled; ?>>
                                 <input type="hidden" name="ingrecientes-agregados" id="ingredientes-buscar">                                            
                             </div>
-                            <div class="col-lg-6 contenedor-ingredientes" >
+                            <div class="col-lg-6 col-md-12 contenedor-ingredientes" >
                                 <label for="">Ingredientes a buscar</label>
                                 <div class="col-lg-12 ingredientes-agregados" id="ingredientes-agregados">
                                     
@@ -152,6 +149,7 @@
                         <button type="button" id="boton-enviar" class="boton boton-rojo btn-filtro">Filtrar</button>
                         <!-- <input type="submit" class="boton boton-rojo btn-filtro" value="Filtrar" /> -->
                     </form>
+                        <button type="button" class="boton boton-rojo btn-filtro btn-filtro-ocultar" id="ocultar-filtros"><span aria-hidden="true">&times;</span></button>
                 </nav><!-- Nav -->
             </div>
             <div class="carousel-inner">
@@ -184,7 +182,11 @@
          
     </section>
 
-        <div class="row recetas" id="resultado-recetas">            
+        <div class="row recetas" id="resultado-recetas"> 
+            <button type="button" class="boton boton-rojo mostrar-filtro">
+                Mostrar Filtros
+            </button>
+                                        
             <h1>Resultados</h1>
             <div class="row recetas-resultados">
                 <?php
@@ -340,7 +342,9 @@
     <script>
         var cantPalabras = 0;
         var palabras = [];
-
+        $(".mostrar-filtro").hide();
+        $(".caja-blanca").show();
+        
         $(document).ready(function () {
             $("#ingresar-tags").keyup(function (e) { 
                 if(e.keycode===13){
@@ -348,6 +352,18 @@
                     e.preventDefault();
                 }
             });
+            $(".mostrar-filtro").click(function (e) { 
+                e.preventDefault();
+                $(".caja-blanca").show();
+                $(".mostrar-filtro").hide();
+            });
+
+            $("#ocultar-filtros").click(function (e) { 
+                e.preventDefault();
+                $(".mostrar-filtro").show();
+                $(".caja-blanca").hide();
+            });
+
             $("#boton-enviar").click(function (e) { 
                 e.preventDefault();
                 let tagsEnviar = "";
@@ -395,6 +411,8 @@
             }
             $("#"+e).remove();
         }
+
+
     </script>
 </body>
 </html>
