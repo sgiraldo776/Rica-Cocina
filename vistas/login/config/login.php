@@ -26,6 +26,10 @@ if($row == TRUE){
         $_SESSION['usuarioid']=$usuarioid;
         $rol=$row[3];
         $_SESSION['rol']=$rol;
+        $_SESSION['premium'] = false;
+        if($row[6] >= $hoy){
+            $_SESSION['premium'] = true;
+        }
         switch($_SESSION['rol']){
             case 1:
                 echo "<script>     location.href='../../../index.php'; </script>";
@@ -36,6 +40,7 @@ if($row == TRUE){
     
             default:
         }
+
     
     }else{
         $sql1= "UPDATE tblcuenta SET estado=1 WHERE cuentaid='$row[0]'";
@@ -47,6 +52,11 @@ if($row == TRUE){
             $_SESSION['usuarioid']=$usuarioid;
             $rol=$row[3];
             $_SESSION['rol']=$rol;
+            $hoy = date("Y-m-d"); 
+            $_SESSION['premium'] = false;
+            if($row[6] >= $hoy){
+                $_SESSION['premium'] = true;
+            }
             switch($_SESSION['rol']){
                 case 1:
                     echo "<script>     location.href='../../../index.php'; </script>";
@@ -59,7 +69,6 @@ if($row == TRUE){
             }
         }else{
             echo "<script>     alert('No se pudo cambiar el estado'); </script>";
-            //echo "Error: " . $sql1 . "<br>". $conn->error;
         }
 
     }

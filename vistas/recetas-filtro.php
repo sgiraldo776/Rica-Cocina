@@ -9,6 +9,7 @@ require_once '../vendor/stefangabos/zebra_pagination/Zebra_Pagination.php';
 if ($conn->connect_error) {
     die("Conección exitosa: " . $conn->connect_error);
 }
+$renderizar = false;
     
 if(isset($_POST['ingrecientes-agregados'])){
 
@@ -53,9 +54,22 @@ if(isset($_POST['ingrecientes-agregados'])){
     if($numeroRegistros){
         $fila =  mysqli_fetch_assoc($numeroRegistros);
 
+        
+
         if($fila["total"] > 0){
 
-            $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ".$ingredientes." ".$tipoComida." ".$tipodieta. " " .$tiporeceta." " .$padecimiento ." " .$ocacion ." " .$pais ." ORDER BY (re.votacionacomulada) DESC";
+            $numero_elementos_pagina = 4;
+            // Hacer paginación
+            $paginacion = new zebra_pagination();
+            // Numero total de elementos a paginar
+            $paginacion->records($fila["total"]);    
+            // Numero de elementos por página:
+            $paginacion->records_per_page($numero_elementos_pagina);
+            $page = $paginacion->get_page();  // Toma el número de la páginación por GET.
+            $empieza_aqui = (($page - 1) * $numero_elementos_pagina);
+            $renderizar = true;
+
+            $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ".$ingredientes." ".$tipoComida." ".$tipodieta. " " .$tiporeceta." " .$padecimiento ." " .$ocacion ." " .$pais ." ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
             $sql_query= mysqli_query($conn,$read);
             ?>
 
@@ -111,7 +125,10 @@ if(isset($_POST['ingrecientes-agregados'])){
                         <?php endwhile; ?>
                     </div>  
                 </div> 
-            </div>                
+            </div>   
+            <?php if(isset($renderizar) && $renderizar == true) : ?>
+                        <div><?php $paginacion->render(); ?></div>
+            <?php endif; ?>             
 
             <?php
         }else{

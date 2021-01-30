@@ -14,9 +14,14 @@
                 include '../includes/header-admin.php';
             }            
         }
+        if($_SESSION['premium'] == true){
+            $disabled = "disabled='true' title='Paga una suscripción para usar este filtro'";
+        }else{
+            $disabled = "";
+        }
     ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
@@ -30,122 +35,161 @@
     <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
     <link rel="stylesheet" type="text/css" href="admin/css/styles1.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <meta name="description" content="Filtros de recetas de la pagina ricacocina.co">
+    <meta name="titulo" content="Filtros de recetas">
     <title>Rica Cocina</title>
 </head>
 
 <body>
 
-        <div class="row text-center filtros">
-            <h1 class="mx-auto">Buscador de recetas</h1>
-            <nav class="col-md-12" id="nav-recetas">
-                <form action="filtrar_recetas.php" id="form-filtros" name="add_form" method="POST">
-                    <fieldset class="linea-filtros">
-                        <div class="mb-3 filtro">
-                            <label for="" class="lbl-form-receta">Tipo Comida: </label>
-                            <select name="tipocomida" id="tipocomida" class="form-control">
-                                <option value="0">-Seleccione-</option>
-                                <?php 
-                                    $sel = $conn ->query("SELECT * FROM tbltipocomida");
-                                
-                                    while ($row=$sel->fetch_array()) {
-                                    ?>
-                                    <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                    <?php	
-                                    }
-                                    ?>
-                            </select>
-                        </div>
-                        <div class="mb-3 filtro">
-                            <label for="" class="lbl-form-receta">Tipo de Dieta: </label>
-                            <select name="tipodieta" id="tipodieta" class="form-control">
-                                <option value="0">-Seleccione-</option>
-                                <?php 
-                                                $sel = $conn ->query("SELECT * FROM tbltipodieta");
-                                
-                                                while ($row=$sel->fetch_array()) {
-                                                ?>
-                                                <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                                <?php	
-                                                }
-                                                ?>
-                            </select>
-                        </div>
-                        <div class="mb-3 filtro">
-                            <label for="" class="lbl-form-receta">Tipo Receta: </label>
-                            <select name="tiporeceta" id="tiporeceta" class="form-control">
-                                <option value="0">-Seleccione-</option>
-                                <option value="Indefinido">Indefinido</option>
-                                <option value="Plato">Plato</option>
-                                <option value="Postre">Postre</option>
-                                <option value="Bebida">Bebida</option>
-                                <option value="Snack">Snack</option>
-                            </select>
-                        </div>
-                        <div class="mb-3 filtro">
-                            <label for="" class="lbl-form-receta">Padecimiento: </label>
-                            <select name="padecimiento" id="padecimiento" class="form-control">
-                            <option value="0">-Seleccione-</option>
+        
+
+        <section class="sldier contendor-slider">
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+            <div class="row text-center filtros">
+                <h1 class="mx-auto">Buscador de recetas</h1>
+                <nav class="col-md-12" id="nav-recetas">
+                    <form action="filtrar_recetas.php" id="form-filtros" name="add_form" method="POST">
+                        <fieldset class="linea-filtros">
+                            <div class="mb-3 filtro">
+                                <label for="" class="lbl-form-receta">Tipo Comida: </label>
+                                <select name="tipocomida" id="tipocomida" class="form-control">
+                                    <option value="0">-Seleccione-</option>
                                     <?php 
-                                        $sel = $conn ->query("SELECT * FROM tblpadecimiento");
-                                
+                                        $sel = $conn ->query("SELECT * FROM tbltipocomida");
+                                    
                                         while ($row=$sel->fetch_array()) {
                                         ?>
                                         <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
                                         <?php	
                                         }
                                         ?>
-                            </select>
-                        </div>
-                        <div class="mb-3 filtro">
-                            <label for="" class="lbl-form-receta">Ocación: </label>
-                            <select name="ocacion" id="ocacion" class="form-control">
-                                <option value="0">-Seleccione-</option>
-                                <option value="cualquiera">Cualquiera</option>
-                                <option value="desayuno">Desayuno</option>
-                                <option value="almuerzo">Almuerzo</option>
-                                <option value="cena">Cena</option>
-                            </select>
-                        </div>
-                        <div class="mb-3 filtro">
-                            <label for="" class="lbl-form-receta">País: </label>
-                            <select name="pais" id="pais" class="form-control">
-                                <option value="0">-Seleccione-</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 filtro">
+                                <label for="" class="lbl-form-receta">Tipo de Dieta: </label>
+                                <select name="tipodieta" id="tipodieta" class="form-control" <?php echo $disabled; ?>>
+                                    <option value="0">-Seleccione-</option>
                                     <?php 
-                                    $sel = $conn ->query("SELECT * FROM tblpais");
-                                
-                                    while ($row=$sel->fetch_array()) {
-                                    ?>
-                                    <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
-                                    <?php	
-                                    }
-                                    ?>
-                            </select>
-                        </div>
+                                                    $sel = $conn ->query("SELECT * FROM tbltipodieta");
+                                    
+                                                    while ($row=$sel->fetch_array()) {
+                                                    ?>
+                                                    <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                                    <?php	
+                                                    }
+                                                    ?>
+                                </select>
+                            </div>
+                            <div class="mb-3 filtro">
+                                <label for="" class="lbl-form-receta">Tipo Receta: </label>
+                                <select name="tiporeceta" id="tiporeceta" class="form-control">
+                                    <option value="0">-Seleccione-</option>
+                                    <option value="Indefinido">Indefinido</option>
+                                    <option value="Plato">Plato</option>
+                                    <option value="Postre">Postre</option>
+                                    <option value="Bebida">Bebida</option>
+                                    <option value="Snack">Snack</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 filtro">
+                                <label for="" class="lbl-form-receta">Padecimiento: </label>
+                                <select name="padecimiento" id="padecimiento" class="form-control" <?php echo $disabled; ?>>
+                                <option value="0">-Seleccione-</option>
+                                        <?php 
+                                            $sel = $conn ->query("SELECT * FROM tblpadecimiento");
+                                    
+                                            while ($row=$sel->fetch_array()) {
+                                            ?>
+                                            <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                            <?php	
+                                            }
+                                            ?>
+                                </select>
+                            </div>
+                            <div class="mb-3 filtro">
+                                <label for="" class="lbl-form-receta">Ocación: </label>
+                                <select name="ocacion" id="ocacion" class="form-control">
+                                    <option value="0">-Seleccione-</option>
+                                    <option value="cualquiera">Cualquiera</option>
+                                    <option value="desayuno">Desayuno</option>
+                                    <option value="almuerzo">Almuerzo</option>
+                                    <option value="cena">Cena</option>
+                                </select>
+                            </div>
+                            <div class="mb-3 filtro">
+                                <label for="" class="lbl-form-receta">País: </label>
+                                <select name="pais" id="pais" class="form-control">
+                                    <option value="0">-Seleccione-</option>
+                                        <?php 
+                                        $sel = $conn ->query("SELECT * FROM tblpais");
+                                    
+                                        while ($row=$sel->fetch_array()) {
+                                        ?>
+                                        <option value="<?php echo $row[0] ?>"> <?php echo $row[1] ?></option>
+                                        <?php	
+                                        }
+                                        ?>
+                                </select>
+                            </div>
 
-                        <div class="mb-3 filtro">
-                            <label for="" class="lbl-form-receta">Ingredientes</label>
-                            <input type="text" onkeypress="pulsar(event)" name="tags" id="ingresar-ingredientes" class="form-control" placeholder="ingresar ingredientes">
-                            <input type="hidden" name="ingrecientes-agregados" id="ingredientes-buscar">                                            
-                        </div>
-                    </fieldset>
-                    <div class="row ingredientes">
-                        <label for="">Ingredientes a buscar</label>
-                        <div class="col-lg-12 ingredientes-agregados" id="ingredientes-agregados">
                             
-                        </div>  
-                    </div>
-                    <button type="button" id="boton-enviar" class="boton boton-rojo btn-filtro">Filtrar</button>
-                    <!-- <input type="submit" class="boton boton-rojo btn-filtro" value="Filtrar" /> -->
-                </form>
-            </nav><!-- Nav -->
-        </div>
+                        </fieldset>
+                        <div class="row caja-ingredientes">
+                            <div class="col-lg-6 filtro">
+                                <label for="" class="">Ingredientes</label>
+                                <input type="text" onkeypress="pulsar(event)" name="tags" id="ingresar-ingredientes" class="form-control" placeholder="ingresar ingredientes" <?php echo $disabled; ?>>
+                                <input type="hidden" name="ingrecientes-agregados" id="ingredientes-buscar">                                            
+                            </div>
+                            <div class="col-lg-6 contenedor-ingredientes" >
+                                <label for="">Ingredientes a buscar</label>
+                                <div class="col-lg-12 ingredientes-agregados" id="ingredientes-agregados">
+                                    
+                                </div>  
+                            </div>
+                            
+                        </div>
+                        <button type="button" id="boton-enviar" class="boton boton-rojo btn-filtro">Filtrar</button>
+                        <!-- <input type="submit" class="boton boton-rojo btn-filtro" value="Filtrar" /> -->
+                    </form>
+                </nav><!-- Nav -->
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="d-block w-100 sli-img" src="../img/slider-06.jpg" alt="First slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 sli-img" src="../img/slider-07.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 sli-img" src="../img/slider-08.jpg" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 sli-img" src="../img/slider-01.jpg" alt="Third slide">
+                </div>
+                <div class="carousel-item">
+                    <img class="d-block w-100 sli-img" src="../img/slider-02.jpg" alt="Third slide">
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+               
+        </div>    
+         
+    </section>
 
         <div class="row recetas" id="resultado-recetas">            
             <h1>Resultados</h1>
             <div class="row recetas-resultados">
                 <?php
                     require_once "../vendor/stefangabos/zebra_pagination/Zebra_Pagination.php";
-                    $buscar = $_POST['buscar'];
+                    @$buscar = $_POST['buscar'];
 
                     // Hallamos el número total de elementos en la consualta:
                     if($buscar == "" ){
