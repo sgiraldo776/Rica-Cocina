@@ -69,7 +69,7 @@ if(isset($_POST['ingrecientes-agregados'])){
             $empieza_aqui = (($page - 1) * $numero_elementos_pagina);
             $renderizar = true;
 
-            $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ".$ingredientes." ".$tipoComida." ".$tipodieta. " " .$tiporeceta." " .$padecimiento ." " .$ocacion ." " .$pais ." ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+            $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada, re.numeroVotaciones FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ".$ingredientes." ".$tipoComida." ".$tipodieta. " " .$tiporeceta." " .$padecimiento ." " .$ocacion ." " .$pais ." ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
             $sql_query= mysqli_query($conn,$read);
             ?>
 
@@ -87,8 +87,8 @@ if(isset($_POST['ingrecientes-agregados'])){
                                 <div class="tarjeta-info">
                                     <h3 class="card-title"><?= $receta->titulo; ?></h3> 
                                     <p class="card-text">Por: <?= $receta->nombres; ?></p> 
-                                    <p class="card-text">Puntaje: <?= $receta->votacionacomulada; ?></p><br/> 
-                                    <p>
+                                    <p class="card-text"> Puntaje: <?= ($receta->numeroVotaciones != null and $receta->numeroVotaciones != 0)?$receta->votacionacomulada/$receta->numeroVotaciones:$receta->votacionacomulada ?></p>
+                                     <p>
                                         <?php
                                             if(isset($receta->tags) and !empty($_POST['ingrecientes-agregados'])){
                                                 $buscar2 = explode(" ", $_POST['ingrecientes-agregados']);

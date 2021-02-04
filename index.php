@@ -86,14 +86,6 @@
                     <img class="d-block w-100 sli-img" src="img/slider-02.jpg" alt="Third slide">
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
                
         </div>    
          
@@ -178,9 +170,15 @@
             <div class="col-12 md-2 top">
                 <div class="contenedor-recetas">
                     <?php 
-                        $sel = $conn->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 5");
+                        $sel = $conn->query("SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada, re.numeroVotaciones FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' ORDER BY re.votacionacomulada DESC LIMIT 5");
                                 
                         while ($row=$sel->fetch_array()) {
+
+                            if($row[5] != null and $row[5] != 0){
+                                $puntaje = bcdiv($row[4]/$row[5], '1', 1);
+                            }else{
+                                $puntaje = 0;
+                            }
                     ?>
                     <div class="tarjetas">
                         <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>"
@@ -188,12 +186,17 @@
                             <div class="tarjeta-img">
                                 <img class="tarjeta-img tam-img"
                                     src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
-
                             </div>
                             <div class="tarjeta-info">
                                 <h3 class="card-title"><?php echo $row[2] ?></h3>
                                 <p class="card-text">Por: <?php echo $row[3]?></p>
-                                <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
+                                <p class="card-text"> Puntaje: <?= $puntaje; ?>
+                                    <?php
+                                        for ($i=1; $i < $puntaje; $i++) { 
+                                            echo "★";
+                                        }
+                                    ?>
+                                </p>
                             </div>
                         </a>
                     </div>
@@ -208,24 +211,7 @@
     </main>
 
     
-    <footer class="footer py-4 bgcolor">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
-                <div class="col-lg-6 my-3 my-lg-0 text-lg-center text-center">
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto"
-                                src="<?php echo $URL ?>img/twitter.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto"
-                                src="<?php echo $URL ?>img/facebook.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto"
-                                src="<?php echo $URL ?>img/instagram.svg" style="max-width: 75%"></i></a>
-                </div>
-                <div class="col-lg-3 text-lg-center text-center contac">
-                    <h3><a href="<?php echo $URL ?>vistas/contacto/contacto.php">Contáctenos</a></h3>
-                </div>
-            </div>
-        </div>
-    </footer>
+   <?php include 'includes/footer.php' ?>
 
     <?php
     if(isset($estado)){

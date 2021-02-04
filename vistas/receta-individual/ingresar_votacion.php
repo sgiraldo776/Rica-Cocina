@@ -12,13 +12,13 @@
     $voto=$_POST['estrellas'];
     $recetaid=$_GET['recetaid'];
 
-    $sql = $conn ->query("SELECT votacionacomulada FROM tblreceta where recetaid=$recetaid");
+    $sql = $conn ->query("SELECT votacionacomulada, numeroVotaciones FROM tblreceta where recetaid=$recetaid");
     $row=$sql->fetch_array();
     
     if($sql){
         $vototot=$row[0]+$voto;
-        echo $vototot;
-        $sql2 = $conn ->query("UPDATE tblreceta SET votacionacomulada='$vototot' where recetaid=$recetaid");
+        $numVotacion = $row[1]+1;
+        $sql2 = $conn ->query("UPDATE tblreceta SET votacionacomulada='$vototot' ,numeroVotaciones='$numVotacion' where recetaid=$recetaid");
         if($sql2){
             echo "<script> location.href='mostrar-receta.php?recetaid=$recetaid'; </script>";
         }else{

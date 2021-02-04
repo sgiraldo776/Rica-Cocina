@@ -35,12 +35,12 @@
     <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
     <link rel="stylesheet" type="text/css" href="admin/css/styles1.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <meta name="description" content="Filtros de recetas de la pagina ricacocina.co">
-    <meta name="titulo" content="Filtros de recetas">
+    <meta name="description" content="Aquí se halla la magia de RicaCocina, donde encontrarás el cambio gastronómico en tu vida, con diferentes herramientas que permitirán una experiencia atrevida.">
+    <meta name="titulo" content="Filtros De Recetas">
     <title>Rica Cocina</title>
 </head>
 
-<body>
+<body onresize="FuntionResize()">
     <section class="sldier contendor-slider caja-blanca">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="row text-center filtros">
@@ -140,7 +140,7 @@
                             </div>
                             <div class="col-lg-6 col-md-12 contenedor-ingredientes" >
                                 <label for="">Ingredientes a buscar</label>
-                                <div class="col-lg-12 ingredientes-agregados" id="ingredientes-agregados">
+                                <div class="col-lg-12 ingredientes-agregados form-control" id="ingredientes-agregados">
                                     
                                 </div>  
                             </div>
@@ -169,14 +169,6 @@
                     <img class="d-block w-100 sli-img" src="../img/slider-02.jpg" alt="Third slide">
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
                
         </div>    
          
@@ -218,9 +210,9 @@
 
                         // $read = "SELECT re.recetaid, re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='2' AND titulo LIKE '%" . $buscar . "%' LIMIT 25";
                         if($buscar == "" ){
-                            $read = "SELECT re.recetaid, re.imagen, re.titulo, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+                            $read = "SELECT re.recetaid, re.imagen, re.titulo, us.nombres, re.votacionacomulada, re.numeroVotaciones FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.validar='2' ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
                         }else{
-                            $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.ocacion LIKE '%" . $buscar . "%' or re.validar='2' AND MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
+                            $read = "SELECT re.recetaid, re.imagen, re.titulo, re.ingrediente, re.tags, us.nombres, re.votacionacomulada, re.numeroVotaciones FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid WHERE re.ocacion LIKE '%" . $buscar . "%' or re.validar='2' AND MATCH(re.ingrediente,re.titulo,re.tags) AGAINST ('$buscar') ORDER BY (re.votacionacomulada) DESC LIMIT $empieza_aqui, $numero_elementos_pagina;";
                             // echo $read;
                         }
 
@@ -236,9 +228,15 @@
                     <div class="contenedor-recetas">
                         <?php
                             while ($receta = $sql_query->fetch_object()) :
+
+                                if($receta->numeroVotaciones != null and $receta->numeroVotaciones != 0){
+                                    $puntaje = bcdiv($receta->votacionacomulada/$receta->numeroVotaciones, '1', 1);
+                                }else{
+                                    $puntaje = 0;
+                                }
                         ?>
                         <div class="tarjetas">
-                            <a href="vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
+                            <a href="./receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
                                 style="text-decoration: none">
                                 <div class="tarjeta-img">
                                     <img class="tarjeta-img tam-img"
@@ -248,7 +246,14 @@
                                 <div class="tarjeta-info">
                                     <h3 class="card-title"><?= $receta->titulo; ?></h3>
                                     <p class="card-text">Por: <?= $receta->nombres; ?></p>
-                                    <p class="card-text"> Puntaje: <?= $receta->votacionacomulada; ?></p>
+                                    <p class="card-text"> Puntaje: <?= $puntaje ?>
+                                    <?php
+                                        for ($i=1; $i < $puntaje; $i++) { 
+                                            echo "★";
+                                        }
+                                    ?>
+                                
+                                    </p>
                                     <p>
                                         <?php
                                             if(isset($receta->tags)){
@@ -296,21 +301,7 @@
         <!-- </div> -->
     </div>
 
-    <footer class="footer py-4 bgcolor">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
-                <div class="col-lg-6 my-3 my-lg-0 text-lg-center text-center">
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto" src="<?php echo $URL ?>img/twitter.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto" src="<?php echo $URL ?>img/facebook.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto" src="<?php echo $URL ?>img/instagram.svg" style="max-width: 75%"></i></a>
-                </div>
-                <div class="col-lg-3 text-lg-center text-center contac">
-                    <h3><a href="<?php echo $URL ?>vistas/contacto/contacto.php">Contáctenos</a></h3>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include '../includes/footer.php' ?>
 
     <?php
         if(isset($_GET['msg']) && $_GET['msg'] == '1') :
@@ -342,12 +333,33 @@
     <script>
         var cantPalabras = 0;
         var palabras = [];
+        $("#ocultar-filtros").hide();
         $(".mostrar-filtro").hide();
-        $(".caja-blanca").show();
-        $(".recetas").hide();
-        $(".footer").hide();
+        function FuntionResize() {
+            var widthBrowser = window.outerWidth;
+            var heightBrowser = window.outerHeight;
+            if(widthBrowser < 1024){
+                $(".mostrar-filtro").hide();
+                $(".caja-blanca").show();
+                $(".recetas").hide();
+                $(".footer").hide();
+                $("#ocultar-filtros").show();
+            }else{
+                $(".recetas").show();
+                $(".footer").show();
+                $("#ocultar-filtros").hide();
+                $(".mostrar-filtro").hide();
+
+            }
+
+        }
+        
         
         $(document).ready(function () {
+           
+
+            
+
             $("#ingresar-tags").keyup(function (e) { 
                 if(e.keycode===13){
                     alert("presiono enter")

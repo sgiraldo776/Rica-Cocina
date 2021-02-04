@@ -196,6 +196,7 @@
             </div>
         </div>
     </main>
+     <?php include '../includes/footer.php' ?>
     <?php
     if(isset($_GET['msg'])){
     ?>

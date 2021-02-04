@@ -130,6 +130,9 @@ session_start();
     </div>
 
     </main>
+    <br>
+    <br>
+    <?php include '../../includes/footer.php' ?>
     <?php
     if(isset($_GET['ntf'])){
     ?>

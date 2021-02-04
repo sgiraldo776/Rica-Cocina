@@ -16,9 +16,15 @@
         }
         $id=$_GET['recetaid'];
         
-        $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion', re.usuarioid FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
+        $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion', re.usuarioid, re.numeroVotaciones FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
 
         $row=$sel->fetch_array();
+
+        if($row[16] != null and $row[16] != 0){
+            $puntaje = bcdiv($row[14]/$row[16], '1', 1);
+        }else{
+            $puntaje = 0;
+        }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -110,7 +116,14 @@
             </div><br>
             <div class="row">
                         <h2 class="titulo">Puntuación de la receta:</h2>
-                        <h3 class="Persona"><?php echo $row[14] ?></h3>
+                        <h3 class="Persona">
+                            <?php
+                                for ($i=1; $i < $puntaje; $i++) { 
+                                    echo "★";
+                                }
+                            ?> 
+                            <?php echo $puntaje; ?>
+                        </h3>
             </div>
         </div>
         <br><br>
@@ -143,11 +156,11 @@
     }
     ?>
     <div class="container col-10">
-            <form action="ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST" name="add_form">
-                <label>Comentarios</label>
-                <textarea name="comentario" id="comentario" cols="60" rows="7" class="form-control" placeholder="Coloque su comentario"></textarea>
-                <button type="button" id="com" class="boton boton-amarillo">Enviar Comentario</button>
-            </form>
+        <form action="ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST" name="add_form">
+            <label>Comentarios</label>
+            <textarea name="comentario" id="comentario" cols="60" rows="7" class="form-control" placeholder="Coloque su comentario"></textarea>
+            <button type="button" id="com" class="boton boton-amarillo">Enviar Comentario</button>
+        </form>
     </div><br>
     <div class="comments-container container col-10">
             <?php 
@@ -168,21 +181,7 @@
         <?php } ?>
     </div>
 
-    <footer class="footer py-4 bgcolor">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
-                <div class="col-lg-6 my-3 my-lg-0 text-lg-center text-center">
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto" src="<?php echo $URL ?>img/twitter.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto" src="<?php echo $URL ?>img/facebook.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto" src="<?php echo $URL ?>img/instagram.svg" style="max-width: 75%"></i></a>
-                </div>
-                <div class="col-lg-3 text-lg-center text-center contac">
-                    <h3><a href="<?php echo $URL ?>vistas/contacto/contacto.php">Contáctenos</a></h3>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <?php include '../../includes/footer.php' ?>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>

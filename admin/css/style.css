@@ -140,7 +140,8 @@ html {
     text-decoration: none;
     font-size: 1.8rem;
     padding: 1rem 3rem;
-    margin-top: 3rem;
+    margin-top: 5px;
+    margin-bottom: 5px;
     display: inline-block;
     text-align: center;
     border: none;
