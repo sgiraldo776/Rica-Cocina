@@ -77,7 +77,15 @@ if(isset($_POST['ingrecientes-agregados'])){
             <div class="row recetas-resultados">
                 <div class="col-12 md-2 top">
                     <div class="contenedor-recetas">     
-                        <?php while($receta = $sql_query->fetch_object()) : ?>          
+                        <?php while($receta = $sql_query->fetch_object()) :
+                            
+                            if($receta->numeroVotaciones != null and $receta->numeroVotaciones != 0){
+                                $puntaje = bcdiv($receta->votacionacomulada/$receta->numeroVotaciones, '1', 1);
+                            }else{
+                                $puntaje = 0;
+                            }
+                            
+                            ?>          
                         <div class="tarjetas">
                             <a href="../vistas/receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>" style="text-decoration: none">
                             <link rel="stylesheet" href="../vendor/stefangabos/zebra_pagination/public/css/zebra_pagination.css" type="text/css">
@@ -87,8 +95,16 @@ if(isset($_POST['ingrecientes-agregados'])){
                                 <div class="tarjeta-info">
                                     <h3 class="card-title"><?= $receta->titulo; ?></h3> 
                                     <p class="card-text">Por: <?= $receta->nombres; ?></p> 
-                                    <p class="card-text"> Puntaje: <?= ($receta->numeroVotaciones != null and $receta->numeroVotaciones != 0)?$receta->votacionacomulada/$receta->numeroVotaciones:$receta->votacionacomulada ?></p>
-                                     <p>
+
+                                    <p class="card-text"> Puntaje: <?= $puntaje ?>
+                                    <?php
+                                        for ($i=1; $i <= $puntaje; $i++) { 
+                                            echo "★";
+                                        }
+                                    ?>
+                                
+                                    </p>
+                                    <p>
                                         <?php
                                             if(isset($receta->tags) and !empty($_POST['ingrecientes-agregados'])){
                                                 $buscar2 = explode(" ", $_POST['ingrecientes-agregados']);

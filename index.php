@@ -192,7 +192,7 @@
                                 <p class="card-text">Por: <?php echo $row[3]?></p>
                                 <p class="card-text"> Puntaje: <?= $puntaje; ?>
                                     <?php
-                                        for ($i=1; $i < $puntaje; $i++) { 
+                                        for ($i=1; $i <= $puntaje; $i++) { 
                                             echo "★";
                                         }
                                     ?>

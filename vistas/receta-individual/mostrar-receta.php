@@ -118,7 +118,7 @@
                         <h2 class="titulo">Puntuación de la receta:</h2>
                         <h3 class="Persona">
                             <?php
-                                for ($i=1; $i < $puntaje; $i++) { 
+                                for ($i=1; $i <= $puntaje; $i++) { 
                                     echo "★";
                                 }
                             ?> 

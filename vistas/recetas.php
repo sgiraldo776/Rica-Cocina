@@ -252,7 +252,7 @@ if(!isset($_SESSION['rol'])){
                                     <p class="card-text">Por: <?= $receta->nombres; ?></p>
                                     <p class="card-text"> Puntaje: <?= $puntaje ?>
                                     <?php
-                                        for ($i=1; $i < $puntaje; $i++) { 
+                                        for ($i=1; $i <= $puntaje; $i++) { 
                                             echo "★";
                                         }
                                     ?>
