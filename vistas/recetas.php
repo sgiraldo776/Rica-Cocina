@@ -1,19 +1,7 @@
     <?php
-        include('../admin/conexion.php');
         session_start();
-        if(!isset($_SESSION['rol'])){
-            include '../includes/header-idx.php';
-        }else{
-            if($_SESSION['rol'] !=1 ){
-                if($_SESSION['rol'] =2 ){
-                    include '../includes/header-user.php';
-                }else {
-                    include '../includes/header-idx.php';
-                }
-            }else {
-                include '../includes/header-admin.php';
-            }            
-        }
+        include('../admin/conexion.php');
+        
         if($_SESSION['premium'] == false){
             $disabled = "disabled='true' title='Paga una suscripción para usar este filtro'";
         }else{
@@ -41,6 +29,22 @@
 </head>
 
 <body onresize="FuntionResize()">
+
+<?php 
+if(!isset($_SESSION['rol'])){
+    include '../includes/header-idx.php';
+}else{
+    if($_SESSION['rol'] !=1 ){
+        if($_SESSION['rol'] =2 ){
+            include '../includes/header-user.php';
+        }else {
+            include '../includes/header-idx.php';
+        }
+    }else {
+        include '../includes/header-admin.php';
+    }            
+}
+?>
     <section class="sldier contendor-slider caja-blanca">
         <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
             <div class="row text-center filtros">
