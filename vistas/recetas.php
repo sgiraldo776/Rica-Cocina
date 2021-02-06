@@ -1,12 +1,6 @@
     <?php
         session_start();
-        include('../admin/conexion.php');
-        
-        if($_SESSION['premium'] == false){
-            $disabled = "disabled='true' title='Paga una suscripción para usar este filtro'";
-        }else{
-            $disabled = "";
-        }
+      
     ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -31,6 +25,15 @@
 <body onresize="FuntionResize()">
 
 <?php 
+
+include('../admin/conexion.php');
+include('../admin/util/funciones.php');
+
+if($_SESSION['premium'] == false){
+    $disabled = "disabled='true' title='Paga una suscripción para usar este filtro'";
+}else{
+    $disabled = "";
+}
 if(!isset($_SESSION['rol'])){
     include '../includes/header-idx.php';
 }else{
@@ -238,9 +241,12 @@ if(!isset($_SESSION['rol'])){
                                 }else{
                                     $puntaje = 0;
                                 }
+
+                                $urlReceta = "../receta/".get_url_valid_text($receta->titulo."-".$receta->recetaid)."/";
+                                
                         ?>
                         <div class="tarjetas">
-                            <a href="./receta-individual/mostrar-receta.php?recetaid=<?= $receta->recetaid ?>"
+                            <a href="<?php echo $urlReceta?>"
                                 style="text-decoration: none">
                                 <div class="tarjeta-img">
                                     <img class="tarjeta-img tam-img"

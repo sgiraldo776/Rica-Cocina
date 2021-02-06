@@ -1,14 +1,18 @@
-<?php
-    $id=$_GET['recetaid'];
-    session_start();
-?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="es">
-<head class="contenido">
+<head>
+<!DOCTYPE html>
+<html lang="es">
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="../../admin/css/bootstrap.min.css">
     <link rel="icon" type="image/png" href="../../img/favicon.png">
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../../admin/css/styles1.css">
@@ -130,7 +134,58 @@
         <br><br>
         
     </main>
-   
+    <?php
+    if(isset($_SESSION['usuarioid'])){
+    if ($row[15] != $_SESSION['usuarioid']){
+    ?>
+    <div class="container col-10">
+            <form id="vot" action="../../vistas/receta-individual/ingresar_votacion.php?recetaid=<?php echo $id ?>" method="POST" name="addform">
+                <label>Votacion</label>
+                <p class="clasificacion">
+                    <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                    --><label id="estrella" for="radio1">★</label><!--
+                    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                    --><label id="estrella" for="radio2">★</label><!--
+                    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                    --><label id="estrella" for="radio3">★</label><!--
+                    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                    --><label id="estrella" for="radio4">★</label><!--
+                    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                    --><label id="estrella" for="radio5">★</label>
+                </p>
+                <button type="submit" id="voto" class="boton boton-amarillo">Enviar Votacion</button>
+            </form>
+    </div><br>
+    <?php
+    }
+    }
+    ?>
+    <div class="container col-10">
+        <form action="../../vistas/receta-individual/ingresar_comentario.php?recetaid=<?php echo $id ?>" method="POST" name="add_form">
+            <label>Comentarios</label>
+            <textarea name="comentario" id="comentario" cols="60" rows="7" class="form-control" placeholder="Coloque su comentario"></textarea>
+            <button type="button" id="com" class="boton boton-amarillo">Enviar Comentario</button>
+        </form>
+    </div><br>
+    <div class="comments-container container col-10">
+            <?php 
+                $sel = $conn ->query("SELECT ra.texto, ra.fecha, concat_ws(' ', us.nombres, us.apellidos) as 'usuario'  FROM tblretroalimentacion as ra INNER JOIN tblusuario as us ON ra.usuarioid=us.usuarioid WHERE recetaid='$id' ");
+                while ($fila = $sel -> fetch_assoc()) {
+            ?>
+        <div class="cabecera">
+            
+            <h3 class="cont-usuario"><?php echo $fila['usuario'] ?></h3>
+            <span><?php echo $fila['fecha'] ?></span>
+
+            
+        </div>
+        <div class="comentario">
+            <p><?php echo $fila['texto'] ?></p>
+
+        </div>
+        <?php } ?>
+    </div>
+
     <?php include '../../includes/footer.php' ?>
     
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

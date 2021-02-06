@@ -28,7 +28,7 @@ $utensilios=$_POST['utensilios'];
 /*$sql="INSERT INTO tblreceta (titulo, imagen, ingrediente, pasos, cantidadpersonas, tiempopreparacion, ocacion, tiporeceta, tipocomidaid, padecimientoid, tipodietaid, validar, usuarioid, paisid, votacionacomulada) VALUES ('$nombre', $imagen , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', 1 , '$tipodieta', '1', 7, '$pais', null)";*/
 
 
-$sql="INSERT INTO tblreceta VALUES (null,'$nombre', '$imagen' , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', '$padecimiento' , '$tipodieta', '1', '$_SESSION[usuarioid]', '$pais', 0,'$tags')";
+$sql="INSERT INTO tblreceta VALUES (null,'$nombre', '$imagen' , '$ingrediente', '$preparacion', '$cantidadpersona' , '$tiempo', '$ocacion', '$tiporeceta', '$tipocomida', '$padecimiento' , '$tipodieta', '1', '$_SESSION[usuarioid]', '$pais', 0,0,'$tags')";
 
 if ($conn->query($sql) === TRUE) {
   for ($i=0;$i<count($utensilios);$i++){     
@@ -46,7 +46,7 @@ if ($conn->query($sql) === TRUE) {
   }
   echo "<script> location.href='../ingresar_receta.php?msg=1'; </script>";
 } else {
-  echo "Error: " . $sql . "<br>". $conn->error;
+  echo "<script> location.href='../ingresar_receta.php?msg=2'; </script>";
 }
 
 /* nota al momento de insertar la id del usuario, se tiene que insertar la sesion iniciada, osea que nos faltan las variables de sesiones :v */

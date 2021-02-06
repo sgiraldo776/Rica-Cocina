@@ -1,6 +1,29 @@
 <?php
-        include('../conexion.php');
         session_start();
+
+include('../conexion.php');
+?>
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" >
+    <link rel="icon" type="image/png" href="../../img/favicon.png">
+    <!--Importacion css bootstrap-->
+    <link rel="stylesheet" type="text/css" href="../css/styles1.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <title>Rica Cocina</title>
+</head>
+
+<body>
+
+
+<?php
+        
         if(!isset($_SESSION['rol'])){
             header('location: login/iniciar_sesion.php');
         }else{
@@ -12,23 +35,6 @@
         }
         
     ?>
-<!DOCTYPE html>
-<html lang="es">
-
-<head>
-<meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="../admin/css/bootstrap.min.css" >
-    <link rel="icon" type="image/png" href="../../img/favicon.png">
-    <!--Importacion css bootstrap-->
-    <link rel="stylesheet" type="text/css" href="../css/styles1.css">
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <title>Rica Cocina</title>
-</head>
-
-<body>
 
 <div class="row text-center">
             
@@ -47,7 +53,7 @@
                             <a href="../../vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>" style="text-decoration: none">
                                 <div class="tarjeta-img">
                                     <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
-                                    <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+                                    <!-- <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>"> -->
                                 
                                 </div>
                                 <div class="tarjeta-info">
@@ -140,7 +146,37 @@
 
         }
     </script>
+    <?php 
+    if(!empty($_SESSION['error'])){
+        ?>
+<script type="text/javascript">
+    
+           Swal
+            .fire({
+                title: "Ocurrio un error",
+                text: "La accion anterior no se completo correctamente, comuniquese con el administrador",
+                icon: 'error',            
+                showCancelButton: true,
+                cancelButtonText: "Cerrar",
+            })
+            .then(resultado => {
+                if (resultado.value) {
+                    // Hicieron click en "Sí"
+                    //console.log("*se elimina la venta*");
+                    window.location.href="denegar_receta.php?recetaid="+id
+                } else {
+                    // Dijeron que no
+                    console.log("*NO se elimina*");
+                }
+            });
 
+        
+    </script>
+<?php
+
+unset($_SESSION['error']);
+
+} ?>
     
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
