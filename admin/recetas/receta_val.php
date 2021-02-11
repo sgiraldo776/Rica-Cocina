@@ -22,7 +22,7 @@ include('../conexion.php');
 <body>
 
 
-<?php
+    <?php
         
         if(!isset($_SESSION['rol'])){
             header('location: login/iniciar_sesion.php');
@@ -33,70 +33,89 @@ include('../conexion.php');
                 include '../../includes/header-admin.php';
             }
         }
-        
+        require_once "../../vendor/stefangabos/zebra_pagination/Zebra_Pagination.php";
     ?>
 
-<div class="row text-center">
-            
-            <div class="col-md-12">
-                <div>
-                    <h1>Recetas</h1>
-                </div>
-                <div class="conenedor-recetas">
-                    <?php 
-                        $sel = $conn ->query("SELECT re.recetaid,re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='1'");
-                                
-                        while ($row=$sel->fetch_array()) {
-                    ?>
-                    <div class="cont-tarjetas">
-                        <div class="tarjetas">
-                            <a href="../../vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>" style="text-decoration: none">
-                                <div class="tarjeta-img">
-                                    <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
-                                    <!-- <img class="tarjeta-img tam-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>"> -->
-                                
-                                </div>
-                                <div class="tarjeta-info">
-                                    <h3 class="card-title"><?php echo $row[2] ?></h3>
-                                    <p class="card-text">Por: <?php echo $row[3]?></p>
-                                    <p class="card-text"> Puntaje: <?php echo $row[4]?></p>
-                                </div>
-                            </a>
-                        </div>
+    <div class="row text-center">
+        <div class="col-md-12">
+            <div>
+                <h1>Recetas</h1>
+            </div>
+            <div class="contenedor-recetas">
+                <?php 
+                
+                    $selectAll=$conn->query("SELECT count(*) from tblreceta WHERE validar='1'");
+                    $numero_elementos = $selectAll->fetch_row();
+                    $numero_elementos = $numero_elementos[0];
+                    if($numero_elementos > 0){
+                        // Determinamos la cantidad de elementos a mostrar en la página
+                        $numero_elementos_pagina = 3;
+                        // Hacer paginación
+                        $paginacion = new zebra_pagination();
+                        // Numero total de elementos a paginar
+                        $paginacion->records($numero_elementos);    
+                        // Numero de elementos por página:
+                        $paginacion->records_per_page($numero_elementos_pagina);
+                        $page = $paginacion->get_page();  // Toma el número de la páginación por GET.
+                        $empieza_aqui = (($page - 1) * $numero_elementos_pagina);
                         
-                        <form action="" name="add_form" method="POST">
-                        <input type="text" id="recetaid" name="recetaid" value="<?php echo $row[0] ?>" hidden>
-                            <!--<button class="boton boton-amarillo">EDITAR</button>-->
-                            <!--<button type="button" onclick="validareliminar()"><a id="eliminar" href="">ELIMINAR</a></button>-->
-                            <!--<button type="button" class="boton boton-amarillo" id="eliminar">eliminar</button>-->
-                            <button type="button" class="boton boton-amarillo" href="#" onclick="preguntar(<?php echo $row[0]?>)">Publicar</button>
-                            <button type="button" class="boton boton-amarillo" href="#" onclick="preguntar1(<?php echo $row[0]?>)">Denegar</button>
-                        </form><br>
+                        $sel = $conn ->query("SELECT re.recetaid,re.imagen,re.titulo,us.nombres,re.votacionacomulada FROM tblreceta as re INNER JOIN tblusuario as us ON re.usuarioid=us.usuarioid WHERE validar='1' LIMIT $empieza_aqui, $numero_elementos_pagina;");
+
+
+                        $renderizar = true;
+                    }else{
+                        echo "No hay resultados";
+                    }
+
+
+
+
+                    if(isset($sel)):
+                    while ($row=$sel->fetch_array()) {
+                ?>
+                <div class="cont-tarjetas">
+                    <div class="tarjetas">
+                        <a href="../../vistas/receta-individual/mostrar-receta.php?recetaid=<?php echo $row[0] ?>" style="text-decoration: none">
+                            <div class="tarjeta-img">
+                                <!--<img class="tarjeta-img" src="../img/fideos.jpg" class="" alt="...">-->
+                                <img async class="tarjeta-img tam-img " src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $row['imagen'] ) ?>">
+                            
+                            </div>
+                            <div class="tarjeta-info">
+                                <h3 class="card-title"><?php echo $row[2] ?></h3>
+                                <p class="card-text">Por: <?php echo $row[3]?></p>
+                            </div>
+                        </a>
                     </div>
                     
-                    <?php	
-                        }
-                    ?>
-                    
+                    <form action="" name="add_form" method="POST">
+                    <input type="text" id="recetaid" name="recetaid" value="<?php echo $row[0] ?>" hidden>
+                        <!--<button class="boton boton-amarillo">EDITAR</button>-->
+                        <!--<button type="button" onclick="validareliminar()"><a id="eliminar" href="">ELIMINAR</a></button>-->
+                        <!--<button type="button" class="boton boton-amarillo" id="eliminar">eliminar</button>-->
+                        <button type="button" class="boton boton-amarillo" href="#" onclick="preguntar(<?php echo $row[0]?>)">Publicar</button>
+                        <button type="button" class="boton boton-amarillo" href="#" onclick="preguntar1(<?php echo $row[0]?>)">Denegar</button>
+                    </form><br>
                 </div>
+                
+                <?php	
+                    }
+                endif;
+                ?>
+                
             </div>
-        </div>
+            <div class="col-12 contenedor-recetas">
+                <?php if(isset($renderizar) && $renderizar == true) : ?>
+                            <div class="mx-auto"><?php $paginacion->render(); ?></div>
+                <?php endif; ?>
+            </div>
+          
+            <!-- <button type="button" class="boton boton-rojo" href="<?php echo $URL.'admin/recetas/receta_val.php' ?>">ver mas recetas</button> -->
 
-        <footer class="footer py-4 bgcolor">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-3 text-lg-left text-center">Copyright © Rica 2020</div>
-                <div class="col-lg-6 my-3 my-lg-0 text-lg-center text-center">
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-twitter"><img class="mx-auto" src="<?php echo $URL ?>img/twitter.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-facebook-f"><img class="mx-auto" src="<?php echo $URL ?>img/facebook.svg" style="max-width: 75%"></i></a>
-                    <a class="btn btn-social mx-3" href="#!"><i class="fab fa-linkedin-in"><img class="mx-auto" src="<?php echo $URL ?>img/instagram.svg" style="max-width: 75%"></i></a>
-                </div>
-                <div class="col-lg-3 text-lg-center text-center contac">
-                    <h3><a href="<?php echo $URL ?>vistas/contacto/contacto.php">Contáctenos</a></h3>
-                </div>
-            </div>
         </div>
-    </footer>
+    </div>
+
+    <?php include '../../includes/footer.php' ?>
 
     <script type="text/javascript">
         function preguntar(id){
@@ -178,6 +197,38 @@ unset($_SESSION['error']);
 
 } ?>
     
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+        var lazyloadImages = document.querySelectorAll("img.lazy");    
+        var lazyloadThrottleTimeout;
+        
+        function lazyload () {
+            if(lazyloadThrottleTimeout) {
+            clearTimeout(lazyloadThrottleTimeout);
+            }    
+            
+            lazyloadThrottleTimeout = setTimeout(function() {
+                var scrollTop = window.pageYOffset;
+                lazyloadImages.forEach(function(img) {
+                    if(img.offsetTop < (window.innerHeight + scrollTop)) {
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy');
+                    }
+                });
+                if(lazyloadImages.length == 0) { 
+                document.removeEventListener("scroll", lazyload);
+                window.removeEventListener("resize", lazyload);
+                window.removeEventListener("orientationChange", lazyload);
+                }
+            }, 20);
+        }
+        
+        document.addEventListener("scroll", lazyload);
+        window.addEventListener("resize", lazyload);
+        window.addEventListener("orientationChange", lazyload);
+        });
+    
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <!--<script src="../admin/js/alerts.js"></script>-->

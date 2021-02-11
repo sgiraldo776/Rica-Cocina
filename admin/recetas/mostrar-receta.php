@@ -5,10 +5,23 @@
 
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head
 <!DOCTYPE html>
 <html lang="es">
 <head>
+    <?php
+    include('../../admin/conexion.php');
+    
+    $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion', re.usuarioid, re.numeroVotaciones FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
+
+    $row=$sel->fetch_array();
+
+    if($row[16] != null and $row[16] != 0){
+        $puntaje = bcdiv($row[14]/$row[16], '1', 1);
+    }else{
+        $puntaje = 0;
+    }    
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
@@ -17,13 +30,12 @@
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../../admin/css/style.css">
+    <meta name="description" content="He aquí una creación más de nuestros usuarios! ¿Deseas ver más creaciones? Ve a la sección de recetas y busca la indicada.">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <title>Rica Cocina</title>
+    <title><?php echo $row[0]; ?> - Rica Cocina</title>
 </head>
 <body>
-
 <?php 
-    include('../../admin/conexion.php');
     if(!isset($_SESSION['rol'])){
         include '../../includes/header-idx.php';
     }else{
@@ -38,15 +50,7 @@
         }            
     }
     
-    $sel = $conn ->query("SELECT re.titulo as 'Nombre', re.imagen as 'Imagen', re.ingrediente as 'Ingredientes', re.pasos as 'Pasos', re.cantidadpersonas as '#personas', re.tiempopreparacion as 'Tiempo', re.ocacion as 'Ocasion', re.tiporeceta as 'Tipo Receta', tc.nombre as 'Tipo Comida', pad.nombre as 'Padecimiento', td.nombre as 'Tipo Dieta', re.validar as 'Validar', concat_ws(' ', us.nombres, us.apellidos) as 'Usuario', pa.nombre as 'Pais', re.votacionacomulada as 'Votacion', re.usuarioid, re.numeroVotaciones FROM tblreceta as re INNER JOIN tbltipocomida as tc ON re.tipocomidaid=tc.tipocomidaid INNER JOIN tbltipodieta as td ON re.tipodietaid=td.tipodietaid INNER JOIN tblusuario as us ON re.usuarioid = us.usuarioid INNER JOIN tblpais as pa ON re.paisid = pa.paisid INNER JOIN tblpadecimiento as pad ON re.padecimientoid = pad.padecimientoid where recetaid='$id'");
-
-    $row=$sel->fetch_array();
-
-    if($row[16] != null and $row[16] != 0){
-        $puntaje = bcdiv($row[14]/$row[16], '1', 1);
-    }else{
-        $puntaje = 0;
-    }
+    
 ?>
     <main>
         <div class="contenedor ingredientes">
