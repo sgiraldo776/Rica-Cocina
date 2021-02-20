@@ -1,7 +1,11 @@
 <?php
-        session_start();
+    session_start();
+    include('../conexion.php');
 
-include('../conexion.php');
+    if(!isset($_SESSION['rol'])){
+        $urlFinal = $URL."vistas/login/iniciar_sesion.php";
+        header('location: '.$urlFinal);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -24,16 +28,11 @@ include('../conexion.php');
 
     <?php
         
-        if(!isset($_SESSION['rol'])){
-            header('location: login/iniciar_sesion.php');
-        }else{
-            if($_SESSION['rol'] !=1 ){
-                header('location: login/iniciar_sesion.php');
-            }else{
-                include '../../includes/header-admin.php';
-            }
-        }
+       
         require_once "../../vendor/stefangabos/zebra_pagination/Zebra_Pagination.php";
+
+        include '../../includes/header-admin.php';
+
     ?>
 
     <div class="row text-center">

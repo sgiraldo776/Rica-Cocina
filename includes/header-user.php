@@ -1,8 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="es">
-
-<body>
     <header class="site-header" id="nav">
         <div class="container contenido-header">
             <nav class="navbar navbar-expand-lg navbar-light navegacion">
@@ -41,6 +36,3 @@
             </nav>
         </div>
     </header>
-</body>
-
-</html>

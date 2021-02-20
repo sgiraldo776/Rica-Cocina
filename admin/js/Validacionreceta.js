@@ -13,15 +13,50 @@ $(function(){
                                             if($('#tiporeceta').val() !=0){
                                                 if($('#padecimiento').val() !=0){
                                                     if($('#btn_enviar').val() !=""){
-                                                        if($('#utensilios').val() !=""){
-                                                            formulario.submit();  
-                                                        }else{
+                                                        var uploadFile = document.getElementById("btn_enviar").files[0];
+                                                        if (!window.FileReader) {
                                                             Swal.fire({
                                                                 icon: 'warning',
                                                                 title: 'Ups...',
-                                                                text: 'No ha Seleccionado ningún Utensilio',
+                                                                text: 'El navegador no soporta la lectura de archivos',
                                                             });
-                                                        }             
+                                                            $('#btn_enviar').focus().addClass("is-invalid");
+                                                        }
+                                                        if (!(/\.(jpg|png|gif)$/i).test(uploadFile.name)) {
+                                                            Swal.fire({
+                                                                icon: 'warning',
+                                                                title: 'Ups...',
+                                                                text: 'El archivo a adjunto no es una imagen',
+                                                            });
+                                                            $('#btn_enviar').focus().addClass("is-invalid");
+                                                        }
+                                                        else {
+                                                            var img = new Image();
+                                                            img.onload = function () {                                                                
+                                                                if (uploadFile.size > 20000)
+                                                                {
+                                                                    Swal.fire({
+                                                                        icon: 'warning',
+                                                                        title: 'Ups...',
+                                                                        text: 'La imagen supera 200 kb',
+                                                                    });
+                                                                    $('#btn_enviar').focus().addClass("is-invalid");
+                                                                }
+                                                                else {
+                                                                    if($('#utensilios').val() !=""){
+                                                                        formulario.submit();  
+                                                                    }else{
+                                                                        Swal.fire({
+                                                                            icon: 'warning',
+                                                                            title: 'Ups...',
+                                                                            text: 'No ha Seleccionado ningún Utensilio',
+                                                                        });
+                                                                    }                
+                                                                }
+                                                            };
+                                                            img.src = URL.createObjectURL(uploadFile);
+                                                        }
+                                                                
             
                                                     }else {
                                                         Swal.fire({
@@ -130,6 +165,13 @@ $(function(){
             });
             $('#nomreceta').focus().addClass("is-invalid");
         }
+        
+    });
+
+
+    $("#btn_enviar").change(function (e) { 
+        e.preventDefault();
+       
         
     });
 });

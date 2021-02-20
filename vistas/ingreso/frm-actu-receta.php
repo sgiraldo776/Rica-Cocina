@@ -335,7 +335,7 @@
     </script>
 
     <!-- Validacion Formulario Receta -->
-    <script type="text/javascript" src="<?php echo $URL ?>admin/js/Validacion_actu_receta.js"></script>
+    <script type="text/javascript" src="<?php echo $URL ?>admin/js/Validacionreceta.js"></script>
 </body>
 
 </html>

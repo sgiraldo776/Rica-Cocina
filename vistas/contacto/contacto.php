@@ -21,7 +21,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../admin/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="../../admin/css/bootstrap.min.css" >
     <!--Importacion css bootstrap-->
     <link rel="stylesheet" type="text/css" href="../../admin/css/styles1.css">
     <link rel="stylesheet" type="text/css" href="../../admin/css/style.css">
