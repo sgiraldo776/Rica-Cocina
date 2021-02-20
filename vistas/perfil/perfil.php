@@ -3,12 +3,6 @@ include('../../admin/conexion.php');
 session_start();
         if(!isset($_SESSION['rol'])){
             header('location: ../login/iniciar_sesion.php');
-        }else{
-            if($_SESSION['rol'] !=2 ){
-                header('location: ../login/iniciar_sesion.php');
-            }else{
-                include '../../includes/header-user.php';
-            }
         }
         
 ?>
@@ -31,6 +25,15 @@ session_start();
 </head>
 
 <body class="bgimg-perfil">
+
+        <?php
+
+        if($_SESSION['rol'] ==2 ){
+            include '../../includes/header-user.php';
+        }else if($_SESSION['rol'] ==1){
+            include '../../includes/header-admin.php';
+        }  
+        ?>
     <div class="container">
         <div class="row perfilcss">
 
@@ -125,10 +128,45 @@ session_start();
                     <button type="submit" class="boton boton-amarillo" id="ingresar">Desactivar Cuenta</button>
                 </a>
             </div>
+
+            <!-- inicio contenedor pago -->
+            <div class="container mt-5 text-center">
+                <form action="pago.php" method="POST">
+                    <div class="row">
+                        <div class="col-md4">
+                        <select class="form-control form-control-lg" name="membresia">
+                            <option value="1">3 Meses</option>
+                            <option value="2">6 meses</option>
+                            <option value="3">12 Meses</option>
+                        </select>
+                        </div>
+
+                        <div class="col-md4 form-check">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Default radio
+                            </label>
+                        </div>
+
+                        <div class="col-md4">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Default radio
+                            </label>
+                        </div>
+                    
+                    </div>
+
+                    <button type="submit" class="boton boton-amarillo">Continuar</button>
+                </form>
+            
+            </div>
+            <!-- fin contenedor form pago -->
+
         
         </div>
-    </div>
 
+    </div>
     </main>
     <br>
     <br>

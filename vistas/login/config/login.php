@@ -22,6 +22,7 @@ if($row == TRUE){
 
         $cuentaid=$row[0];
         $_SESSION['cuentaid']=$cuentaid;
+        $_SESSION['correoelectronico']=$usuario;
         $usuarioid=$row[5];
         $_SESSION['usuarioid']=$usuarioid;
         $rol=$row[3];
