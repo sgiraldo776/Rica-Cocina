@@ -3,12 +3,10 @@
 include('../../admin/conexion.php');
 session_start();
         if(!isset($_SESSION['rol'])){
-            header('location: ../login/iniciar_sesion.php');
+            header('location: login/iniciar_sesion.php');
         }else{
             if($_SESSION['rol'] !=2 ){
-                header('location: ../login/iniciar_sesion.php');
-            }else{
-                include '../../includes/header-user.php';
+                header('location: login/iniciar_sesion.php');
             }
         }
 
@@ -53,6 +51,14 @@ session_start();
 </head>
 
 <body class="bgimg-perfil">
+<?php
+
+    if($_SESSION['rol'] ==2 ){
+        include '../../includes/header-user.php';
+    }else if($_SESSION['rol'] ==1){
+        include '../../includes/header-admin.php';
+    }  
+?>
     <div class="container">
         <div class="row perfilcss">
                 <div class="text-center">
