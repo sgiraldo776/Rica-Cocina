@@ -141,17 +141,17 @@ session_start();
                         </select>
                         </div>
 
-                        <div class="col-md4 form-check">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Default radio
-                            </label>
+                        <div class="col-md4">
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            Default checkbox
+                        </label>
                         </div>
 
                         <div class="col-md4">
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                                Default radio
+                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                            <label class="form-check-label" for="defaultCheck1">
+                                Default checkbox
                             </label>
                         </div>
                     

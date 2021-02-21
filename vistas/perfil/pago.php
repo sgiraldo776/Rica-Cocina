@@ -56,12 +56,13 @@ session_start();
             include '../../includes/header-admin.php';
         }  
         ?>
+                <div class="text-center">
+                    <h1 class="mt-4">Conviertete en Premium</h1><br>
+                </div>
     <div class="container">
         <div class="row perfilcss">
-                <div class="text-center">
-                    <h1 class="mt-4">Convertete en Premium</h1><br>
-                </div>
-        <div class="mt-4">
+                
+        <div class="mt-4" style="margin: 0 auto;">
             <table class="table table-hover">
                 <thead class="thead">
                     <th>Membresia</th>
