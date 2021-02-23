@@ -133,26 +133,26 @@ session_start();
             <div class="container mt-5 text-center">
                 <form action="pago.php" method="POST">
                     <div class="row">
-                        <div class="col-md4">
-                        <select class="form-control form-control-lg" name="membresia">
+                        <div class="col-md-4">
+                        <!-- <select class="form-control form-control-lg" name="membresia">
                             <option value="1">3 Meses</option>
                             <option value="2">6 meses</option>
                             <option value="3">12 Meses</option>
-                        </select>
+                        </select> -->
+
+                        <input class="form-check-input" type="radio" name="membresia" value="1" checked>
+                        <img src="../../img/premium1.jpg">
                         </div>
 
-                        <div class="col-md4">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Default checkbox
-                        </label>
+                        <div class="col-md-4">
+                        <input class="form-check-input" type="radio" name="membresia" value="2" checked>
+                        <img src="../../img/premium2.jpg">
+
                         </div>
 
-                        <div class="col-md4">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                            <label class="form-check-label" for="defaultCheck1">
-                                Default checkbox
-                            </label>
+                        <div class="col-md-4">
+                        <input class="form-check-input" type="radio" name="membresia" value="3" checked>
+                        <img src="../../img/premium3.jpg">
                         </div>
                     
                     </div>

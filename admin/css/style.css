@@ -291,7 +291,7 @@ input#btn_enviar {
     font-size: 5rem;
   }
   
-  input[type="radio"] {
+  #estrella input[type="radio"] {
     display: none;
   }
   
