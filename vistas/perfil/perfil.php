@@ -131,45 +131,20 @@ session_start();
 
             <!-- inicio contenedor pago -->
             <div class="container mt-5 text-center">
-                <!-- <form action="pago.php" method="POST"> -->
-                    <div class="row">
-                        <div class="col-md-4">
-
-                        <button onclick="preguntar(1)" class="btn-premium"><img src="../../img/premium1.jpg" ></button>
-
-                        <!-- <input class="form-check-input" type="radio" name="membresia" value="1" checked>
-                        <img src="../../img/premium1.jpg">
-                        </div> -->
-                        </div>
-
-                        <div class="col-md-4">
-                        <!-- <input class="form-check-input" type="radio" name="membresia" value="2" checked>
-                        <img src="../../img/premium2.jpg"> -->
-
-                        <button class="btn-premium" onclick="preguntar(2)"><img src="../../img/premium2.jpg" ></button>
-
-                        </div>
-
-                        <div class="col-md-4">
-
-                        <!-- <input class="form-check-input" type="radio" name="membresia" value="3" checked>
-                        <img src="../../img/premium3.jpg"> -->
-
-                        <button class="btn-premium" onclick="preguntar(3)"><img src="../../img/premium3.jpg" ></button>
-
-                        </div>
-                    
+                <div class="row">
+                    <div class="col-md-4">
+                        <button onclick="preguntar(1)" class="btn btn-premium">Premium 1</button>
                     </div>
-
-                    <!-- <button type="submit" class="boton boton-amarillo mt-5">Continuar</button> -->
-                <!-- </form> -->
-            
+                    <!-- <div class="col-md-4">
+                        <button class="btn-premium" onclick="preguntar(2)"><img src="../../img/premium2.jpg" ></button>
+                    </div>
+                    <div class="col-md-4">
+                        <button class="btn-premium" onclick="preguntar(3)"><img src="../../img/premium3.jpg" ></button>
+                    </div> -->
+                </div>
             </div>
-            <!-- fin contenedor form pago -->
-
-        
+            <!-- fin contenedor form pago -->       
         </div>
-
     </div>
     </main>
     <br>

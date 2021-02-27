@@ -3,7 +3,6 @@
 
     session_start();
 
-
     $estado=$_POST['state_pol'];
     $respuesta=$_POST['response_code_pol'];
     $metodo_pago=$_POST['payment_method_type'];
