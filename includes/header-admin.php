@@ -31,6 +31,7 @@
                                     <a class="dropdown-item" href="<?php echo $URL ?>admin/tipodieta/form_tipodieta.php">Tipo Dieta</a>
                                     <a class="dropdown-item" href="<?php echo $URL ?>admin/TipoComida/form_TipoComida.php">Tipo Comida</a>
                                     <a class="dropdown-item" href="<?php echo $URL ?>admin/Padecimiento/form_padecimiento.php">Padecimientos</a>
+                                    <a class="dropdown-item" href="<?php echo $URL ?>admin/planes/form_plan.php">Planes</a>
                                 </div>
                             </li>
                             <li class="nav-item">
