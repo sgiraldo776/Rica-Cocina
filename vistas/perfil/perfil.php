@@ -131,34 +131,38 @@ session_start();
 
             <!-- inicio contenedor pago -->
             <div class="container mt-5 text-center">
-                <form action="pago.php" method="POST">
+                <!-- <form action="pago.php" method="POST"> -->
                     <div class="row">
                         <div class="col-md-4">
-                        <!-- <select class="form-control form-control-lg" name="membresia">
-                            <option value="1">3 Meses</option>
-                            <option value="2">6 meses</option>
-                            <option value="3">12 Meses</option>
-                        </select> -->
 
-                        <input class="form-check-input" type="radio" name="membresia" value="1" checked>
+                        <button onclick="preguntar(1)" class="btn-premium"><img src="../../img/premium1.jpg" ></button>
+
+                        <!-- <input class="form-check-input" type="radio" name="membresia" value="1" checked>
                         <img src="../../img/premium1.jpg">
+                        </div> -->
                         </div>
 
                         <div class="col-md-4">
-                        <input class="form-check-input" type="radio" name="membresia" value="2" checked>
-                        <img src="../../img/premium2.jpg">
+                        <!-- <input class="form-check-input" type="radio" name="membresia" value="2" checked>
+                        <img src="../../img/premium2.jpg"> -->
+
+                        <button class="btn-premium" onclick="preguntar(2)"><img src="../../img/premium2.jpg" ></button>
 
                         </div>
 
                         <div class="col-md-4">
-                        <input class="form-check-input" type="radio" name="membresia" value="3" checked>
-                        <img src="../../img/premium3.jpg">
+
+                        <!-- <input class="form-check-input" type="radio" name="membresia" value="3" checked>
+                        <img src="../../img/premium3.jpg"> -->
+
+                        <button class="btn-premium" onclick="preguntar(3)"><img src="../../img/premium3.jpg" ></button>
+
                         </div>
                     
                     </div>
 
-                    <button type="submit" class="boton boton-amarillo">Continuar</button>
-                </form>
+                    <!-- <button type="submit" class="boton boton-amarillo mt-5">Continuar</button> -->
+                <!-- </form> -->
             
             </div>
             <!-- fin contenedor form pago -->
@@ -187,6 +191,32 @@ session_start();
     <?php
     }
     ?>
+
+
+<script type="text/javascript">
+            function preguntar(id){
+            Swal
+                .fire({
+                    title: "Comprar Premium",
+                    text: "¿Estas seguro que desea comprar este paquete premium?",
+                    icon: 'warning',            
+                    showCancelButton: true,
+                    confirmButtonText: "Sí, Continuar",
+                    cancelButtonText: "Cancelar",
+                })
+                .then(resultado => {
+                    if (resultado.value) {
+                        // Hicieron click en "Sí"
+                        //console.log("*se elimina la venta*");
+                        window.location.href="pago.php?id="+id
+                    } else {
+                        // Dijeron que no
+                        console.log("*NO se elimina*");
+                    }
+                });
+
+            }
+        </script>
 
     <!--JS de bootstrap-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

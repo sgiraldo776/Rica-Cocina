@@ -314,3 +314,9 @@ input#btn_enviar {
   input[type="radio"]:checked ~ #estrella {
     color: #813531;
   }
+
+.btn-premium {
+    width: 50rem;
+    height: auto;
+    border: none;
+}

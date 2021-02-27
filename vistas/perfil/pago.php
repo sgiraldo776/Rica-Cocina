@@ -6,7 +6,7 @@ session_start();
         header('location: ../login/iniciar_sesion.php');
     }
 
-        $membresia=$_POST['membresia'];
+        $membresia=$_GET['id'];
 
         if ($membresia==1){
             $precio=10000;
