@@ -1,10 +1,14 @@
 <?php
-include('../../admin/conexion.php');
+include '../../admin/conexion.php';
 session_start();
-        if(!isset($_SESSION['rol'])){
-            header('location: ../login/iniciar_sesion.php');
-        }
-        
+if(!isset($_SESSION['rol'])){
+    header('location: ../login/iniciar_sesion.php');
+}
+include '../../admin/util/validar_premium.php';
+$premium=validarPremium($_SESSION['cuentaid'],$conn);
+
+$sqlConsultaPlanes = "SELECT * FROM tblplan";
+$resultConsultaPlanes = $conn->query($sqlConsultaPlanes);
 ?>
 
 <!DOCTYPE html>
@@ -46,16 +50,21 @@ session_start();
                 $row=$sql->fetch_array();
             ?>
             <div class="dat-usu col-12 text-center">
-                <label for="">Nombre</label>
-                <input type="text" class="form-control" value="<?php echo $row[0]?>" disabled>
-
-                <label for="">Fecha de nacimiento</label>
-                <input type="date" class="form-control" value="<?php echo $row[1]?>" disabled>
-
-                <label for="">Correo</label>
-                <input type="text" class="form-control" value="<?php echo $row[2]?>" disabled>
-            </div>
-            
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="">Nombre</label>
+                        <input type="text" class="form-control" value="<?php echo $row[0]?>" disabled>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="">Fecha de nacimiento</label>
+                        <input type="date" class="form-control" value="<?php echo $row[1]?>" disabled>
+                    </div>
+                </div>
+                <div form-group>
+                    <label for="">Correo</label>
+                    <input type="text" class="form-control" value="<?php echo $row[2]?>" disabled>
+                </div>
+               
             <div class="col-12 text-center bot-perf">
                 <div class="modal fade" tabindex="-1" id="modal1">
                     <div class="modal-dialog modal-lg">
@@ -73,10 +82,9 @@ session_start();
                             <form action="actualizar-perfil.php" name="add_form" method="post">
                             <div class="card-body">
                                 <fieldset class="fieldset">
-                                    <legend class="legend">
-                                        Información Personal</legend>
-                                    <div class="row">
-                                        <div class="col">
+                                    <legend class="legend">Información Personal</legend>
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
                                             <label>Nombre</label>
                                             <input
                                                 type="text"
@@ -84,11 +92,10 @@ session_start();
                                                 class="form-control"
                                                 placeholder="Ingrese el nombre"
                                                 id="nombre"
-                                                value="<?php echo $row[0]?>">
+                                                value="<?php echo $row[0]?>"
+                                            >
                                         </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col">
+                                        <div class="form-group col-md-6">
                                             <label>Apellido</label>
                                             <input
                                                 type="text"
@@ -96,25 +103,23 @@ session_start();
                                                 class="form-control"
                                                 placeholder="Ingrese los apellidos"
                                                 id="apellido"
-                                                value="<?php echo $row[1]?>">
+                                                value="<?php echo $row[1]?>"
+                                            >
                                         </div>
+                                        
                                     </div>
                                     <div class="form-group">
-                                        <div class="row">
-                                            <div class="col">
-                                                <label>Fecha de Nacimiento</label>
-                                                <input
-                                                    type="date"
-                                                    class="form-control"
-                                                    name="fechanacimiento"
-                                                    placeholder="Ingrese Fecha de Nacimiento"
-                                                    id="fechanacimiento"
-                                                    onblur="myFunction()"
-                                                    value="<?php echo $row[2]?>">
-                                            </div>
-                                        </div>
+                                        <label>Fecha de Nacimiento</label>
+                                        <input
+                                            type="date"
+                                            class="form-control"
+                                            name="fechanacimiento"
+                                            placeholder="Ingrese Fecha de Nacimiento"
+                                            id="fechanacimiento"
+                                            onblur="myFunction()"
+                                            value="<?php echo $row[2]?>"
+                                        >
                                     </div>
-
                                 </fieldset>
                                 <button type="button" class="boton boton-amarillo" id="enviar">Guardar Cambios</button>
                             </div>
@@ -130,20 +135,37 @@ session_start();
             </div>
 
             <!-- inicio contenedor pago -->
-            <div class="container mt-5 text-center">
+            <div class="container d-flex mt-5 text-center">
+                <?php if(!$premium): ?>
                 <div class="row">
-                    <div class="col-md-4">
-                        <button onclick="preguntar(1)" class="btn btn-premium">Premium 1</button>
-                    </div>
-                    <!-- <div class="col-md-4">
-                        <button class="btn-premium" onclick="preguntar(2)"><img src="../../img/premium2.jpg" ></button>
-                    </div>
-                    <div class="col-md-4">
-                        <button class="btn-premium" onclick="preguntar(3)"><img src="../../img/premium3.jpg" ></button>
-                    </div> -->
+
+                <?php 
+                    while($plan =  $resultConsultaPlanes->fetch_row()): 
+                ?> 
+                        <div class="col-auto">
+                            <button onclick="preguntar(<?php echo $plan[0] ?>)" class="btn btn-premium"><?php echo $plan[1] ?></button>
+                        </div>
+                <?php 
+                    endwhile; 
+                ?>
                 </div>
+                <?php else: ?>
+
+                    <div class="contenedor-premium p-5">
+                        <div class="col-md-6 bg-yellow p-3 redondeado">
+                            <h2 class="premium_titulo">Eres premium</h2>                        
+                        </div>
+                        <div class="col-md-6">
+                            <h2 class="text-white">Fecha fin</h2>  
+                            <p>3/12/1992</p>                     
+                        </div>
+                    </div>
+                <?php endif; ?>
+
+                
             </div>
             <!-- fin contenedor form pago -->       
+        </div>
         </div>
     </div>
     </main>
@@ -168,30 +190,29 @@ session_start();
     ?>
 
 
-<script type="text/javascript">
-            function preguntar(id){
-            Swal
-                .fire({
-                    title: "Comprar Premium",
-                    text: "¿Estas seguro que desea comprar este paquete premium?",
-                    icon: 'warning',            
-                    showCancelButton: true,
-                    confirmButtonText: "Sí, Continuar",
-                    cancelButtonText: "Cancelar",
-                })
-                .then(resultado => {
-                    if (resultado.value) {
-                        // Hicieron click en "Sí"
-                        //console.log("*se elimina la venta*");
-                        window.location.href="pago.php?id="+id
-                    } else {
-                        // Dijeron que no
-                        console.log("*NO se elimina*");
-                    }
-                });
+    <script type="text/javascript">
+        function preguntar(id){
+            Swal.fire({
+                title: "Comprar Premium",
+                text: "¿Estas seguro que desea comprar este paquete premium?",
+                icon: 'warning',            
+                showCancelButton: true,
+                confirmButtonText: "Sí, Continuar",
+                cancelButtonText: "Cancelar",
+            })
+            .then(resultado => {
+                if (resultado.value) {
+                    // Hicieron click en "Sí"
+                    //console.log("*se elimina la venta*");
+                    window.location.href="pago.php?id="+id
+                } else {
+                    // Dijeron que no
+                    console.log("*NO se elimina*");
+                }
+            });
 
-            }
-        </script>
+        }
+    </script>
 
     <!--JS de bootstrap-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

@@ -2,28 +2,18 @@
 
 include('../../admin/conexion.php');
 session_start();
-    if(!isset($_SESSION['rol'])){
-        header('location: ../login/iniciar_sesion.php');
-    }
+if(!isset($_SESSION['rol'])){
+    header('location: ../login/iniciar_sesion.php');
+}
 
-        $membresia=$_GET['id'];
-
-        if ($membresia==1){
-            $precio=10000;
-            $plan='Rica Cocina premium DEVE 1';
-            $tiempo='3 meses';
-        }else 
-            if ($membresia==2){
-                $precio=20000;
-                $plan='Rica Cocina premium DEVE 2';
-                $tiempo='6 meses';
-        }else
-            if($membresia==3){
-                $precio=30000;
-                $plan='Rica Cocina premium DEVE 3';
-                $tiempo='12 meses';
-
-        }
+$membresia=$_GET['id'];
+        
+$sqlConsultaPlanes = "SELECT * FROM tblplan where id = $membresia";
+$resultConsultaPlanes = $conn->query($sqlConsultaPlanes);
+$planes = $resultConsultaPlanes->fetch_row();
+$precio=$planes[3];
+$plan=$planes[1];
+$tiempo= $planes[2] > 1 ? $planes[2] ." meses" :$planes[2] ." mes" ;
 
 
 ?>
