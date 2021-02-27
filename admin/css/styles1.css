@@ -768,3 +768,23 @@ h4 {
         color:black;
     }
 }
+
+
+/* Premium */
+
+.btn-premium{
+    border: none;
+    height: 50px;
+    text-transform: capitalize;
+    font-family: 'Quicksand';
+    font-weight: 700;
+    font-size: 26px;
+    color: white;
+    /* border-radius: 50px; */
+    background-color: #ffb80e;
+}
+
+.btn-premium:hover{
+    background-color: #813531;
+    color: white;
+}

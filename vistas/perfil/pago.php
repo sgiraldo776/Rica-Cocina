@@ -10,17 +10,17 @@ session_start();
 
         if ($membresia==1){
             $precio=10000;
-            $plan='Rica Cocina premium 1';
+            $plan='Rica Cocina premium DEVE 1';
             $tiempo='3 meses';
         }else 
             if ($membresia==2){
                 $precio=20000;
-                $plan='Rica Cocina premium 2';
+                $plan='Rica Cocina premium DEVE 2';
                 $tiempo='6 meses';
         }else
             if($membresia==3){
                 $precio=30000;
-                $plan='Rica Cocina premium 3';
+                $plan='Rica Cocina premium DEVE 3';
                 $tiempo='12 meses';
 
         }
@@ -55,6 +55,20 @@ session_start();
         }else if($_SESSION['rol'] ==1){
             include '../../includes/header-admin.php';
         }  
+        
+        $sqlConsultaIdTransaccion = "SELECT MAX(id) from tbltransacciones";
+        $resultConsultaIdTransaccion = $conn->query($sqlConsultaIdTransaccion);
+        $resultConsultaIdTransaccion =  $resultConsultaIdTransaccion->fetch_row();
+        $referenceCode = $_SESSION['cuentaid'].$resultConsultaIdTransaccion[0]+1;
+        $hoy = date('Y-m-d');
+        
+        $sqlInsertTransaccion = "INSERT INTO tbltransacciones (usuario,referencia,fechatransaccion) VALUES (".$_SESSION['cuentaid'].",".$referenceCode.",'".$hoy."')"; 
+        if(!$conn->query($sqlInsertTransaccion)){
+            echo $sqlInsertTransaccion;
+            // echo "<script>location.href='perfil.php?error=1'; </script>";
+        }
+        
+        
         ?>
                 <div class="text-center">
                     <h1 class="mt-4">Conviertete en Premium</h1><br>
@@ -80,7 +94,7 @@ session_start();
 
                 $merchantId="508029";
                 $ApiKey="4Vj8eK4rloUd272L48hsrarnUA";
-                $referenceCode=$plan;
+                // $referenceCode=rand(1,10000);;
                 $amount=$precio;
                 $currency="COP";
                 //$correo=$_SESSION['correoelectronico'];
@@ -96,7 +110,7 @@ session_start();
                 <input name="merchantId" type="hidden" value="<?php echo $merchantId ?>">
                 <input name="ApiKey" type="hidden" value="<?php echo $ApiKey ?>">
                 <input name="accountId" type="hidden" value="512321">
-                <input name="description" type="hidden" value="Plan Premium seleccionado">
+                <input name="description" type="hidden" value="<?php echo $plan ?>">
                 <input name="referenceCode" type="hidden" value="<?php echo $referenceCode ?>">
                 <input name="amount" type="hidden" value="<?php echo $amount ?>">
                 <input name="tax" type="hidden" value="0">
@@ -106,7 +120,7 @@ session_start();
                 <input name="test" type="hidden" value="1">
                 <input name="buyerEmail" type="hidden" value="<?php echo $_SESSION['correoelectronico'] ?>">
                 <input name="responseUrl" type="hidden" value="https://develop.ricacocina.co/">
-                <input name="confirmationUrl" type="hidden" value="https://develop.ricacocina.co/">
+                <input name="confirmationUrl" type="hidden" value="<?php echo $URL ?>vistas/perfil/confirmacionpago.php">
                 
                 <div class="text-center">
                     <input name="Submit" class="boton boton-amarillo" type="submit" value="Enviar">
