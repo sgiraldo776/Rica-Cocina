@@ -5,7 +5,8 @@ if(!isset($_SESSION['rol'])){
     header('location: ../login/iniciar_sesion.php');
 }
 include '../../admin/util/validar_premium.php';
-$premium=validarPremium($_SESSION['cuentaid'],$conn);
+$id = $_SESSION['cuentaid'];
+$premium=validarPremium($id,$conn);
 
 $sqlConsultaPlanes = "SELECT * FROM tblplan";
 $resultConsultaPlanes = $conn->query($sqlConsultaPlanes);
@@ -17,7 +18,7 @@ $resultConsultaPlanes = $conn->query($sqlConsultaPlanes);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Iniciar Sesion</title>
+    <title>Perfil</title>
 
     <link rel="stylesheet" href="../../admin/css/bootstrap.min.css" >
     <!--Importacion css bootstrap-->
@@ -30,19 +31,18 @@ $resultConsultaPlanes = $conn->query($sqlConsultaPlanes);
 
 <body class="bgimg-perfil">
 
-        <?php
+    <?php
 
         if($_SESSION['rol'] ==2 ){
             include '../../includes/header-user.php';
         }else if($_SESSION['rol'] ==1){
             include '../../includes/header-admin.php';
         }  
-        ?>
+    ?>
     <div class="container">
         <div class="row perfilcss">
-
             <div class="col-12 perfil-img">
-            <img src="<?php echo $URL ?>img/logo-rica-cociona1.png" alt="">
+                <img src="<?php echo $URL ?>img/logo-rica-cociona1.png" alt="">
             </div>
             <?php
                 $sql = $conn ->query("SELECT concat_ws(' ', us.nombres, us.apellidos) as 'Persona', us.fechanacimiento, cu.correoelectronico FROM tblusuario as us INNER JOIN tblcuenta as cu ON cu.usuarioid = us.usuarioid WHERE us.usuarioid='$_SESSION[usuarioid]'");
@@ -65,128 +65,131 @@ $resultConsultaPlanes = $conn->query($sqlConsultaPlanes);
                     <input type="text" class="form-control" value="<?php echo $row[2]?>" disabled>
                 </div>
                
-            <div class="col-12 text-center bot-perf">
-                <div class="modal fade" tabindex="-1" id="modal1">
-                    <div class="modal-dialog modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h2>Modificar datos</h2>
-                                <button class="close" data-dismiss="modal">&times;</button>
-                            </div>
-                            <div class="modal-body">
-                            <?php
-                                $sql = $conn ->query("SELECT us.nombres, us.apellidos, us.fechanacimiento FROM tblusuario as us WHERE us.usuarioid='$_SESSION[usuarioid]'");
+                <div class="col-12 text-center bot-perf">
+                    <div class="modal fade" tabindex="-1" id="modal1">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h2>Modificar datos</h2>
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                <div class="modal-body">
+                                <?php
+                                    $sql = $conn ->query("SELECT us.nombres, us.apellidos, us.fechanacimiento FROM tblusuario as us WHERE us.usuarioid='$_SESSION[usuarioid]'");
 
-                                $row=$sql->fetch_array();
-                            ?>
-                            <form action="actualizar-perfil.php" name="add_form" method="post">
-                            <div class="card-body">
-                                <fieldset class="fieldset">
-                                    <legend class="legend">Información Personal</legend>
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label>Nombre</label>
+                                    $row=$sql->fetch_array();
+                                ?>
+                                <form action="actualizar-perfil.php" name="add_form" method="post">
+                                <div class="card-body">
+                                    <fieldset class="fieldset">
+                                        <legend class="legend">Información Personal</legend>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                                <label>Nombre</label>
+                                                <input
+                                                    type="text"
+                                                    name="nombre"
+                                                    class="form-control"
+                                                    placeholder="Ingrese el nombre"
+                                                    id="nombre"
+                                                    value="<?php echo $row[0]?>"
+                                                >
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                                <label>Apellido</label>
+                                                <input
+                                                    type="text"
+                                                    name="apellidos"
+                                                    class="form-control"
+                                                    placeholder="Ingrese los apellidos"
+                                                    id="apellido"
+                                                    value="<?php echo $row[1]?>"
+                                                >
+                                            </div>
+                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Fecha de Nacimiento</label>
                                             <input
-                                                type="text"
-                                                name="nombre"
+                                                type="date"
                                                 class="form-control"
-                                                placeholder="Ingrese el nombre"
-                                                id="nombre"
-                                                value="<?php echo $row[0]?>"
+                                                name="fechanacimiento"
+                                                placeholder="Ingrese Fecha de Nacimiento"
+                                                id="fechanacimiento"
+                                                onblur="myFunction()"
+                                                value="<?php echo $row[2]?>"
                                             >
                                         </div>
-                                        <div class="form-group col-md-6">
-                                            <label>Apellido</label>
-                                            <input
-                                                type="text"
-                                                name="apellidos"
-                                                class="form-control"
-                                                placeholder="Ingrese los apellidos"
-                                                id="apellido"
-                                                value="<?php echo $row[1]?>"
-                                            >
-                                        </div>
-                                        
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Fecha de Nacimiento</label>
-                                        <input
-                                            type="date"
-                                            class="form-control"
-                                            name="fechanacimiento"
-                                            placeholder="Ingrese Fecha de Nacimiento"
-                                            id="fechanacimiento"
-                                            onblur="myFunction()"
-                                            value="<?php echo $row[2]?>"
-                                        >
-                                    </div>
-                                </fieldset>
-                                <button type="button" class="boton boton-amarillo" id="enviar">Guardar Cambios</button>
-                            </div>
-                        </form>
+                                    </fieldset>
+                                    <button type="button" class="boton boton-amarillo" id="enviar">Guardar Cambios</button>
+                                </div>
+                            </form>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="boton boton-amarillo" data-toggle="modal" data-target="#modal1" id="ingresar">Editar perfil</button>
+                    <a href="<?php echo $URL ?>vistas/login/config/darse_baja.php">
+                        <button type="submit" class="boton boton-amarillo" id="ingresar">Desactivar Cuenta</button>
+                    </a>
                 </div>
-                <button type="button" class="boton boton-amarillo" data-toggle="modal" data-target="#modal1" id="ingresar">Editar perfil</button>
-                <a href="<?php echo $URL ?>vistas/login/config/darse_baja.php">
-                    <button type="submit" class="boton boton-amarillo" id="ingresar">Desactivar Cuenta</button>
-                </a>
-            </div>
 
             <!-- inicio contenedor pago -->
             <div class="container d-flex mt-5 text-center">
                 <?php if(!$premium): ?>
-                <div class="row">
-
-                <?php 
-                    while($plan =  $resultConsultaPlanes->fetch_row()): 
-                ?> 
-                        <div class="col-auto">
-                            <button onclick="preguntar(<?php echo $plan[0] ?>)" class="btn btn-premium"><?php echo $plan[1] ?></button>
-                        </div>
-                <?php 
-                    endwhile; 
-                ?>
-                </div>
+                    <div class="row">
+                        <?php 
+                            while($plan =  $resultConsultaPlanes->fetch_row()): 
+                        ?> 
+                            <div class="col-auto">
+                                <button onclick="preguntar(<?php echo $plan[0] ?>)" class="btn btn-premium"><?php echo $plan[1] ?></button>
+                            </div>
+                        <?php 
+                            endwhile; 
+                        ?>
+                    </div>
                 <?php else: ?>
 
-                    <div class="contenedor-premium p-5">
+                    <div class="contenedor-premium col-md-12 p-5">
                         <div class="col-md-6 bg-yellow p-3 redondeado">
                             <h2 class="premium_titulo">Eres premium</h2>                        
                         </div>
                         <div class="col-md-6">
-                            <h2 class="text-white">Fecha fin</h2>  
-                            <p>3/12/1992</p>                     
+                            <h2 class="text-white">Fecha fin</h2>
+                            <?php 
+                                $hoy = date('Y-m-d');
+                                $sqlConsultaPremium = "SELECT fechafinal from tbltransacciones WHERE usuario = $id and fechafinal >= '$hoy' and estado = 4 and respuesta=1 limit 1";
+                                $resultConsultaTransacciones = $conn->query($sqlConsultaPremium);
+                                if($resultConsultaTransacciones = $resultConsultaTransacciones->fetch_row()){
+                                    if(!empty($resultConsultaTransacciones[0])){
+                                        echo "<p class='text-white'>$resultConsultaTransacciones[0]</p>";
+                                    }
+                                }
+                            ?>                     
                         </div>
                     </div>
                 <?php endif; ?>
-
-                
-            </div>
+                </div>
             <!-- fin contenedor form pago -->       
-        </div>
+            </div>
         </div>
     </div>
-    </main>
-    <br>
-    <br>
     <?php include '../../includes/footer.php' ?>
     <?php
-    if(isset($_GET['ntf'])){
+        if(isset($_GET['ntf'])){
     ?>
 
-    <script>
-        Swal.fire({
-            title: '¡Hecho!',
-            text: 'Datos actualizados correctamente',
-            icon: 'success',
-            confirmButtonText: 'OK'
-        })    
-    </script>
+        <script>
+            Swal.fire({
+                title: '¡Hecho!',
+                text: 'Datos actualizados correctamente',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            })    
+        </script>
 
     <?php
-    }
+        }
     ?>
 
 

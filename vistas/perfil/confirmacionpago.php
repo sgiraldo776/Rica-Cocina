@@ -8,15 +8,25 @@
     $metodo_pago=$_POST['payment_method_type'];
     $moneda=$_POST['currency'];
     $identificador=$_POST['payment_method_id'];
+    $extra2=$_POST['extra2'];
     $reference_sale=$_POST['reference_sale'];
     $hoy = date('Y-m-d');
 
+    if ($estado==4){
 
-    if ($estado==4 or $_POST['api']==1){
-        $insert=$conn->query("UPDATE `tbltransacciones` SET `estado`=$estado,`respuesta`=$respuesta,`fechainicio`='$hoy',`fechafinal`='2021-09-12' WHERE referencia=$reference_sale");       
+        $sqlConsultaPlan = "SELECT * FROM tblplan where id = $extra2";
+        $resultConsultaPlan = $conn->query($sqlConsultaPlan);
+        $plan = $resultConsultaPlan->fetch_row();
+
+        $numeroMeses = $plan[2];
+
+        $fechaFinal = date("Y-m-d",strtotime($hoy."+ ".$numeroMeses." month")); 
+
+        $insert=$conn->query("UPDATE `tbltransacciones` SET `estado`=$estado,`respuesta`=$respuesta,`fechainicio`='$hoy',`fechafinal`='$fechaFinal' WHERE referencia=$reference_sale");  
+
         http_response_code(200);
     }else{
-        $insert=$conn->query("UPDATE `tbltransacciones` SET `estado`=$estado,`respuesta`=$respuesta,`fechainicio`='$hoy',`fechafinal`='2021-09-12' WHERE referencia=$reference_sale");
+        $insert=$conn->query("UPDATE `tbltransacciones` SET `estado`=$estado,`respuesta`=$respuesta,`fechainicio`=null,`fechafinal`=null WHERE referencia=$reference_sale");
         http_response_code(200);
     }
 

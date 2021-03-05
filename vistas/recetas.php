@@ -1,4 +1,14 @@
-<?php session_start(); ?>
+<?php 
+session_start(); 
+include '../admin/conexion.php';
+include '../admin/util/validar_premium.php';
+if(isset($_SESSION['cuentaid'])){
+    $id = $_SESSION['cuentaid'];
+    $premium=validarPremium($id,$conn);
+}else{
+    $premium= false;
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -16,6 +26,12 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <meta name="description" content="Aquí se halla la magia de RicaCocina, donde encontrarás el cambio gastronómico en tu vida, con diferentes herramientas que permitirán una experiencia atrevida.">
     <meta name="titulo" content="Filtros De Recetas">
+    <meta property="og:title" content="Filtros De Recetas" />
+    <meta property="og:description" content="Aquí se halla la magia de RicaCocina, donde encontrarás el cambio gastronómico en tu vida, con diferentes herramientas que permitirán una experiencia atrevida." />
+    <meta property="og:image" content="<?php echo $URL."img/meta-receta.jpg"  ?>">
+    <meta property="og:url" content="<?php echo $URL ?>" />
+    <meta property="og:description" content="<?php echo $URL ?>" />
+    <meta property="og:site_name" content="Rica Cocina" />
     <title>Rica Cocina</title>
 </head>
 
@@ -23,10 +39,9 @@
 
 <?php 
 
-include('../admin/conexion.php');
 include('../admin/util/funciones.php');
 
-if($_SESSION['premium'] == false){
+if($premium == false){
     $disabled = "disabled='true' title='Paga una suscripción para usar este filtro'";
 }else{
     $disabled = "";

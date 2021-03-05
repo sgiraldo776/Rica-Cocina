@@ -19,6 +19,7 @@ $row=mysqli_fetch_array($consulta);
 
 if($row == TRUE){
     if($row[4] != 0){
+        $hoy = date('Y-m-d');
 
         $cuentaid=$row[0];
         $_SESSION['cuentaid']=$cuentaid;

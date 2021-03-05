@@ -8,14 +8,12 @@ if(!isset($_SESSION['rol'])){
 
 $membresia=$_GET['id'];
         
-$sqlConsultaPlanes = "SELECT * FROM tblplan where id = $membresia";
+$sqlConsultaPlanes = "SELECT * FROM tblplan where id = $membresia LIMIT 1";
 $resultConsultaPlanes = $conn->query($sqlConsultaPlanes);
 $planes = $resultConsultaPlanes->fetch_row();
 $precio=$planes[3];
 $plan=$planes[1];
 $tiempo= $planes[2] > 1 ? $planes[2] ." meses" :$planes[2] ." mes" ;
-
-
 ?>
 
 
@@ -107,6 +105,7 @@ $tiempo= $planes[2] > 1 ? $planes[2] ." meses" :$planes[2] ." mes" ;
                 <input name="taxReturnBase" type="hidden" value="0">
                 <input name="currency" type="hidden" value="<?php echo $currency ?>">
                 <input name="signature" type="hidden" value="<?php echo $j ?>">
+                <input name="extra2" type="hidden" value="<?php echo $planes[0] ?>">
                 <input name="test" type="hidden" value="1">
                 <input name="buyerEmail" type="hidden" value="<?php echo $_SESSION['correoelectronico'] ?>">
                 <input name="responseUrl" type="hidden" value="https://develop.ricacocina.co/">
