@@ -17,6 +17,26 @@
         var palabrasBuscar = [];    
     </script>
 
+    <!-- Facebook Card -->  
+    <meta property="og:site_name" content="Rica Cocina" />
+    <meta property="og:url" content="<?php echo $URL ?>/vistas/recetas.php" />
+    <meta property="og:type" content="article:Receta" />
+    <meta property="og:title" content="Rica Cocina" />
+    <meta property="og:description" content="RicaCocina es una comunidad de creación gastronómica colectiva, con múltiples herramientas que te ayudarán a encontrar el camino del deleite y de la superación." />
+    <meta property="og:image" content="<?php echo $URL."img/meta-img-index.png" ?>" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Rica Cocina">
+    <meta name="twitter:description" content="RicaCocina es una comunidad de creación gastronómica colectiva, con múltiples herramientas que te ayudarán a encontrar el camino del deleite y de la superación.">
+    <meta name="twitter:creator" content="@andercc2880">
+    <meta name="twitter:image" content="<?php echo $URL."img/meta-img-index.png" ?>" >
+
+    <!-- Schema.org para Google+ -->
+    <meta itemprop="name" content="Rica Cocina">
+    <meta itemprop="description" content="RicaCocina es una comunidad de creación gastronómica colectiva, con múltiples herramientas que te ayudarán a encontrar el camino del deleite y de la superación.">
+    <meta itemprop="image" content="<?php echo $URL."img/meta-img-index.png" ?>" >
+
     <title>Rica Cocina</title>
 </head>
 

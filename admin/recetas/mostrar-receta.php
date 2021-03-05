@@ -32,6 +32,25 @@
     <link rel="stylesheet" type="text/css" href="../../admin/css/style.css">
     <meta name="description" content="He aquí una creación más de nuestros usuarios! ¿Deseas ver más creaciones? Ve a la sección de recetas y busca la indicada.">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+       <!-- Facebook Card -->  
+    <meta property="og:site_name" content="Rica Cocina" />
+    <meta property="og:url" content="<?php echo $URL.$_SERVER["REQUEST_URI"];?>" />
+    <meta property="og:type" content="article:Receta" />
+    <meta property="og:title" content="<?php echo $row[0]; ?> - Rica Cocina" />
+    <meta property="og:description" content="He aquí una creación más de nuestros usuarios! ¿Deseas ver más creaciones? Ve a la sección de recetas y busca la indicada." />
+    <meta property="og:image" content="<?php echo $URL."img/meta-img-recetas.png" ?>" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="<?php echo $row[0]; ?> - Rica Cocina">
+    <meta name="twitter:description" content="He aquí una creación más de nuestros usuarios! ¿Deseas ver más creaciones? Ve a la sección de recetas y busca la indicada.">
+    <meta name="twitter:creator" content="@andercc2880">
+    <meta name="twitter:image" content="<?php echo $URL."img/meta-img-recetas.png" ?>" >
+
+    <!-- Schema.org para Google+ -->
+    <meta itemprop="name" content="<?php echo $row[0]; ?> - Rica Cocina">
+    <meta itemprop="description" content="He aquí una creación más de nuestros usuarios! ¿Deseas ver más creaciones? Ve a la sección de recetas y busca la indicada.">
+    <meta itemprop="image" content="<?php echo $URL."img/meta-img-recetas.png" ?>" >
     <title><?php echo $row[0]; ?> - Rica Cocina</title>
 </head>
 <body>

@@ -25,13 +25,27 @@ if(isset($_SESSION['cuentaid'])){
     <link rel="stylesheet" type="text/css" href="admin/css/styles1.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <meta name="description" content="Aquí se halla la magia de RicaCocina, donde encontrarás el cambio gastronómico en tu vida, con diferentes herramientas que permitirán una experiencia atrevida.">
-    <meta name="titulo" content="Filtros De Recetas">
+    
+    <!-- Facebook Card -->
+    <meta property="og:site_name" content="Rica Cocina" />
+    <meta property="og:url" content="<?php echo $URL ?>/vistas/recetas.php" />
+    <meta property="og:type" content="article:Receta" />
     <meta property="og:title" content="Filtros De Recetas" />
     <meta property="og:description" content="Aquí se halla la magia de RicaCocina, donde encontrarás el cambio gastronómico en tu vida, con diferentes herramientas que permitirán una experiencia atrevida." />
-    <meta property="og:image" content="<?php echo $URL."img/meta-receta.jpg"  ?>">
-    <meta property="og:url" content="<?php echo $URL ?>" />
-    <meta property="og:description" content="<?php echo $URL ?>" />
-    <meta property="og:site_name" content="Rica Cocina" />
+    <meta property="og:image" content="<?php echo $URL."img/meta-img-general.png" ?>" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Filtros De Recetasa">
+    <meta name="twitter:description" content="Aquí se halla la magia de RicaCocina, donde encontrarás el cambio gastronómico en tu vida, con diferentes herramientas que permitirán una experiencia atrevida.">
+    <meta name="twitter:creator" content="@andercc2880">
+    <meta name="twitter:image" content="<?php echo $URL."img/meta-img-general.png" ?>" >
+
+    <!-- Schema.org para Google+ -->
+    <meta itemprop="name" content="Filtros De Recetasa">
+    <meta itemprop="description" content="Aquí se halla la magia de RicaCocina, donde encontrarás el cambio gastronómico en tu vida, con diferentes herramientas que permitirán una experiencia atrevida.">
+    <meta itemprop="image" content="<?php echo $URL."img/meta-img-general.png" ?>" >
+
     <title>Rica Cocina</title>
 </head>
 
