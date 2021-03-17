@@ -1,0 +1,13 @@
+/* Carrusel */
+
+.carrusel-blog{
+    /* padding: 20px; */
+    /* border:1px black solid; */
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.last-entries{
+    color:white;
+}
+.last-entries > ol > li > a{
+    color: white;
+}
