@@ -13,6 +13,7 @@ $texto = "<?php
     \$id = ".$recetaid.";
     session_start();
 ?>
+\n
 ";
 
 $sqlConsultaReceta="SELECT * FROM `tblreceta` where recetaid = $recetaid";
@@ -51,18 +52,20 @@ if ( $resutadoReceta) {
     $swIndex = false;
     if($swRecetaCarpeta){
 
-        $fichero = 'mostrar-receta.php';
+        $fichero = 'index.php';
         $nuevo_fichero = $nombre_carpeta_receta."/index.php";
-
-        if (!copy($fichero, $nuevo_fichero)) {
-            echo "Error al copiar $fichero...\n";
-        }
-
-        $fh = fopen($nombre_carpeta_receta."/index.php", 'c') or die("Se produjo un error al crear el archivo");
-        fwrite($fh, $texto) or die("No se pudo escribir en el archivo");
+        $contenidoPlantilla = file_get_contents("./mostrar-receta.php"); 
+        $fh = fopen("index.php", 'a+') or die("Se produjo un error al crear el archivo");
+        fwrite($fh ,$texto);
+        fwrite($fh ,$contenidoPlantilla);
         fclose($fh);
 
-        $swIndex = true;
+        if (!move_to($fichero,$nuevo_fichero)) {
+            echo "Error al copiar $fichero...\n";
+        }else{
+            $swIndex = true;
+        }
+      
     }
 
     if($swIndex){

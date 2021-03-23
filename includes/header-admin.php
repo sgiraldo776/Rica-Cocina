@@ -4,7 +4,7 @@
 <header class="site-header" id="nav">
         <div class="container contenido-header">
             <nav class="navbar navbar-expand-lg navbar-light navegacion">
-                <div class="col-sm-4">
+                <div class="col-sm-2">
                     <a class="navbar-brand" href="<?php echo $URL ?>">
                         <img src="<?php echo $URL ?>img/logo-rica-cociona3.png" class="logo" alt="Logotipo de Rica Cocina">
                     </a>
@@ -12,13 +12,23 @@
                 <button class="navbar-toggler bt-color" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="col-sm-8">
+                <div class="col-sm-10">
                     <div class="collapse navbar-collapse" id="navbarNavDropdown">
                         <ul class="navbar-nav ml-auto">
-                            <li class="nav-item active">
+                            <li class="nav-item dropdown">
+                                <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Administracion Blog
+                                </a>
+                                <div class="dropdown-menu" style="background-color: #813531;" aria-labelledby="navbarDropdownMenuLink">
+                                    <a class="dropdown-item" href="<?php echo $URL ?>admin/blog/ver-publicaciones.php">Publicaciones</a>
+                                    <a class="dropdown-item" href="<?php echo $URL ?>admin/blog/registro-entrada.php">Registar entrada</a>
+                                    <a class="dropdown-item" href="<?php echo $URL ?>blog/">Ver blog</a>
+                                </div>
+                            </li>
+                            <li class="nav-item ">
                                 <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
                             </li>
-                            <li class="nav-item active">
+                            <li class="nav-item ">
                                 <a href="<?php echo $URL ?>admin/recetas/receta_val.php">Admistracion Recetas</a>
                             </li>
                             

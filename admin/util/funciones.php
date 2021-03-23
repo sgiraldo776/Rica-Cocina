@@ -14,8 +14,12 @@ function get_url_valid_text($string_in){
 }
 
 function move_to($origen,$destino){
-    copy($origen,$destino);
-    unlink($origen);
+    if(copy($origen,$destino)){
+        unlink($origen);
+        return true;
+    }else{
+        return false;
+    }
   }
 
 

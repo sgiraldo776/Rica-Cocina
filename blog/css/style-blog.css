@@ -11,3 +11,14 @@
 .last-entries > ol > li > a{
     color: white;
 }
+
+
+.publicacion-nueva-img-previa > img{
+    width: 600px;
+    height: 300px;
+}
+
+.img-previo{
+    min-height: 200px;
+    min-width: 400px;
+}

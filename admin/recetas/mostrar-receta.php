@@ -1,11 +1,3 @@
-
-
-
-
-
-<!DOCTYPE html>
-<html lang="es">
-<head
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -67,9 +59,7 @@
         }else {
             include '../../includes/header-admin.php';
         }            
-    }
-    
-    
+    }    
 ?>
     <main>
         <div class="contenedor ingredientes">

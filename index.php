@@ -202,6 +202,29 @@
 
     <?php endif; ?>
 
+    <?php
+        if(isset($_SESSION['error'])) :
+    ?>
+        <script>
+            Swal.fire({
+                icon: 'warning',
+                title: '¡Observación!',
+                text: 'No eres premium, debes ser lo para ver el blog',
+                confirmButtonText: "Aceptar",
+                
+            })
+            .then(resultado => {
+                    if (resultado.value) {
+                    
+                    } 
+            });
+        </script>
+
+        <?php $_SESSION['error'] = null; ?>
+
+    <?php endif; ?>
+
+
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">

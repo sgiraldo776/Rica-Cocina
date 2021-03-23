@@ -1,7 +1,28 @@
 <?php 
     session_start();
     include '../admin/conexion.php'; 
+    include '../admin/util/funciones.php';
+    include '../admin/util/validar_premium.php';
+
+   
+    if(isset($_SESSION['cuentaid'])){
+        $id = $_SESSION['cuentaid'];
+        $premium=validarPremium($id,$conn);
+        // echo "<script>alert('true')</script>";
+
+    }elseif($_SESSION['rol'] == 1 ){
+        $premium= true;
+        // echo "<script>alert('true')</script>";
+    }
+    else{
+        $premium= false;
+        // echo "<script>alert('False')</script>";
+    }
     
+    if(!$premium){
+        $_SESSION['error'] = 1;
+        header('location:'.$URL);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -41,13 +62,20 @@
     <title>Blog - Rica Cocina</title>
 </head>
 <body>
-    <?php include '../includes/header-admin.php' ?>
+    <?php 
+        if($_SESSION['rol'] == 1){
+            include '../includes/header-admin.php';
+        }else{
+            include '../includes/header-user.php';
+        }
 
-    <div id="carrusel-blog" class="carrusel-blog carousel contendor-slider slide" data-ride="carousel">
+    ?>
+
+    <!-- <div id="carrusel-blog" class="carrusel-blog carousel contendor-slider slide" data-ride="carousel">
         <ol class="carousel-indicators ">
             <li data-target="#carrusel-blog" data-slide-to="0" class="active"></li>
             <li data-target="#carrusel-blog" data-slide-to="1"></li>
-            <!-- <li data-target="#carrusel-blog" data-slide-to="2"></li> -->
+        <li data-target="#carrusel-blog" data-slide-to="2"></li> 
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
@@ -149,89 +177,49 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <main role="main" class="container mt-5">
+        </div> -->
+        <main role="main" class="container mt-5 mb-5">
             <div class="row">
                 <div class="col-md-8 blog-main">
+                    <h1 class="display-1">Blog Rica Cocina</h1>
                     <h2 class="pb-3 mb-4 display-3 font-italic border-bottom">
                         Mas publicaciones
                     </h2>
+                    <?php 
+                        $sql = "SELECT * From tblpublicacion where estado = 1";
+                        if($resultadoSql = $conn->query($sql)){
+                            while($publicacion = $resultadoSql->fetch_row()){
+                                $titulo_publicacion = get_url_valid_text($publicacion[1]);
+                                $titulo_publicacion = $titulo_publicacion."-".$publicacion[0];
+                                ?>
+                                <div class="text-white rounded border border-dark mt-5">
+                                    <div class="row">
+                                        <div class="col-md-6 px-0">
+                                                <!-- <img src="https://picsum.photos/400/400" alt=""> -->
+                                                <img class="img-previo" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $publicacion[5] ) ?>">
 
-                    <div class="text-white rounded border border-dark mt-5">
-                        <div class="row">
-                            <div class="col-md-6 px-0">
-                                    <img src="https://picsum.photos/400/400" alt="">
-                            </div>
-                            <div class="col-md-6 px-0 bg-red p-3 p-md-5">
-                                <h3 class="display-4 font-italic text-white ">Title of a longer featured blog post</h3>
-                                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
-                                <p class="lead mb-0"><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/" class="text-white font-weight-bold">Continue reading...</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-white rounded border border-dark mt-5">
-                        <div class="row">
-                            <div class="col-md-6 px-0">
-                                    <img src="https://picsum.photos/400/400" alt="">
-                            </div>
-                            <div class="col-md-6 px-0 bg-red p-3 p-md-5">
-                                <h3 class="display-4 font-italic text-white ">Title of a longer featured blog post</h3>
-                                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
-                                <p class="lead mb-0"><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/" class="text-white font-weight-bold">Continue reading...</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-white rounded border border-dark mt-5">
-                        <div class="row">
-                            <div class="col-md-6 px-0">
-                                    <img src="https://picsum.photos/400/400" alt="">
-                            </div>
-                            <div class="col-md-6 px-0 bg-red p-3 p-md-5">
-                                <h3 class="display-4 font-italic text-white ">Title of a longer featured blog post</h3>
-                                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
-                                <p class="lead mb-0"><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/" class="text-white font-weight-bold">Continue reading...</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-white rounded border border-dark mt-5">
-                        <div class="row">
-                            <div class="col-md-6 px-0">
-                                    <img src="https://picsum.photos/400/400" alt="">
-                            </div>
-                            <div class="col-md-6 px-0 bg-red p-3 p-md-5">
-                                <h1 class="display-4 font-italic text-white ">Title of a longer featured blog post</h1>
-                                <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.</p>
-                                <p class="lead mb-0"><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/" class="text-white font-weight-bold">Continue reading...</a></p>
-                            </div>
-                        </div>
-                    </div>
+                                        </div>
+                                        <div class="col-md-6 px-0 bg-red p-3 p-md-5">
+                                            <h3 class="display-4 font-italic text-white "><?= $publicacion[1] ?></h3>
+                                            <p class="lead my-3"><?= substr(urldecode($publicacion[2]), 0, 100);  ?></p>
+                                            <p class="lead mb-0"><a href="<?php echo $URL."blog/publicaciones/".$titulo_publicacion ?>" class="text-white font-weight-bold">Continuar leyendo</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            
+                            <?php
+                            }
+                        }
 
+                        
+                    
+                    ?>
+                    
+                    
                 </div><!-- /.blog-main -->
 
                 <aside class="col-md-4 blog-sidebar">
-                    <div class="p-3 mb-3 bg-yellow text-white rounded ">
-                        <img src="https://picsum.photos/300/200" alt="">
-                        <h4 class="font-italic text-white">About</h4>
-                        <p class="mb-0">Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-                    </div>
-
-                    <div class="p-3 bg-red text-white last-entries">
-                        <h4 class="font-italic text-white">Archives</h4>
-                        <ol class="list-unstyled mb-0">
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">March 2014</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">February 2014</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">January 2014</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">December 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">November 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">October 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">September 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">August 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">July 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">June 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">May 2013</a></li>
-                            <li><a href="<?php echo $URL ?>blog/publicaciones/primera-entrada/">April 2013</a></li>
-                        </ol>
-                    </div>
+                    <?php include '../includes/aside-blog.php'; ?>
                 </aside><!-- /.blog-sidebar -->
             </div><!-- /.row -->
         </main><!-- /.container -->

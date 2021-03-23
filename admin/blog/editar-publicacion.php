@@ -1,6 +1,7 @@
 <?php 
     session_start();
     include '../conexion.php'; 
+    include "../../includes/open-graph.php";
     if(!isset($_SESSION['rol'])){
         header('location: ../../vistas/login/iniciar_sesion.php');
     }else{
@@ -8,7 +9,7 @@
             header('location: ../../vistas/login/iniciar_sesion.php');
         }
     }
-?>
+ ?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -26,40 +27,28 @@
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="./style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <meta name="description" content="Crear una nueva publicacion para el blog ">
 
-    <!-- Facebook Card -->  
-    <meta property="og:site_name" content="Rica Cocina" />
-    <meta property="og:url" content="<?php echo $URL.$_SERVER["REQUEST_URI"];?>" />
-    <meta property="og:type" content="article:Blog" />
-    <meta property="og:title" content="Crear publicacion - Rica Cocina" />
-    <meta property="og:description" content="Crear una nueva publicacion para el blog " />
-    <meta property="og:image" content="<?php echo $URL."img/meta-img-general.png" ?>" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Crear publicacion - Rica Cocina">
-    <meta name="twitter:description" content="Crear una nueva publicacion para el blog ">
-    <meta name="twitter:creator" content="@andercc2880">
-    <meta name="twitter:image" content="<?php echo $URL."img/meta-img-general.png" ?>" >
-
-    <!-- Schema.org para Google+ -->
-    <meta itemprop="name" content="Crear publicacion - Rica Cocina">
-    <meta itemprop="description" content="Crear una nueva publicacion para el blog ">
-    <meta itemprop="image" content="<?php echo $URL."img/meta-img-general.png" ?>" >
-    <title>Crear publicacion - Rica Cocina</title>
+    <?php echo og("Editar publicacion - Rica Cocina","img/meta-img-general.png","Editar una publicacion para el blog"); ?>
     
 </head>
 <body>
     <?php include '../../includes/header-admin.php' ?>
+    <?php
+        $id = $_GET['id'];
+        $sqlConsultaPublicacion = "SELECT * FROM tblpublicacion where id = $id";
+        $resultConsultaPublicacion = $conn->query($sqlConsultaPublicacion);
+        $fila = $resultConsultaPublicacion->fetch_row();
+        
+    
+    ?>
     <div class="container mt-5">
         <h1 class="display-1">Crear Entrada Blog </h1>
         <div class="col-md-12">
-            <form action="guardar-entrada.php" id="form-guardar" method="post" enctype="multipart/form-data">  
+            <form action="guardar-entrada.php?id=<?php echo $id ?>" id="form-guardar" method="post" enctype="multipart/form-data">  
                 <div class="form-row">
                     <div class="form-group col-md-12">
                         <label for="entry-title">Titulo</label>
-                        <input type="text" name="entry-titulo" id="entry-title" class="form-control" placeholder="Titulo de la publicación">
+                        <input type="text" name="entry-titulo" id="entry-title" class="form-control" value="<?php echo $fila[1] ?>" placeholder="Titulo de la publicación">
                     </div>
                 </div>
                 <div class="form-row">
@@ -71,6 +60,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-12">
+                        <img class="receta-img" src="<?php echo 'data:image/jpeg;base64,' . base64_encode( $fila[5] ) ?>">
                         <label for="entry-img">Imagen</label>
                         <input type="file" name="entry-img" id="entry-img">
                     </div>
@@ -116,15 +106,20 @@
         });
 
         $(document).ready(function () {
+            var contenido = decodeURIComponent("<?php echo $fila[2] ?>");
+            $("#summernote").summernote("code",contenido);
             $("#btn-guardar").click(function (e) { 
                 e.preventDefault();
                 var isEmpty = $('#summernote').summernote('isEmpty');
-                console.log(isEmpty);
                 var html = $("#summernote").summernote("code");
                 if($("#entry-title").val() != null && $("#entry-title").val() != ""){
                     if(!isEmpty){
-                        if(validaImg("entry-img")){
-                            // console.log(encodeURIComponent(html));
+                        if(document.getElementById("entry-img").files.length > 0){
+                            if(validaImg("entry-img")){
+                                $("#entry-contenido").val(encodeURIComponent(html));
+                                $("#form-guardar").submit();
+                            }
+                        }else{
                             $("#entry-contenido").val(encodeURIComponent(html));
                             $("#form-guardar").submit();
                         }

@@ -83,7 +83,7 @@ h4, h5 {
     margin-left: 0;
     font-family: 'Quicksand', sans-serif;
     color: #FFFFFF;
-    font-size: 2rem;
+    font-size: 1.7rem;
 }
 
 .thead {
@@ -273,6 +273,7 @@ input#btn_enviar {
     height: 300px;
     overflow: scroll;
     margin-bottom: 5rem;
+    
 }
 
 .page-item.activo .page-link {
@@ -304,6 +305,9 @@ input#btn_enviar {
     direction: rtl;
     unicode-bidi: bidi-override;
   }
+  .clasificacion >  input[type="radio"]{
+      display: none;
+  }
   
   #estrella:hover,
   #estrella:hover ~ #estrella {
@@ -319,4 +323,8 @@ input#btn_enviar {
     width: 50rem;
     height: auto;
     border: none;
+}
+
+.container-page{
+    min-height: 100vh !important;
 }
