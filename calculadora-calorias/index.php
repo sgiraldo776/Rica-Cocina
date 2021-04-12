@@ -1,4 +1,5 @@
 <?php 
+    session_start();    
     include '../admin/conexion.php'; 
     include "../includes/open-graph.php";
 ?>
@@ -16,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
     <link rel="stylesheet" type="text/css" href="./calculadora.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <?php echo og("Calculadora De Calorias","img/meta-img-general.png","Calculadora de calorias"); ?>
+    <?php echo og("Calculadora De Calorias","img/meta-img-general.png","Calculadora de calorias",$URL); ?>
 </head>
 <body>
     <?php include '../includes/header-user.php' ?>

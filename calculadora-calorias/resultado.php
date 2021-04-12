@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="../admin/css/style.css">
     <link rel="stylesheet" type="text/css" href="./calculadora.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <?php echo og("Calculadora De Calorias","img/meta-img-general.png","Calculadora de calorias"); ?>
+    <?php echo og("Calculadora De Calorias","img/meta-img-general.png","Calculadora de calorias",$URL); ?>
 </head>
 <body>
     <?php include '../includes/header-user.php' ?>
@@ -72,7 +72,7 @@
                 <div class="card-result-body">
                     <img src="../img/iconos-01.svg" alt="">
                     <p><?php echo $mantener ?> calorías</p>
-                    <p>Al resultado del cálculo, restar 500. El resultado se da en calorías.</p>
+                    <p>Ésta cantidad te permitirá mantener tu peso</p>
                 </div>
             </div>
             <div class="card-result">

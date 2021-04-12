@@ -1,5 +1,5 @@
 <?php 
-function og($titulo = "Rica Cocina", $meta_img = "img/meta-img-general.png", $meta_descripcion ="RicaCocina es una comunidad de creación gastronómica colectiva, con múltiples herramientas que te ayudarán a encontrar el camino del deleite y de la superación."){
+function og($titulo = "Rica Cocina", $meta_img = "img/meta-img-general.png", $meta_descripcion ="RicaCocina es una comunidad de creación gastronómica colectiva, con múltiples herramientas que te ayudarán a encontrar el camino del deleite y de la superación.",$URL){
 
 ?>
     <!-- Facebook Card -->  
