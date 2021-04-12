@@ -20,7 +20,7 @@ function og($titulo = "Rica Cocina", $meta_img = "img/meta-img-general.png", $me
     <!-- Schema.org para Google+ -->
     <meta itemprop="name" content="<?php echo $titulo ?>">
     <meta itemprop="description" content="<?php echo $meta_descripcion ?> ">
-    <meta itemprop="image" content="<?php echo $meta_img ?>" >
+    <meta itemprop="image" content="<?php echo $URL.$meta_img ?>" >
     <title><?php echo $titulo ?></title>
 
 <?php }?>

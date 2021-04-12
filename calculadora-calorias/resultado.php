@@ -2,6 +2,17 @@
     session_start();    
     include '../admin/conexion.php'; 
     include "../includes/open-graph.php";
+
+    if(!isset($_POST['genero'])){
+        header('location: ./index.php');
+    }
+    // if(!isset($_SESSION['rol'])){
+    //     header('location: '.$URL.'vistas/login/iniciar_sesion.php');
+    // }else{
+    //     if($_SESSION['rol'] !=1 ){
+    //         header('location: '.$URL.'vistas/login/iniciar_sesion.php');
+    //     }
+    // }
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -23,6 +34,8 @@
     <?php include '../includes/header-user.php' ?>
     <div class="container mt-5 container-page">
        <?php
+            
+
             switch ($_POST['genero']) {
                 case '0':
                     $calorias = 66 + (13.7*$_POST['peso']) + (5 * $_POST['estatura']) - (6.75 * $_POST['years']);
@@ -72,7 +85,7 @@
                 <div class="card-result-body">
                     <img src="../img/iconos-01.svg" alt="">
                     <p><?php echo $mantener ?> calorías</p>
-                    <p>Ésta cantidad te permitirá mantener tu peso</p>
+                    <p>Esta cantidad te permitirá mantener tu peso. Te aconsejamos planear una rutina para lograrlo</p>
                 </div>
             </div>
             <div class="card-result">
