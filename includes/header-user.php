@@ -21,6 +21,9 @@
                             <li class="nav-item">
                                 <a href="<?php echo $URL ?>vistas/ingresar_receta.php">Ingresar Receta</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?php echo $URL ?>calculadora-calorias">Calculadora</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a class="dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Estado cuenta

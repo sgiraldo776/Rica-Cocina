@@ -22,6 +22,9 @@
                             <a href="<?php echo $URL ?>Usuario/form_usuario.php">Registrar</a>
                             </li>
                             <li class="nav-item">
+                                <a href="<?php echo $URL ?>calculadora-calorias">Calculadora</a>
+                            </li>
+                            <li class="nav-item">
                                 <a href="<?php echo $URL ?>vistas/login/iniciar_sesion.php">Inicia Sesión</a>
                             </li>
                         </ul>

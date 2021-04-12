@@ -28,6 +28,9 @@
                             <li class="nav-item ">
                                 <a href="<?php echo $URL ?>vistas/recetas.php">Recetas</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="<?php echo $URL ?>calculadora-calorias">Calculadora</a>
+                            </li>
                             <li class="nav-item ">
                                 <a href="<?php echo $URL ?>admin/recetas/receta_val.php">Admistracion Recetas</a>
                             </li>

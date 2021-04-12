@@ -228,8 +228,8 @@ input#btn_enviar {
     height: 100%;
     width: 100%;
     background-color: #ffb80e;
-    -webkit-border-radius: 5px;
-    -webkit-box-shadow: 0px 3px 0px #ca8e00;
+    border-radius: 5px;
+    box-shadow: 0px 3px 0px #ca8e00;
 }
 
 
@@ -326,5 +326,6 @@ input#btn_enviar {
 }
 
 .container-page{
-    min-height: 100vh !important;
+    min-height: 70vh !important;
 }
+
